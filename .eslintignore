@@ -1,0 +1,10 @@
+/dist
+*.scss
+*.css
+/.next
+/node_modules
+/build
+.DS_Store
+dist
+dist-ssr
+*.local
