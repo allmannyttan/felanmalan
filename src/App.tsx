@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import ReloadPrompt from './components/ReloadPrompt'
 import logo from './logo.svg'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           </a>
         </p>
       </header>
+      <ReloadPrompt />
     </div>
   )
 }
