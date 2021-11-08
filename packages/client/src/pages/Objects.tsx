@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Objects() {
+const Objects = () => {
   return (
     <>
       <h5>Vad i rummet ska felanmälas</h5>

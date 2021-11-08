@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Item() {
+const Item = () => {
   return (
     <>
       <h5>Vilket item ska felanmälas</h5>

@@ -3,7 +3,7 @@ import Room from './pages/Room'
 import Item from './pages/Item'
 import Objects from './pages/Objects'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>

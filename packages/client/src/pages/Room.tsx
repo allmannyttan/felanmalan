@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Room() {
+const Room = () => {
   return (
     <>
       <h5>Välj ett rum</h5>
