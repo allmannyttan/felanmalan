@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
 
 const theme: DefaultTheme = {
@@ -17,7 +17,11 @@ const theme: DefaultTheme = {
   },
 }
 
-const Theme = ({ children }: any) => {
+type Props = {
+  children: ReactNode
+}
+
+const Theme = ({ children }: Props) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 
