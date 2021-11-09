@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import checkMark from '../images/svg/checkMark.svg'
+import { useAtom } from 'jotai'
+import { progressBarAtom } from '../utils/atoms'
 
 interface Completed {
   completed: boolean
@@ -56,17 +58,28 @@ const StyledLi = styled.li<Completed>`
 `
 
 const ProgressBar = () => {
+  const [completed] = useAtom(progressBarAtom)
+
+  console.log(completed)
+
+  const getDots = (status: string) => {
+    switch (status) {
+      case 'completed':
+        return <StyledLi completed={true} line={true} />
+      case 'doing':
+        return <StyledLi completed={true} line={false} />
+      case 'next':
+        return <StyledLi completed={false} line={false} />
+
+      default:
+        break
+    }
+  }
+
   return (
     <>
       <p>Progressbar</p>
-      <StyledUl>
-        <StyledLi completed={true} line={true} />
-        <StyledLi completed={true} line={true} />
-        <StyledLi completed={true} line={false} />
-        <StyledLi completed={false} line={false} />
-        <StyledLi completed={false} line={false} />
-        <StyledLi completed={false} line={false} />
-      </StyledUl>
+      <StyledUl>{completed.map(({ status }) => getDots(status))}</StyledUl>
     </>
   )
 }

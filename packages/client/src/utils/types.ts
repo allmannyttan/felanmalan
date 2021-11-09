@@ -12,3 +12,8 @@ export enum ItemEnum {
   'LAMP' = 'Lampa',
   'DOOR' = 'Dörr',
 }
+
+export interface ProgressType {
+  page: string
+  status: string
+}

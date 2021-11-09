@@ -1,4 +1,6 @@
 import React from 'react'
+import { useAtom } from 'jotai'
+import { progressBarAtom } from '../utils/atoms'
 
 const Item = () => {
   return (
