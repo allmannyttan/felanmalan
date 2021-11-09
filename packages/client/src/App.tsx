@@ -2,11 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Room from './pages/Room'
 import Item from './pages/Item'
 import Objects from './pages/Objects'
+import Theme from './Theme'
 import ProgressBar from './components/ProgressBar'
 
 const App = () => {
   return (
-    <>
+    <Theme>
       <ProgressBar />
       <Router>
         <Routes>
@@ -15,7 +16,7 @@ const App = () => {
           <Route path="/objects" element={<Objects />} />
         </Routes>
       </Router>
-    </>
+    </Theme>
   )
 }
 

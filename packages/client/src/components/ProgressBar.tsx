@@ -36,7 +36,8 @@ const StyledLi = styled.li<Completed>`
   height: 18px;
   z-index: 99;
   position: relative;
-  background: ${(props) => (props.completed ? '#90BF2D' : '#E8E8E8')};
+  background: ${(props) =>
+    props.completed ? props.theme.colors.green : props.theme.colors.lightGrey};
   background-image: ${(props) => (props.completed ? `url(${checkMark})` : '')};
   background-repeat: no-repeat;
   background-position: center;
@@ -47,7 +48,8 @@ const StyledLi = styled.li<Completed>`
     position: absolute;
     bottom: 7px;
     left: 18px;
-    background: ${(props) => (props.line ? '#90BF2D' : '#E8E8E8')};
+    background: ${(props) =>
+      props.line ? props.theme.colors.green : props.theme.colors.lightGrey};
     width: 100px;
     height: 2px;
   }
