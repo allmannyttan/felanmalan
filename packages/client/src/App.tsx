@@ -4,10 +4,12 @@ import Item from './pages/Item'
 import Objects from './pages/Objects'
 import Theme from './Theme'
 import Place from './pages/Place'
+import Header from './components/Header'
 const App = () => {
   return (
     <Theme>
       <Router>
+        <Header />
         <Routes>
           <Route path="/place" element={<Place />} />
           <Route path="/room" element={<Room />} />

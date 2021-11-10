@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router'
 import styled from 'styled-components'
 import { H4 } from './Typography'
 
@@ -9,7 +10,22 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: center;
 `
-const Header: React.FC<{ title: string }> = ({ title }) => {
+const Header = () => {
+  const { pathname } = useLocation()
+  const [title, setTitle] = React.useState('')
+
+  React.useEffect(() => {
+    switch (pathname) {
+      case '/place':
+        return setTitle('Steg för steg')
+      case '/room':
+        return setTitle('Din lägenhet')
+
+      default:
+        return
+    }
+  }, [pathname])
+
   return (
     <Wrapper>
       <H4>{title}</H4>
