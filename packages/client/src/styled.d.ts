@@ -11,6 +11,7 @@ declare module 'styled-components' {
       white: string
       darkGrey: string
       lightGrey: string
+      extraLightGrey: string
     }
     fontSizes: {
       small: string
