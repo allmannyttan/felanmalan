@@ -16,9 +16,9 @@ const Header = () => {
 
   React.useEffect(() => {
     switch (pathname) {
-      case '/place':
+      case '/plats':
         return setTitle('Steg för steg')
-      case '/room':
+      case '/rum':
         return setTitle('Din lägenhet')
 
       default:

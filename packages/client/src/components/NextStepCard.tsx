@@ -39,11 +39,12 @@ interface INextStepCard {
   title: String
   icon?: ReactElement
   subtitle: String
+  sendTo: String
 }
 
-const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle }) => {
+const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }) => {
   return (
-    <StyledLink to="/room">
+    <StyledLink to={`/${sendTo}`}>
       <Wrapper>
         {icon}
         <FlexCol>
