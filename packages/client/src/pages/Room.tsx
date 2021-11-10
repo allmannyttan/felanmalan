@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAtom } from 'jotai'
-import { progressBarAtom } from '../utils/atoms'
-import { ProgressStatus } from '../utils/types'
+import { updateProgressAtom } from '../utils/atoms'
+import { ProgressStatus, Pages } from '../utils/types'
 
 const Room = () => {
-  const [, setProgressBarAtom] = useAtom(progressBarAtom)
-
+  const [, updateProgressBar] = useAtom(updateProgressAtom)
   useEffect(() => {
-    setProgressBarAtom([
-      { page: 'room', status: ProgressStatus.COMPLETED },
-      { page: 'object', status: ProgressStatus.DOING },
-      { page: 'item', status: ProgressStatus.NEXT },
-    ])
+    updateProgressBar({ page: Pages.PLACE, status: ProgressStatus.COMPLETED })
+    updateProgressBar({ page: Pages.ROOM, status: ProgressStatus.DOING })
+    updateProgressBar({ page: Pages.AREA, status: ProgressStatus.NEXT })
   }, [])
 
   return (

@@ -24,11 +24,11 @@ export enum Pages {
   ROOM = 'room',
   AREA = 'area',
   ITEM = 'item',
-  COMPLEMENT = 'complement',
+  COMPLETE = 'complete',
   SUMMARY = 'summary',
 }
 
 export interface ProgressType {
-  page: string
+  page: Pages
   status: ProgressStatus
 }

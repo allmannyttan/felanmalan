@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Room from './pages/Room'
 import Place from './pages/Place'
 import Area from './pages/Area'
-import Object from './pages/Object'
+import Item from './pages/Item'
 import Complete from './pages/Complete'
 import Summary from './pages/Summary'
 import Theme from './Theme'
@@ -19,7 +19,7 @@ const App = () => {
             <Route path="/plats" element={<Place />} />
             <Route path="/rum" element={<Room />} />
             <Route path="/omrade" element={<Area />} />
-            <Route path="/objekt" element={<Object />} />
+            <Route path="/objekt" element={<Item />} />
             <Route path="/komplettera" element={<Complete />} />
             <Route path="/sammanfattning" element={<Summary />} />
           </Routes>

@@ -60,16 +60,14 @@ const StyledLi = styled.li<Completed>`
 const ProgressBar = () => {
   const [completed] = useAtom(progressBarAtom)
 
-  console.log(completed)
-
-  const getDots = (status: string) => {
+  const getDots = (status: string, i: number) => {
     switch (status) {
       case 'completed':
-        return <StyledLi completed={true} line={true} />
+        return <StyledLi key={i} completed={true} line={true} />
       case 'doing':
-        return <StyledLi completed={true} line={false} />
+        return <StyledLi key={i} completed={true} line={false} />
       case 'next':
-        return <StyledLi completed={false} line={false} />
+        return <StyledLi key={i} completed={false} line={false} />
 
       default:
         break
@@ -79,7 +77,7 @@ const ProgressBar = () => {
   return (
     <>
       <p>Progressbar</p>
-      <StyledUl>{completed.map(({ status }) => getDots(status))}</StyledUl>
+      <StyledUl>{completed.map((item, i) => getDots(item.status, i))}</StyledUl>
     </>
   )
 }

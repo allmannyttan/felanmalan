@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react'
 import { useAtom } from 'jotai'
-import { progressBarAtom } from '../utils/atoms'
-import { ProgressStatus } from '../utils/types'
+import { updateProgressAtom } from '../utils/atoms'
+import { ProgressStatus, Pages } from '../utils/types'
 
 const Summary = () => {
-  const [, setProgressBarAtom] = useAtom(progressBarAtom)
+  const [, updateProgressBar] = useAtom(updateProgressAtom)
   useEffect(() => {
-    setProgressBarAtom([
-      { page: 'room', status: ProgressStatus.COMPLETED },
-      { page: 'object', status: ProgressStatus.COMPLETED },
-      { page: 'item', status: ProgressStatus.DOING },
-    ])
+    updateProgressBar({ page: Pages.COMPLETE, status: ProgressStatus.COMPLETED })
+    updateProgressBar({ page: Pages.SUMMARY, status: ProgressStatus.DOING })
   }, [])
 
   return (
