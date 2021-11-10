@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Apartment, ExpandRight } from '../assets/Icons'
-import { H4 } from './Typography'
+import { ExpandRight } from '../assets/Icons'
+import { H4, Paragraph } from './Typography'
 
-const Button = styled.button`
+const Wrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 20% auto 6%;
@@ -30,24 +31,29 @@ const FlexCol = styled.div`
   align-items: flex-start;
 `
 
-interface INextStepButton {
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
+interface INextStepCard {
   title: String
   icon?: ReactElement
   subtitle: String
 }
 
-const NextStepButton: React.FC<INextStepButton> = ({ title, icon, subtitle }) => {
-  if (icon) console.log('hek')
+const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle }) => {
   return (
-    <Button>
-      <Apartment />
-      <FlexCol>
-        <H4>{title}</H4>
-        <p style={{ margin: 0 }}>{subtitle}</p>
-      </FlexCol>
-      <ExpandRight />
-    </Button>
+    <StyledLink to="/room">
+      <Wrapper>
+        {icon}
+        <FlexCol>
+          <H4>{title}</H4>
+          <Paragraph>{subtitle}</Paragraph>
+        </FlexCol>
+        <ExpandRight />
+      </Wrapper>
+    </StyledLink>
   )
 }
 
-export default NextStepButton
+export default NextStepCard

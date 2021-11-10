@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Apartment } from '../assets/Icons'
-import Header from '../components/Header'
 import Layout from '../components/Layout'
-import NextStepButton from '../components/NextStepButton'
+import NextStepCard from '../components/NextStepCard'
 import { H2 } from '../components/Typography'
 
 const Ul = styled.ul`
@@ -12,21 +11,20 @@ const Ul = styled.ul`
 `
 const Place = () => {
   return (
-    <div>
-      <Header title="Steg för steg" />
-      <Layout>
+    <Layout>
+      <div>
         <H2>Välj en plats</H2>
         <Ul>
           <li>
-            <NextStepButton
+            <NextStepCard
               title="Lägenhet"
               subtitle="Kök, badrum, sovrum"
               icon={<Apartment />}
             />
           </li>
         </Ul>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   )
 }
 
