@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import { useAtom } from 'jotai'
 import { progressBarAtom } from '../utils/atoms'
 import { ProgressStatus } from '../utils/types'
 
-const Room = () => {
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.yellow};
+`
+const Complete = () => {
   const [, setProgressBarAtom] = useAtom(progressBarAtom)
-
   useEffect(() => {
     setProgressBarAtom([
-      { page: 'room', status: ProgressStatus.COMPLETED },
-      { page: 'object', status: ProgressStatus.DOING },
+      { page: 'room', status: ProgressStatus.DOING },
+      { page: 'object', status: ProgressStatus.NEXT },
       { page: 'item', status: ProgressStatus.NEXT },
     ])
   }, [])
 
   return (
     <>
-      <h5>Vad i rummet ska felanmälas</h5>
-      <Link to="/omrade">Nästa</Link>
+      <Text>Komplettera din felanmälan med text, bild och film</Text>
+      <Link to="/sammanfattning">Nästa</Link>
     </>
   )
 }
-export default Room
+
+export default Complete

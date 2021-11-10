@@ -1,25 +1,23 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useAtom } from 'jotai'
 import { progressBarAtom } from '../utils/atoms'
 import { ProgressStatus } from '../utils/types'
 
-const Room = () => {
+const Summary = () => {
   const [, setProgressBarAtom] = useAtom(progressBarAtom)
-
   useEffect(() => {
     setProgressBarAtom([
       { page: 'room', status: ProgressStatus.COMPLETED },
-      { page: 'object', status: ProgressStatus.DOING },
-      { page: 'item', status: ProgressStatus.NEXT },
+      { page: 'object', status: ProgressStatus.COMPLETED },
+      { page: 'item', status: ProgressStatus.DOING },
     ])
   }, [])
 
   return (
     <>
-      <h5>Vad i rummet ska felanmälas</h5>
-      <Link to="/omrade">Nästa</Link>
+      <h5>Sammanfattaning av din felanmälan</h5>
     </>
   )
 }
-export default Room
+
+export default Summary
