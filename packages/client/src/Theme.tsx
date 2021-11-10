@@ -5,6 +5,7 @@ const theme: DefaultTheme = {
   colors: {
     darkOrange: '#DA4F1E',
     lightOrange: '#F97539',
+    paleOrange: '#FFA982',
     yellow: '#FFB305',
     green: '#90BF2D',
     dark: '#323232',
