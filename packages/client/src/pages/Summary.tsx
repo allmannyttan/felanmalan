@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import { useAtom } from 'jotai'
 import { updateProgressAtom } from '../utils/atoms'
 import { ProgressStatus, Pages } from '../utils/types'
+import Button from '../components/Button'
+import { H1, BoldParagraph, Paragraph } from '../components/Typography'
+
+const TextSection = styled.div`
+  margin-bottom: 30px;
+  width: 100%;
+`
 
 const Summary = () => {
   const [, updateProgressBar] = useAtom(updateProgressAtom)
@@ -16,7 +24,16 @@ const Summary = () => {
 
   return (
     <>
-      <h5>Sammanfattaning av din felanmälan</h5>
+      <H1>Sammanfattaning av din felanmälan</H1>
+      <TextSection>
+        <BoldParagraph>Plats</BoldParagraph>
+        <Paragraph>Lägenhet</Paragraph>
+      </TextSection>
+      <Button
+        text="Skicka felanmälan"
+        onClick={() => console.log('clicked')}
+        to="/bekraftelse"
+      />
     </>
   )
 }
