@@ -57,6 +57,11 @@ const StyledLi = styled.li<Completed>`
   }
 `
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 const ProgressBar = () => {
   const [completed] = useAtom(progressBarAtom)
 
@@ -75,10 +80,9 @@ const ProgressBar = () => {
   }
 
   return (
-    <>
-      <p>Progressbar</p>
+    <Wrapper>
       <StyledUl>{completed.map((item, i) => getDots(item.status, i))}</StyledUl>
-    </>
+    </Wrapper>
   )
 }
 

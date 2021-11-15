@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { Apartment } from '../assets/Icons'
+import NextStepCard from '../components/NextStepCard'
+import { H2 } from '../components/Typography'
 import { useAtom } from 'jotai'
 import { updateProgressAtom } from '../utils/atoms'
 import { Pages, ProgressStatus } from '../utils/types'
+
+const Ul = styled.ul`
+  list-style: none;
+  padding: 0;
+`
 
 const Place = () => {
   const [, updateProgressBar] = useAtom(updateProgressAtom)
@@ -13,10 +21,19 @@ const Place = () => {
   }, [])
 
   return (
-    <>
-      <h4>Välj en plats</h4>
-      <Link to="/rum">Nästa</Link>
-    </>
+    <div>
+      <H2>Välj en plats</H2>
+      <Ul>
+        <li>
+          <NextStepCard
+            title="Lägenhet"
+            subtitle="Kök, badrum, sovrum"
+            icon={<Apartment />}
+            sendTo="rum"
+          />
+        </li>
+      </Ul>
+    </div>
   )
 }
 
