@@ -10,6 +10,7 @@ import Header from './components/Header'
 import ProgressBar from './components/ProgressBar'
 import { Provider as JotaiProvider } from 'jotai'
 import Layout from './components/Layout'
+import Confirmation from './pages/Confirmation'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
                 <Route path="/objekt" element={<Item />} />
                 <Route path="/komplettera" element={<Complete />} />
                 <Route path="/sammanfattning" element={<Summary />} />
+                <Route path="/bekraftelse" element={<Confirmation />} />
               </Routes>
             </>
           </Layout>

@@ -19,12 +19,17 @@ export const H4 = styled.h4`
   text-decoration: none;
   font-weight: 400;
 `
-export const Paragraph = styled.p`
+interface ParagraphProps {
+  center?: boolean
+}
+
+export const Paragraph = styled.p<ParagraphProps>`
   margin: 0;
   color: #000;
   text-decoration: none;
   font-size: 16px;
   font-weight: 400;
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `
 export const BoldParagraph = styled(Paragraph)`
   font-weight: 700;
