@@ -7,6 +7,7 @@ import { ProgressStatus, Pages } from '../utils/types'
 const Area = () => {
   const [, updateProgressBar] = useAtom(updateProgressAtom)
   useEffect(() => {
+    updateProgressBar({ page: Pages.PLACE, status: ProgressStatus.COMPLETED })
     updateProgressBar({ page: Pages.ROOM, status: ProgressStatus.COMPLETED })
     updateProgressBar({ page: Pages.AREA, status: ProgressStatus.DOING })
     updateProgressBar({ page: Pages.ITEM, status: ProgressStatus.NEXT })
