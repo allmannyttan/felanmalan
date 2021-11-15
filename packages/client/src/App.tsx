@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Room from './pages/Room'
 import Place from './pages/Place'
 import Area from './pages/Area'
@@ -13,26 +13,34 @@ import Layout from './components/Layout'
 import Confirmation from './pages/Confirmation'
 
 const App = () => {
+  const { pathname } = useLocation()
+
+  const showProgressBar = [
+    '/plats',
+    '/rum',
+    '/omrade',
+    '/objekt',
+    '/komplettera',
+    '/sammanfattning',
+  ]
   return (
     <Theme>
       <JotaiProvider>
-        <Router>
-          <Header />
-          <Layout>
-            <>
-              <ProgressBar />
-              <Routes>
-                <Route path="/plats" element={<Place />} />
-                <Route path="/rum" element={<Room />} />
-                <Route path="/omrade" element={<Area />} />
-                <Route path="/objekt" element={<Item />} />
-                <Route path="/komplettera" element={<Complete />} />
-                <Route path="/sammanfattning" element={<Summary />} />
-                <Route path="/bekraftelse" element={<Confirmation />} />
-              </Routes>
-            </>
-          </Layout>
-        </Router>
+        <Header />
+        <Layout>
+          <>
+            {showProgressBar.includes(pathname) && <ProgressBar />}
+            <Routes>
+              <Route path="/plats" element={<Place />} />
+              <Route path="/rum" element={<Room />} />
+              <Route path="/omrade" element={<Area />} />
+              <Route path="/objekt" element={<Item />} />
+              <Route path="/komplettera" element={<Complete />} />
+              <Route path="/sammanfattning" element={<Summary />} />
+              <Route path="/bekraftelse" element={<Confirmation />} />
+            </Routes>
+          </>
+        </Layout>
       </JotaiProvider>
     </Theme>
   )
