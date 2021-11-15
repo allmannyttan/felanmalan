@@ -15,5 +15,11 @@ export const Paragraph = styled.p`
   margin: 0;
   color: #000;
   text-decoration: none;
+  font-size: 14px;
+`
+export const ParagraphSmall = styled.p`
+  margin: 0;
+  color: #000;
+  text-decoration: none;
   font-size: 12px;
 `
