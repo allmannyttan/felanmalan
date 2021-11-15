@@ -23,3 +23,8 @@ export const ParagraphSmall = styled.p`
   text-decoration: none;
   font-size: 12px;
 `
+
+export const PlaneButton = styled.button`
+  border: none;
+  background-color: inherit;
+`
