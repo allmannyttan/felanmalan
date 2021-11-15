@@ -10,12 +10,6 @@ const TextSection = styled.div`
   margin-bottom: 30px;
   width: 100%;
 `
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
-  justify-content: space-between;
-`
 
 const Summary = () => {
   const [, updateProgressBar] = useAtom(updateProgressAtom)
@@ -29,20 +23,18 @@ const Summary = () => {
   }, [])
 
   return (
-    <Container>
-      <div>
-        <H1>Sammanfattaning av din felanmälan</H1>
-        <TextSection>
-          <BoldParagraph>Plats</BoldParagraph>
-          <Paragraph>Lägenhet</Paragraph>
-        </TextSection>
-      </div>
+    <>
+      <H1>Sammanfattaning av din felanmälan</H1>
+      <TextSection>
+        <BoldParagraph>Plats</BoldParagraph>
+        <Paragraph>Lägenhet</Paragraph>
+      </TextSection>
       <Button
         text="Skicka felanmälan"
         onClick={() => console.log('clicked')}
         to="/bekraftelse"
       />
-    </Container>
+    </>
   )
 }
 

@@ -5,7 +5,7 @@ import { H2 } from './Typography'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.paleOrange};
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
   display: flex;
   width: 100%;
   justify-content: center;

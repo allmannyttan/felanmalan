@@ -21,6 +21,8 @@ const StyledBtn = styled.button<StyleProps>`
   :disabled {
     cursor: not-allowed;
   }
+  bottom: 2rem;
+  position: absolute;
 `
 
 interface Props {
