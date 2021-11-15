@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const H2 = styled.h2`
   font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 `
 export const H4 = styled.h4`
   margin: 0;
