@@ -6,7 +6,7 @@ interface StyleProps {
   disabled?: boolean
 }
 
-const StyledBtn = styled.button<StyleProps>`
+export const StyledBtn = styled.button<StyleProps>`
   background-color: ${(props) =>
     props.disabled ? props.theme.colors.lightGrey : props.theme.colors.lightOrange};
   color: ${(props) =>
@@ -28,14 +28,14 @@ const StyledBtn = styled.button<StyleProps>`
 interface Props {
   text: string
   disabled?: boolean
-  onClick?: () => void
+  onClick: () => void
   to: string
 }
 
-const Button = ({ text, disabled = true, onClick, to }: Props) => {
+const Button = ({ text, disabled = false, onClick, to }: Props) => {
   return (
     <Link to={to}>
-      <StyledBtn onClick={onClick} disabled={!disabled} type="submit">
+      <StyledBtn onClick={onClick} disabled={disabled}>
         {text}
       </StyledBtn>
     </Link>

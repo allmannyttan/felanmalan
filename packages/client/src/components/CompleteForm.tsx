@@ -1,19 +1,12 @@
 import React from 'react'
-import {
-  ErrorMessage,
-  Field,
-  FieldInputProps,
-  Form,
-  FormikProps,
-  useFormikContext,
-} from 'formik'
+import { Field, FieldInputProps, Form, FormikProps, useFormikContext } from 'formik'
 import styled from 'styled-components'
 import CameraIcon from '../assets/camera.svg'
 import CloseIcon from '../assets/close.svg'
 import VideoIcon from '../assets/video.svg'
 import { H4, Paragraph, PlaneButton } from './Typography'
 import { IFormData } from '../pages/Complete'
-import Button from './Button'
+import { StyledBtn } from './Button'
 
 const TextArea = styled.textarea`
   width: 94%;
@@ -129,12 +122,11 @@ const CompleteForm = () => {
           </PlaneButton>
         </FileNameWrapper>
       )}
-      <ErrorMessage name="videoFile" />
-      <Button
-        text="Slutför felanmälan"
-        disabled={Boolean(values.text || values.image || values.video)}
-        to="/sammanfattning"
-      />
+      <StyledBtn
+        type="submit"
+        disabled={Boolean(!values.text ?? !values.image ?? !values.video)}>
+        Slutför felanmälan
+      </StyledBtn>
     </Form>
   )
 }
