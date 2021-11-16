@@ -85,11 +85,6 @@ const CompleteForm = () => {
     return (event.target.value = '')
   }
 
-  React.useEffect(() => {
-    console.log('ture/false', !values.text ?? !values.image ?? !values.video)
-    console.log('values', values)
-  }, [values])
-
   return (
     <Form>
       <Field name="text" as={CustomTextArea} placeholder="T.ex Lampan är trasig.." />
