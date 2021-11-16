@@ -67,7 +67,7 @@ const Wrapper = styled.div`
 const ProgressBar = () => {
   const [progressBar] = useAtom(progressBarAtom)
   const [, updateProgressBar] = useAtom(updateProgressAtom)
-  const [page, setPage] = useState<Pages>(Pages.AREA)
+  const [page, setPage] = useState<Pages>(Pages.PLACE)
   const { pathname } = useLocation()
 
   const index = progressBar.map((p) => p.page).indexOf(page)
@@ -75,27 +75,25 @@ const ProgressBar = () => {
   const nextPages = progressBar.slice(index + 1, 6)
 
   useEffect(() => {
-    completedPages.forEach(({ page, status }) =>
+    completedPages.map(({ page }) =>
       updateProgressBar({ page, status: ProgressStatus.COMPLETED }),
     )
     updateProgressBar({ page, status: ProgressStatus.DOING })
-    nextPages.map(({ page, status }) =>
-      updateProgressBar({ page, status: ProgressStatus.NEXT }),
-    )
+    nextPages.map(({ page }) => updateProgressBar({ page, status: ProgressStatus.NEXT }))
   }, [page])
 
   useEffect(() => {
     switch (pathname) {
-      case '/sammanfattning':
-        return setPage(Pages.SUMMARY)
-      case '/omrade':
-        return setPage(Pages.AREA)
-      case '/objekt':
-        return setPage(Pages.ITEM)
       case '/plats':
         return setPage(Pages.PLACE)
       case '/rum':
         return setPage(Pages.ROOM)
+      case '/omrade':
+        return setPage(Pages.AREA)
+      case '/objekt':
+        return setPage(Pages.ITEM)
+      case '/sammanfattning':
+        return setPage(Pages.SUMMARY)
       case '/komplettera':
         return setPage(Pages.COMPLETE)
 
