@@ -15,14 +15,14 @@ export const StyledBtn = styled.button<StyleProps>`
   border: none;
   cursor: pointer;
   padding: 0.8rem 0;
-  width: 90vw;
+  width: 87%;
   font-weight: 700;
   font-size: 16px;
   :disabled {
     cursor: not-allowed;
   }
   bottom: 2rem;
-  position: absolute;
+  position: fixed;
 `
 
 interface Props {
