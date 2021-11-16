@@ -28,14 +28,14 @@ const StyledBtn = styled.button<StyleProps>`
 interface Props {
   text: string
   disabled?: boolean
-  onClick: () => void
+  onClick?: () => void
   to: string
 }
 
-const Button = ({ text, disabled = false, onClick, to }: Props) => {
+const Button = ({ text, disabled = true, onClick, to }: Props) => {
   return (
     <Link to={to}>
-      <StyledBtn onClick={onClick} disabled={disabled}>
+      <StyledBtn onClick={onClick} disabled={!disabled} type="submit">
         {text}
       </StyledBtn>
     </Link>
