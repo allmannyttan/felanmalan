@@ -42,8 +42,3 @@ export const ParagraphSmall = styled.p`
 export const BoldParagraph = styled(Paragraph)`
   font-weight: 700;
 `
-
-export const PlaneButton = styled.button`
-  border: none;
-  background-color: inherit;
-`

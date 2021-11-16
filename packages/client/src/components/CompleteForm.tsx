@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import CameraIcon from '../assets/camera.svg'
 import CloseIcon from '../assets/close.svg'
 import VideoIcon from '../assets/video.svg'
-import { H4, Paragraph, PlaneButton } from './Typography'
+import { H4, Paragraph } from './Typography'
 import { IFormData } from '../pages/Complete'
 import { StyledBtn } from './Button'
 
@@ -22,6 +22,10 @@ const TextArea = styled.textarea`
   &::placeholder {
     color: ${({ theme }) => theme.colors.darkGrey};
   }
+`
+const PlaneButton = styled.button`
+  border: none;
+  background-color: inherit;
 `
 
 const FileNameWrapper = styled.div`
