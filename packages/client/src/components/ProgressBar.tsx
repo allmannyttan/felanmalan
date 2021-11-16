@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import checkMark from '../images/svg/checkMark.svg'
 import { useAtom } from 'jotai'
-import { progressBarAtom } from '../utils/atoms'
+import { progressBarAtom, updateProgressAtom } from '../utils/atoms'
+import { ProgressStatus, Pages } from '../utils/types'
+import { useLocation } from 'react-router-dom'
 
 interface Completed {
   completed: boolean
@@ -63,7 +65,42 @@ const Wrapper = styled.div`
 `
 
 const ProgressBar = () => {
-  const [completed] = useAtom(progressBarAtom)
+  const [progressBar] = useAtom(progressBarAtom)
+  const [, updateProgressBar] = useAtom(updateProgressAtom)
+  const [page, setPage] = useState<Pages>(Pages.PLACE)
+  const { pathname } = useLocation()
+
+  const index = progressBar.map((p) => p.page).indexOf(page)
+  const completedPages = progressBar.slice(0, index)
+  const nextPages = progressBar.slice(index + 1, 6)
+
+  useEffect(() => {
+    completedPages.map(({ page }) =>
+      updateProgressBar({ page, status: ProgressStatus.COMPLETED }),
+    )
+    updateProgressBar({ page, status: ProgressStatus.DOING })
+    nextPages.map(({ page }) => updateProgressBar({ page, status: ProgressStatus.NEXT }))
+  }, [page])
+
+  useEffect(() => {
+    switch (pathname) {
+      case '/plats':
+        return setPage(Pages.PLACE)
+      case '/rum':
+        return setPage(Pages.ROOM)
+      case '/omrade':
+        return setPage(Pages.AREA)
+      case '/objekt':
+        return setPage(Pages.ITEM)
+      case '/sammanfattning':
+        return setPage(Pages.SUMMARY)
+      case '/komplettera':
+        return setPage(Pages.COMPLETE)
+
+      default:
+        return
+    }
+  }, [pathname])
 
   const getDots = (status: string, i: number) => {
     switch (status) {
@@ -81,7 +118,7 @@ const ProgressBar = () => {
 
   return (
     <Wrapper>
-      <StyledUl>{completed.map((item, i) => getDots(item.status, i))}</StyledUl>
+      <StyledUl>{progressBar.map((item, i) => getDots(item.status, i))}</StyledUl>
     </Wrapper>
   )
 }
