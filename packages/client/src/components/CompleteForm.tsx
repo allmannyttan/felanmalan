@@ -81,6 +81,11 @@ const CompleteForm = () => {
     return (event.target.value = '')
   }
 
+  React.useEffect(() => {
+    console.log('ture/false', !values.text ?? !values.image ?? !values.video)
+    console.log('values', values)
+  }, [values])
+
   return (
     <Form>
       <Field name="text" as={CustomTextArea} placeholder="T.ex Lampan är trasig.." />
@@ -124,7 +129,7 @@ const CompleteForm = () => {
       )}
       <StyledBtn
         type="submit"
-        disabled={Boolean(!values.text ?? !values.image ?? !values.video)}>
+        disabled={values.text || values.image || values.video ? false : true}>
         Slutför felanmälan
       </StyledBtn>
     </Form>
