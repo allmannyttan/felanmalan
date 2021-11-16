@@ -18,7 +18,7 @@ export const H4 = styled.h4`
   font-size: 16px;
   color: #000;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 700;
 `
 interface ParagraphProps {
   center?: boolean
