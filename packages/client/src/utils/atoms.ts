@@ -1,8 +1,13 @@
 import { atom } from 'jotai'
-import { initialValues } from '../pages/Complete'
 import { ProgressType, ProgressStatus, Pages, ErrorReportType } from './types'
 
-export const reportAtom = atom<ErrorReportType>({ complete: initialValues })
+export const reportAtom = atom<ErrorReportType>({
+  complete: {
+    text: '',
+    image: null,
+    video: null,
+  },
+})
 
 export const progressBarAtom = atom<ProgressType[]>([
   {

@@ -12,12 +12,6 @@ export interface IFormData {
   video: File | null
 }
 
-export const initialValues = {
-  text: '',
-  image: null,
-  video: null,
-}
-
 const Complete = () => {
   const navigate = useNavigate()
   const [formValue, setFormValue] = useAtom(reportAtom)
