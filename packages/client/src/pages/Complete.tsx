@@ -1,11 +1,32 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useAtom } from 'jotai'
+import { reportAtom } from '../utils/atoms'
+import { H1 } from '../components/Typography'
+import { Formik } from 'formik'
+import CompleteForm from '../components/CompleteForm'
+import { useNavigate } from 'react-router-dom'
+
+export interface IFormData {
+  text?: String
+  image: File | null
+  video: File | null
+}
 
 const Complete = () => {
+  const navigate = useNavigate()
+  const [formValue, setFormValue] = useAtom(reportAtom)
+
+  const handleOnSubmit = (values: IFormData) => {
+    setFormValue({ ...formValue, complete: values })
+    navigate('/sammanfattning')
+  }
+
   return (
     <>
-      <h4>Komplettera din felanmälan med text, bild och film</h4>
-      <Link to="/sammanfattning">Nästa</Link>
+      <H1>Beskriv problemet</H1>
+      <Formik initialValues={formValue.complete} onSubmit={handleOnSubmit}>
+        <CompleteForm />
+      </Formik>
     </>
   )
 }

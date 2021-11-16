@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ExpandRight } from '../assets/Icons'
-import { H4, Paragraph } from './Typography'
+import { H4, ParagraphSmall } from './Typography'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -49,7 +49,7 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }
         {icon}
         <FlexCol>
           <H4>{title}</H4>
-          <Paragraph>{subtitle}</Paragraph>
+          <ParagraphSmall>{subtitle}</ParagraphSmall>
         </FlexCol>
         <ExpandRight />
       </Wrapper>

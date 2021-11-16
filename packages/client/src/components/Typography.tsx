@@ -32,6 +32,13 @@ export const Paragraph = styled.p<ParagraphProps>`
   font-weight: 400;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `
+export const ParagraphSmall = styled.p`
+  margin: 0;
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+`
 export const BoldParagraph = styled(Paragraph)`
   font-weight: 700;
 `
