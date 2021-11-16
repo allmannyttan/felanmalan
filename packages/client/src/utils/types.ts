@@ -1,3 +1,5 @@
+import { IFormData } from '../pages/Complete'
+
 export enum RoomEnum {
   'KITCHEN' = 'Kök',
   'BATHROOM' = 'Badrum',
@@ -11,6 +13,10 @@ export enum ObjectEnum {
 export enum ItemEnum {
   'LAMP' = 'Lampa',
   'DOOR' = 'Dörr',
+}
+
+export type ErrorReportType = {
+  complete: IFormData
 }
 
 export enum ProgressStatus {

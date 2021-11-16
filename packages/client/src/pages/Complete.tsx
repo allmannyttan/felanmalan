@@ -1,26 +1,28 @@
 import React from 'react'
 import { useAtom } from 'jotai'
-import { updateProgressAtom } from '../utils/atoms'
+import { reportAtom, updateProgressAtom } from '../utils/atoms'
 import { ProgressStatus, Pages } from '../utils/types'
 import { H1 } from '../components/Typography'
 import { Formik } from 'formik'
 import CompleteForm from '../components/CompleteForm'
+import { useNavigate } from 'react-router-dom'
 
 export interface IFormData {
   text?: String
-  image?: File
-  video?: File
+  image: File | null
+  video: File | null
 }
 
-const initialValues = {
-  text: undefined,
-  image: undefined,
-  video: undefined,
+export const initialValues = {
+  text: '',
+  image: null,
+  video: null,
 }
 
 const Complete = () => {
+  const navigate = useNavigate()
   const [, updateProgressBar] = useAtom(updateProgressAtom)
-  // const [formData, setFieldValue] = React.useState<IFormData>()
+  const [formValue, setFormValue] = useAtom(reportAtom)
 
   React.useEffect(() => {
     updateProgressBar({ page: Pages.PLACE, status: ProgressStatus.COMPLETED })
@@ -32,15 +34,14 @@ const Complete = () => {
   }, [])
 
   const handleOnSubmit = (values: IFormData, action: any) => {
-    console.log('submit', values)
-    console.log('action', action)
-    // setFieldValue(values)
+    setFormValue({ ...formValue, complete: values })
+    navigate('/sammanfattning')
   }
 
   return (
     <>
       <H1>Beskriv problemet</H1>
-      <Formik initialValues={initialValues} onSubmit={handleOnSubmit}>
+      <Formik initialValues={formValue.complete} onSubmit={handleOnSubmit}>
         <CompleteForm />
       </Formik>
     </>
