@@ -63,9 +63,9 @@ const CustomTextArea = ({ field, ...props }: { field: FieldInputProps<any> }) =>
 
 const CompleteForm = () => {
   const { setFieldValue, values }: FormikProps<IFormData> = useFormikContext()
-  const handleOnClickRemove = (event: React.MouseEvent<HTMLButtonElement>) =>
-    setFieldValue(event.currentTarget.id, undefined)
-
+  const handleOnClickRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setFieldValue(event.currentTarget.id, null)
+  }
   const handelChangeFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.currentTarget.files) return
     switch (event.target.id) {
