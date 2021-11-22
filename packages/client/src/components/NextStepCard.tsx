@@ -1,8 +1,11 @@
+import { useAtom } from 'jotai'
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ExpandRight } from '../assets/Icons'
+import { reportAtom } from '../utils/atoms'
 import { H4, ParagraphSmall } from './Typography'
+import { useLocation } from 'react-router'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -36,15 +39,33 @@ const StyledLink = styled(Link)`
 `
 
 interface INextStepCard {
-  title: String
+  title: string
   icon?: ReactElement
-  subtitle: String
-  sendTo: String
+  subtitle: string
+  sendTo: string
 }
 
 const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }) => {
+  const [value, setReportValue] = useAtom(reportAtom)
+  const { pathname } = useLocation()
+
+  const handleOnClickRoom = () => {
+    switch (pathname) {
+      case '/plats':
+        return setReportValue({ ...value, place: title })
+      case '/rum':
+        return setReportValue({ ...value, room: title })
+      case '/omrade':
+        return setReportValue({ ...value, area: title })
+      case '/objekt':
+        return setReportValue({ ...value, object: title })
+      default:
+        return
+    }
+  }
+
   return (
-    <StyledLink to={`/${sendTo}`}>
+    <StyledLink to={`/${sendTo}`} onClick={handleOnClickRoom}>
       <Wrapper>
         {icon}
         <FlexCol>
