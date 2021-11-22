@@ -2,6 +2,10 @@ import { atom } from 'jotai'
 import { ProgressType, ProgressStatus, Pages, ErrorReportType } from './types'
 
 export const reportAtom = atom<ErrorReportType>({
+  place: '',
+  room: '',
+  area: '',
+  object: '',
   complete: {
     text: '',
     image: null,
