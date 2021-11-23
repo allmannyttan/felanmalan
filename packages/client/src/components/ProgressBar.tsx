@@ -25,7 +25,7 @@ const StyledUl = styled.ul`
   height: 4rem;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0.9rem 2rem 0 2rem;
 `
 
 const StyledLi = styled.li<Completed>`
