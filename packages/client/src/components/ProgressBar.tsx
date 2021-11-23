@@ -7,7 +7,7 @@ import { ProgressStatus, Pages } from '../utils/types'
 import { useLocation } from 'react-router-dom'
 
 interface Completed {
-  completed: boolean
+  status: string
   line: boolean
 }
 
@@ -41,8 +41,15 @@ const StyledLi = styled.li<Completed>`
   z-index: 99;
   position: relative;
   background: ${(props) =>
-    props.completed ? props.theme.colors.green : props.theme.colors.lightGrey};
-  background-image: ${(props) => (props.completed ? `url(${checkMark})` : '')};
+    props.status === 'completed'
+      ? props.theme.colors.green
+      : props.status === 'doing'
+      ? props.theme.colors.white
+      : props.theme.colors.lightGrey};
+  box-shadow: ${(props) =>
+    props.status === 'doing' ? `inset 0px 0px 0px 2px${props.theme.colors.green}` : ''};
+  background-image: ${(props) =>
+    props.status === 'completed' ? `url(${checkMark})` : ''};
   background-repeat: no-repeat;
   background-position: center;
 
@@ -105,11 +112,11 @@ const ProgressBar = () => {
   const getDots = (status: string, i: number) => {
     switch (status) {
       case 'completed':
-        return <StyledLi key={i} completed={true} line={true} />
+        return <StyledLi key={i} status="completed" line={true} />
       case 'doing':
-        return <StyledLi key={i} completed={true} line={false} />
+        return <StyledLi key={i} status="doing" line={false} />
       case 'next':
-        return <StyledLi key={i} completed={false} line={false} />
+        return <StyledLi key={i} status="next" line={false} />
 
       default:
         break
