@@ -15,6 +15,38 @@ const Summary = () => {
   return (
     <>
       <H1>Sammanfattaning av din felanmälan</H1>
+      {completeErrorReport.place && (
+        <TextSection>
+          <>
+            <BoldParagraph>Plats</BoldParagraph>
+            <Paragraph>{completeErrorReport.place}</Paragraph>
+          </>
+        </TextSection>
+      )}
+      {completeErrorReport.room && (
+        <TextSection>
+          <>
+            <BoldParagraph>Rum</BoldParagraph>
+            <Paragraph>{completeErrorReport.room}</Paragraph>
+          </>
+        </TextSection>
+      )}
+      {completeErrorReport.area && (
+        <TextSection>
+          <>
+            <BoldParagraph>Område</BoldParagraph>
+            <Paragraph>{completeErrorReport.area}</Paragraph>
+          </>
+        </TextSection>
+      )}
+      {completeErrorReport.object && (
+        <TextSection>
+          <>
+            <BoldParagraph>Objekt</BoldParagraph>
+            <Paragraph>{completeErrorReport.object}</Paragraph>
+          </>
+        </TextSection>
+      )}
       {completeErrorReport.complete.text && (
         <TextSection>
           <>
