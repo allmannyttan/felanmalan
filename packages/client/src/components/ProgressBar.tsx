@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom'
 
 interface Completed {
   status: string
-  line: boolean
 }
 
 const StyledUl = styled.ul`
@@ -60,7 +59,9 @@ const StyledLi = styled.li<Completed>`
     bottom: 7px;
     left: 18px;
     background: ${(props) =>
-      props.line ? props.theme.colors.green : props.theme.colors.lightGrey};
+      props.status === 'completed'
+        ? props.theme.colors.green
+        : props.theme.colors.lightGrey};
     width: 100px;
     height: 2px;
   }
@@ -112,11 +113,11 @@ const ProgressBar = () => {
   const getDots = (status: string, i: number) => {
     switch (status) {
       case 'completed':
-        return <StyledLi key={i} status="completed" line={true} />
+        return <StyledLi key={i} status="completed" />
       case 'doing':
-        return <StyledLi key={i} status="doing" line={false} />
+        return <StyledLi key={i} status="doing" />
       case 'next':
-        return <StyledLi key={i} status="next" line={false} />
+        return <StyledLi key={i} status="next" />
 
       default:
         break
