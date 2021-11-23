@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom'
 
 interface Completed {
   status: string
+  title?: string
 }
 
 const StyledUl = styled.ul`
@@ -21,15 +22,10 @@ const StyledUl = styled.ul`
   justify-content: space-between;
   overflow: hidden;
   margin-left: 10px;
-
-  ::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 5px;
-    width: 100px;
-    height: 2px;
-  }
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
 `
 
 const StyledLi = styled.li<Completed>`
@@ -44,13 +40,17 @@ const StyledLi = styled.li<Completed>`
       ? props.theme.colors.green
       : props.status === 'doing'
       ? props.theme.colors.white
-      : props.theme.colors.lightGrey};
+      : props.theme.colors.darkGrey};
   box-shadow: ${(props) =>
     props.status === 'doing' ? `inset 0px 0px 0px 2px${props.theme.colors.green}` : ''};
   background-image: ${(props) =>
     props.status === 'completed' ? `url(${checkMark})` : ''};
   background-repeat: no-repeat;
   background-position: center;
+
+  :nth-child(6)::after {
+    width: 0px;
+  }
 
   ::after {
     height: 0;
@@ -61,8 +61,8 @@ const StyledLi = styled.li<Completed>`
     background: ${(props) =>
       props.status === 'completed'
         ? props.theme.colors.green
-        : props.theme.colors.lightGrey};
-    width: 100px;
+        : props.theme.colors.darkGrey};
+    width: ${({ title }) => (title === 'Skicka' ? '0px' : '30px')};
     height: 2px;
   }
 `
@@ -70,15 +70,34 @@ const StyledLi = styled.li<Completed>`
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+`
+
+const TextWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 17px;
+`
+
+const Text = styled.p`
+  margin: 0;
+  font-size: 12px;
+  margin-bottom: 0.2rem;
+  margin-top: -1.2rem;
 `
 
 const ProgressBar = () => {
+  interface Page {
+    page: Pages
+    title: string
+  }
   const [progressBar] = useAtom(progressBarAtom)
   const [, updateProgressBar] = useAtom(updateProgressAtom)
-  const [page, setPage] = useState<Pages>(Pages.PLACE)
+  const [pageInfo, setPageInfo] = useState<Page>({ page: Pages.PLACE, title: 'Plats' })
   const { pathname } = useLocation()
 
-  const index = progressBar.map((p) => p.page).indexOf(page)
+  const index = progressBar.map((p) => p.page).indexOf(pageInfo.page)
   const completedPages = progressBar.slice(0, index)
   const nextPages = progressBar.slice(index + 1, 6)
 
@@ -86,24 +105,24 @@ const ProgressBar = () => {
     completedPages.map(({ page }) =>
       updateProgressBar({ page, status: ProgressStatus.COMPLETED }),
     )
-    updateProgressBar({ page, status: ProgressStatus.DOING })
+    updateProgressBar({ page: pageInfo.page, status: ProgressStatus.DOING })
     nextPages.map(({ page }) => updateProgressBar({ page, status: ProgressStatus.NEXT }))
-  }, [page])
+  }, [pageInfo])
 
   useEffect(() => {
     switch (pathname) {
       case '/plats':
-        return setPage(Pages.PLACE)
+        return setPageInfo({ page: Pages.PLACE, title: 'Plats' })
       case '/rum':
-        return setPage(Pages.ROOM)
+        return setPageInfo({ page: Pages.ROOM, title: 'Rum' })
       case '/omrade':
-        return setPage(Pages.AREA)
+        return setPageInfo({ page: Pages.AREA, title: 'Område' })
       case '/objekt':
-        return setPage(Pages.ITEM)
-      case '/sammanfattning':
-        return setPage(Pages.SUMMARY)
+        return setPageInfo({ page: Pages.ITEM, title: 'Objekt' })
       case '/komplettera':
-        return setPage(Pages.COMPLETE)
+        return setPageInfo({ page: Pages.COMPLETE, title: 'Komplettera' })
+      case '/sammanfattning':
+        return setPageInfo({ page: Pages.SUMMARY, title: 'Skicka' })
 
       default:
         return
@@ -115,7 +134,12 @@ const ProgressBar = () => {
       case 'completed':
         return <StyledLi key={i} status="completed" />
       case 'doing':
-        return <StyledLi key={i} status="doing" />
+        return (
+          <TextWrap key={i}>
+            <Text>{pageInfo.title}</Text>
+            <StyledLi status="doing" title={pageInfo.title} />
+          </TextWrap>
+        )
       case 'next':
         return <StyledLi key={i} status="next" />
 
@@ -123,7 +147,6 @@ const ProgressBar = () => {
         break
     }
   }
-
   return (
     <Wrapper>
       <StyledUl>{progressBar.map((item, i) => getDots(item.status, i))}</StyledUl>
