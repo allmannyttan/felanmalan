@@ -7,7 +7,7 @@ import { useAtom } from 'jotai'
 import { reportAtom } from '../utils/atoms'
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.paleOrange};
+  background-color: ${({ theme }) => theme.colors.backgroundGrey};
   padding: 0.6rem 0;
   display: flex;
   width: 100%;

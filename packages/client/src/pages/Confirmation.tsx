@@ -13,26 +13,35 @@ const Flex = styled.div`
   margin-top: 3rem;
 `
 
+const Wrapper = styled.div`
+  padding: 30px 19px;
+`
+
 const Container = styled.div`
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 80vh;
+
+  h1 {
+    padding: 0 0 0 1.3rem;
+  }
 `
 
 const Icon = styled.img`
   margin-bottom: 0.7rem;
+  padding: 0;
 `
 
 const Confirmation = () => {
   return (
-    <>
+    <Wrapper>
       <Container>
         <img src={postbox} alt="Postbox" />
         <Flex>
           <H1>Felanmälan inskickad</H1>
-          <Icon src={success} aria-hidden={true} alt="Succes" />
+          <Icon src={success} aria-hidden={true} alt="Success" />
         </Flex>
         <Paragraph center={true}>
           Du kommmer att få en notis och påminnelse när du kan göra en tidsbokning
@@ -44,7 +53,7 @@ const Confirmation = () => {
         to="/"
         onClick={() => console.log('sending felanmälan')}
       />
-    </>
+    </Wrapper>
   )
 }
 export default Confirmation
