@@ -13,6 +13,7 @@ const theme: DefaultTheme = {
     darkGrey: '#868686',
     lightGrey: '#E8E8E8',
     extraLightGrey: '#F9F9F9',
+    backgroundGrey: '#FAFAFF',
   },
   fontSizes: {
     small: '16px',

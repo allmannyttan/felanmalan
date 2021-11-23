@@ -13,6 +13,7 @@ declare module 'styled-components' {
       darkGrey: string
       lightGrey: string
       extraLightGrey: string
+      backgroundGrey: string
     }
     fontSizes: {
       small: string
