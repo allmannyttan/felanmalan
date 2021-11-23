@@ -40,7 +40,7 @@ const FileLabel = styled.label`
   background-color: ${({ theme }) => theme.colors.white};
   color: black;
   border-radius: 33px;
-  border: ${({ theme }) => `1px solid ${theme.colors.lightOrange}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.paleOrange}`};
   cursor: pointer;
   padding: 0.6rem 0;
   font-weight: 700;

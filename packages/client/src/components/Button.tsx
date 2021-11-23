@@ -8,9 +8,9 @@ interface StyleProps {
 
 export const StyledBtn = styled.button<StyleProps>`
   background-color: ${(props) =>
-    props.disabled ? props.theme.colors.lightGrey : props.theme.colors.lightOrange};
+    props.disabled ? props.theme.colors.lightGrey : props.theme.colors.paleOrange};
   color: ${(props) =>
-    props.disabled ? props.theme.colors.darkGrey : props.theme.colors.white};
+    props.disabled ? props.theme.colors.darkGrey : props.theme.colors.dark};
   border-radius: 33px;
   border: none;
   cursor: pointer;
