@@ -16,6 +16,10 @@ export enum ItemEnum {
 }
 
 export type ErrorReportType = {
+  place: string
+  room: string
+  area: string
+  object: string
   complete: IFormData
 }
 

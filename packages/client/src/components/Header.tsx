@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { H2 } from './Typography'
 import arrow from '../images/svg/arrow.svg'
+import { useAtom } from 'jotai'
+import { reportAtom } from '../utils/atoms'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.paleOrange};
@@ -25,7 +27,7 @@ const Button = styled.button`
 const Header = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
-
+  const [value] = useAtom(reportAtom)
   const [title, setTitle] = React.useState('Felanmälan')
   const showArrow = [
     '/plats',
@@ -41,12 +43,15 @@ const Header = () => {
       case '/plats':
         return setTitle('Steg för steg')
       case '/rum':
-        return setTitle('Din lägenhet')
+        return setTitle(value.place)
+      case '/omrade':
+        return setTitle(value.room)
+      case '/objekt':
+        return setTitle(value.area)
       case '/bekraftelse':
         return setTitle('Felanmälan inskickad')
-
       default:
-        return
+        return setTitle('Felanmälan')
     }
   }, [pathname])
 
