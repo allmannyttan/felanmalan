@@ -5,11 +5,7 @@ const Wrapper = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.backgroundGrey};
 
-  h1 {
-    padding: 0 1.3rem;
-  }
-
-  img:first-of-type {
+  .floor_plan {
     padding: 0 1.3rem;
   }
 `

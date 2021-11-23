@@ -15,7 +15,7 @@ export const StyledBtn = styled.button<StyleProps>`
   border: none;
   cursor: pointer;
   padding: 0.8rem 0;
-  width: 87%;
+  width: 91%;
   font-weight: 700;
   font-size: 16px;
   :disabled {
