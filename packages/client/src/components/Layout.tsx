@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundGrey};
 
   .floor_plan {
-    padding: 0 1.3rem;
+    padding-left: 1.3rem;
   }
 `
 const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
