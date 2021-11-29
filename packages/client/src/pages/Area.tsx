@@ -1,10 +1,10 @@
 import React from 'react'
-import { Apartment } from '../assets/Icons'
 import Section from '../components/Section'
 import NextStepCard from '../components/NextStepCard'
 import { H1 } from '../components/Typography'
 import room from '../images/png/room.png'
 import Elements from '../shared-elements'
+import { Icons } from '../components/Icon'
 
 const Area = () => {
   return (
@@ -17,7 +17,7 @@ const Area = () => {
             <NextStepCard
               title="Vitvaror"
               subtitle="Kyl, frys, ugn"
-              icon={<Apartment />}
+              icon={Icons.appliances}
               sendTo="objekt"
             />
           </li>

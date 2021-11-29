@@ -1,5 +1,5 @@
 import React from 'react'
-import { Apartment } from '../assets/Icons'
+import { Icons } from '../components/Icon'
 import NextStepCard from '../components/NextStepCard'
 import Section from '../components/Section'
 import { H1 } from '../components/Typography'
@@ -15,7 +15,7 @@ const Place = () => {
             <NextStepCard
               title="Lägenhet"
               subtitle="Kök, badrum, sovrum"
-              icon={<Apartment />}
+              icon={Icons.apartment}
               sendTo="rum"
             />
           </li>
