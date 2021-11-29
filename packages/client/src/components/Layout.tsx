@@ -10,9 +10,6 @@ const Wrapper = styled.div`
   grid-template-rows: 1fr 1fr 1fr 9fr;
   width: 100%;
   overflow-x: hidden;
-  .floor_plan {
-    padding-left: 1.3rem;
-  }
 `
 const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
   return (
