@@ -4,17 +4,20 @@ import styled from 'styled-components'
 import apartment from '../assets/icons/apartment.svg'
 import kitchen from '../assets/icons/kitchen.svg'
 import appliances from '../assets/icons/appliances.svg'
+import waterTap from '../assets/icons/watertap.svg'
 
 const ICONS = {
   apartment,
   kitchen,
   appliances,
+  waterTap,
 }
 
 export enum Icons {
   apartment = 'apartment',
   kitchen = 'kitchen',
   appliances = 'appliances',
+  waterTap = 'waterTap',
 }
 
 type Props = {
