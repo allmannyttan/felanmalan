@@ -1,11 +1,12 @@
 import { useAtom } from 'jotai'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ExpandRight } from '../assets/Icons'
 import { reportAtom } from '../utils/atoms'
 import { H4, ParagraphSmall } from './Typography'
 import { useLocation } from 'react-router'
+import Icon, { Icons } from './Icon'
 
 const Wrapper = styled.div`
   display: grid;
@@ -15,22 +16,13 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 11px 18px;
   margin-bottom: 1.3rem;
+  grid-gap: 1.4rem;
   background: ${({ theme }) => theme.colors.white};
   transition: background 0.1s ease-in;
-
-  svg:first-child {
-    background-color: ${({ theme }) => theme.colors.extraLightGrey};
-    padding: 0.1rem;
-    border-radius: 4px;
-  }
 
   &:hover,
   &:active {
     background: ${({ theme }) => theme.colors.paleOrange};
-  }
-
-  div {
-    margin-left: 1.2rem;
   }
 `
 
@@ -46,7 +38,7 @@ const StyledLink = styled(Link)`
 
 interface INextStepCard {
   title: string
-  icon?: ReactElement
+  icon: Icons
   subtitle: string
   sendTo: string
 }
@@ -73,7 +65,7 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }
   return (
     <StyledLink to={`/${sendTo}`} onClick={handleOnClickRoom}>
       <Wrapper>
-        {icon}
+        <Icon name={icon} alt={subtitle} />
         <FlexCol>
           <H4>{title}</H4>
           <ParagraphSmall>{subtitle}</ParagraphSmall>

@@ -2,9 +2,9 @@ import React from 'react'
 import { H1 } from '../components/Typography'
 import room from '../images/png/room.png'
 import NextStepCard from '../components/NextStepCard'
-import { Apartment } from '../assets/Icons'
 import Section from '../components/Section'
 import Elements from '../shared-elements'
+import { Icons } from '../components/Icon'
 
 const Room = () => {
   return (
@@ -24,7 +24,7 @@ const Room = () => {
             <NextStepCard
               title="Kök"
               subtitle="Vitvaror"
-              icon={<Apartment />}
+              icon={Icons.kitchen}
               sendTo="omrade"
             />
           </li>
