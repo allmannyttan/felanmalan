@@ -21,7 +21,6 @@ const StyledUl = styled.ul`
   flex-direction: row;
   justify-content: space-between;
   overflow: hidden;
-  margin-left: 10px;
   height: 4rem;
   display: flex;
   align-items: center;

@@ -9,8 +9,15 @@ import Elements from '../shared-elements'
 const Area = () => {
   return (
     <>
-      <H1>Välj ett område</H1>
-      <img src={room} alt="Planritning" className="floor_plan" />
+      <div>
+        <H1>Välj ett område</H1>
+        <img
+          src={room}
+          style={{ width: '200px' }}
+          alt="Planritning"
+          className="floor_plan"
+        />
+      </div>
       <Section>
         <Elements.Layout.Ul>
           <li>

@@ -6,7 +6,6 @@ import Item from './pages/Item'
 import Complete from './pages/Complete'
 import Summary from './pages/Summary'
 import Theme from './Theme'
-import Header from './components/Header'
 import ProgressBar from './components/ProgressBar'
 import { Provider as JotaiProvider } from 'jotai'
 import Layout from './components/Layout'
@@ -26,7 +25,6 @@ const App = () => {
   return (
     <Theme>
       <JotaiProvider>
-        <Header />
         <Layout>
           <>
             {showProgressBar.includes(pathname) && <ProgressBar />}
