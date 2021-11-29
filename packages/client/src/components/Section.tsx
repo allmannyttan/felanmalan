@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ padding?: string }>`
   background: ${({ theme }) => theme.colors.white};
-  padding: 30px 19px 0px 19px;
+  padding: ${({ padding }) => padding ?? '30px 0px'};
   border-radius: 30px 30px 0 0;
   padding-bottom: 3rem;
 `
-const Section: React.FC = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>
+const Section: React.FC<{ padding?: string }> = ({ children, padding }) => {
+  return <Wrapper padding={padding}>{children}</Wrapper>
 }
 
 export default Section
