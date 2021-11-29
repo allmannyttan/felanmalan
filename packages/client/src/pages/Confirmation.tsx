@@ -6,7 +6,7 @@ import postbox from '../images/svg/postbox.svg'
 import success from '../images/svg/success.svg'
 
 const Wrapper = styled.div`
-  padding: 2rem 19px;
+  padding: 0 19px;
   display: flex;
   overflow: hidden;
   height: 87vh;

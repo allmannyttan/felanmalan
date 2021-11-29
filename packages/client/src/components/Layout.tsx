@@ -5,9 +5,11 @@ const Wrapper = styled.div`
   padding: 0;
   position: relative;
   background-color: ${({ theme }) => theme.colors.backgroundGrey};
-  overflow: hidden;
   height: 100vh;
-
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 9fr;
+  width: 100%;
+  overflow-x: hidden;
   .floor_plan {
     padding: 0 1.3rem;
   }

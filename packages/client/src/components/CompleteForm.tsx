@@ -59,6 +59,10 @@ const FileLabel = styled.label`
   }
 `
 
+const Wrapper = styled.div`
+  margin-bottom: 4rem;
+`
+
 const CustomTextArea = ({ field, ...props }: { field: FieldInputProps<any> }) => (
   <div>
     <TextArea {...field} {...props} />
@@ -88,44 +92,46 @@ const CompleteForm = () => {
   return (
     <Form>
       <Field name="text" as={CustomTextArea} placeholder="T.ex Lampan är trasig.." />
-      <FileLabel>
-        <img src={CameraIcon} alt="Camera Icon" />
-        <H4>Ladda upp bild</H4>
-        <input
-          id="imageFile"
-          name="imageFile"
-          type="file"
-          accept="image/*"
-          onChange={handelChangeFileInput}
-        />
-      </FileLabel>
-      {values.image && (
-        <FileNameWrapper>
-          <Paragraph>{values?.image?.name}</Paragraph>
-          <PlaneButton onClick={handleOnClickRemove} id="image">
-            <img src={CloseIcon} alt="remove" />
-          </PlaneButton>
-        </FileNameWrapper>
-      )}
-      <FileLabel>
-        <img src={VideoIcon} alt="Video Icon" />
-        <H4>Ladda upp Video</H4>
-        <input
-          id="videoFile"
-          name="videoFile"
-          type="file"
-          accept="video/*"
-          onChange={handelChangeFileInput}
-        />
-      </FileLabel>
-      {values.video && (
-        <FileNameWrapper>
-          <Paragraph>{values?.video?.name}</Paragraph>
-          <PlaneButton onClick={handleOnClickRemove} id="video">
-            <img src={CloseIcon} alt="remove" />
-          </PlaneButton>
-        </FileNameWrapper>
-      )}
+      <Wrapper>
+        <FileLabel>
+          <img src={CameraIcon} alt="Camera Icon" />
+          <H4>Ladda upp bild</H4>
+          <input
+            id="imageFile"
+            name="imageFile"
+            type="file"
+            accept="image/*"
+            onChange={handelChangeFileInput}
+          />
+        </FileLabel>
+        {values.image && (
+          <FileNameWrapper>
+            <Paragraph>{values?.image?.name}</Paragraph>
+            <PlaneButton onClick={handleOnClickRemove} id="image">
+              <img src={CloseIcon} alt="remove" />
+            </PlaneButton>
+          </FileNameWrapper>
+        )}
+        <FileLabel>
+          <img src={VideoIcon} alt="Video Icon" />
+          <H4>Ladda upp Video</H4>
+          <input
+            id="videoFile"
+            name="videoFile"
+            type="file"
+            accept="video/*"
+            onChange={handelChangeFileInput}
+          />
+        </FileLabel>
+        {values.video && (
+          <FileNameWrapper>
+            <Paragraph>{values?.video?.name}</Paragraph>
+            <PlaneButton onClick={handleOnClickRemove} id="video">
+              <img src={CloseIcon} alt="remove" />
+            </PlaneButton>
+          </FileNameWrapper>
+        )}
+      </Wrapper>
       <StyledBtn
         type="submit"
         disabled={values.text || values.image || values.video ? false : true}>
