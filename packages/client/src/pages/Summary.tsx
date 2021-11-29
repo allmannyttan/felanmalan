@@ -16,7 +16,7 @@ const Summary = () => {
   return (
     <>
       <H1>Sammanfattaning av felanmälan</H1>
-      <Section>
+      <Section padding="30px 18px">
         {completeErrorReport.place && (
           <TextSection>
             <>
