@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   width: 100%;
   overflow-x: hidden;
   .floor_plan {
-    padding: 0 1.3rem;
+    padding-left: 1.3rem;
   }
 `
 const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {

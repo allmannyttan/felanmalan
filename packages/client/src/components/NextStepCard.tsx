@@ -8,19 +8,25 @@ import { H4, ParagraphSmall } from './Typography'
 import { useLocation } from 'react-router'
 
 const Wrapper = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 20% auto 6%;
   background-color: white;
   border: none;
   align-items: center;
-  padding: 0;
+  padding: 11px 18px;
   margin-bottom: 1.3rem;
+  background: ${({ theme }) => theme.colors.white};
+  transition: background 0.1s ease-in;
 
   svg:first-child {
     background-color: ${({ theme }) => theme.colors.extraLightGrey};
     padding: 0.1rem;
     border-radius: 4px;
+  }
+
+  &:hover,
+  &:active {
+    background: ${({ theme }) => theme.colors.paleOrange};
   }
 
   div {

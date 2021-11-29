@@ -20,7 +20,7 @@ const Summary = () => {
   return (
     <>
       <H1>Sammanfattaning av felanmälan</H1>
-      <Section>
+      <Section padding="30px 18px">
         <Wrapper>
           {completeErrorReport.place && (
             <TextSection>
