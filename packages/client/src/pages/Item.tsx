@@ -8,15 +8,15 @@ import { H1 } from '../components/Typography'
 import { inventoryAtom } from '../utils/atoms'
 
 const Item = () => {
-  const [inventorys] = useAtom(inventoryAtom)
-  console.log(inventorys)
+  const [inventory] = useAtom(inventoryAtom)
+  if (inventory.loading) return <p>Loading.. </p>
   return (
     <>
       <H1>Välj ett objekt</H1>
       <Section>
         <Elements.Layout.Ul>
-          {inventorys &&
-            inventorys.map((inventory, i) => (
+          {inventory?.data &&
+            inventory.data.map((inventory, i) => (
               <li key={i}>
                 <NextStepCard
                   title={inventory.description}

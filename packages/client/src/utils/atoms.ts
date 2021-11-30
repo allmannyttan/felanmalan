@@ -1,6 +1,12 @@
 import { atom } from 'jotai'
-import { atomWithQuery } from 'jotai/query'
-import { ProgressType, ProgressStatus, Pages, ErrorReportType } from './types'
+import {
+  ProgressType,
+  ProgressStatus,
+  Pages,
+  ErrorReportType,
+  RoomData,
+  InventoryData,
+} from './types'
 import { client as apiClient } from './apiclient'
 
 export const reportAtom = atom<ErrorReportType>({
@@ -42,24 +48,6 @@ export const progressBarAtom = atom<ProgressType[]>([
   },
 ])
 
-export type RoomType = {
-  id: string
-  name: string
-  description: string
-  shared: string
-}
-
-type InventoryType = {
-  id: string
-  description: string
-  class: {
-    code: string
-    name: string
-  }
-  type: string
-  manufacturer: string
-}
-
 const updateProgress = (
   progress: ProgressType[],
   page: Pages,
@@ -77,25 +65,74 @@ export const updateProgressAtom = atom(
   },
 )
 
-const rentalId = atom('OBJ-0110102')
-const roomId = atom('SPACE-382')
+const roomId = 'SPACE-382'
+const rentalId = 'OBJ-0110203'
 
-export const roomAtom = atomWithQuery((get) => ({
-  queryKey: ['rental', get(rentalId)],
-  queryFn: async ({ queryKey: [, id] }): Promise<RoomType[]> => {
-    const res = await apiClient.get({
-      url: `rooms/?rentalId=${id}`,
-    })
-    return res
+const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
+export const roomAtom = atom(
+  (get) => get(fetchRoomAtom),
+  (_get, set, url) => {
+    const fetchData = async () => {
+      set(fetchRoomAtom, (prev) => ({ ...prev, loading: true }))
+      try {
+        const data = await apiClient.get({
+          url: url as string,
+        })
+        set(fetchRoomAtom, { loading: false, error: null, data })
+      } catch (error: any) {
+        console.log('error', error)
+        set(fetchRoomAtom, { loading: false, error, data: null })
+      }
+    }
+    fetchData()
   },
-}))
+)
+roomAtom.onMount = (runFetch) => {
+  runFetch(`/rooms?rentalId=${rentalId}`)
+}
 
-export const inventoryAtom = atomWithQuery((get) => ({
-  queryKey: ['room', get(roomId)],
-  queryFn: async ({ queryKey: [, id] }): Promise<InventoryType[]> => {
-    const res = await apiClient.get({
-      url: `inventory/?roomId=${id}`,
-    })
-    return res
+const fetchInventoryAtom = atom<InventoryData>({ loading: true, error: null, data: null })
+export const inventoryAtom = atom(
+  (get) => get(fetchInventoryAtom),
+  (_get, set, url) => {
+    const fetchData = async () => {
+      set(fetchInventoryAtom, (prev) => ({ ...prev, loading: true }))
+      try {
+        const data = await apiClient.get({
+          url: url as string,
+        })
+        set(fetchInventoryAtom, { loading: false, error: null, data })
+      } catch (error: any) {
+        console.log('error', error)
+        set(fetchInventoryAtom, { loading: false, error, data: null })
+      }
+    }
+    fetchData()
   },
-}))
+)
+inventoryAtom.onMount = (runFetch) => {
+  runFetch(`/inventory?roomId=${roomId}`)
+}
+
+// Fetch with jotai and react-query. Requires a suspense solution.
+
+// export const roomAtom = atomWithQuery((get) => ({
+//   queryKey: ['rental', get(rentalId)],
+//   queryFn: async ({ queryKey: [, id] }): Promise<RoomData> => {
+//     const res = await apiClient.get({
+//       url: `rooms/?rentalId=${id}`,
+//     })
+//     return res
+//   },
+// }))
+
+// export const inventoryAtom = atomWithQuery((get) => ({
+//   queryKey: ['room', get(roomId)],
+//   initialData: () => [],
+//   queryFn: async ({ queryKey: [, id] }): Promise<InventoryType[]> => {
+//     const res = await apiClient.get({
+//       url: `inventory/?roomId=${id}`,
+//     })
+//     return res
+//   },
+// }))

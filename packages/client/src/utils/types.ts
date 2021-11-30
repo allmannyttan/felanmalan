@@ -42,7 +42,37 @@ export enum Pages {
   SUMMARY = 'summary',
 }
 
-export interface ProgressType {
+export type ProgressType = {
   page: Pages
   status: ProgressStatus
+}
+
+type RoomType = {
+  id: string
+  name: string
+  description: string
+  shared: string
+}
+
+export type RoomData = {
+  loading: boolean
+  error: string | null
+  data: RoomType[] | null
+}
+
+type InventoryType = {
+  id: string
+  description: string
+  class: {
+    code: string
+    name: string
+  }
+  type: string
+  manufacturer: string
+}
+
+export type InventoryData = {
+  loading: boolean
+  error: string | null
+  data: InventoryType[] | null
 }

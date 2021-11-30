@@ -8,9 +8,8 @@ import { Icons } from '../components/Icon'
 import { roomAtom } from '../utils/atoms'
 
 const Room = () => {
-  let [rooms] = useAtom(roomAtom)
-  console.log('hej')
-  if (!rooms) return <p>Loading..</p>
+  let [room] = useAtom(roomAtom)
+  if (room.loading) return <p>Loading..</p>
   return (
     <>
       <div>
@@ -18,8 +17,8 @@ const Room = () => {
       </div>
       <Section>
         <Elements.Layout.Ul>
-          {rooms &&
-            rooms.map((room, i) => (
+          {room?.data &&
+            room.data.map((room, i) => (
               <li key={i}>
                 <NextStepCard
                   title={room.name}
