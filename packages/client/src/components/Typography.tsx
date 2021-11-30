@@ -4,7 +4,7 @@ export const H1 = styled.h1`
   font-size: 20px;
   font-weight: 700;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   padding: 0 1.3rem;
 `
 
