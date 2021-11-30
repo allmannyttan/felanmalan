@@ -1,5 +1,9 @@
 import { IFormData } from '../pages/Complete'
 
+export interface APIRequest {
+  url: string
+}
+
 export enum RoomEnum {
   'KITCHEN' = 'Kök',
   'BATHROOM' = 'Badrum',
