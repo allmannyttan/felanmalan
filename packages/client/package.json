@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "@types/styled-components": "^5.1.15",
+    "axios": "^0.24.0",
     "formik": "^2.2.9",
     "jotai": "^1.4.3",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-query": "^3.33.7",
     "react-router-dom": "^6.0.1",
     "styled-components": "^5.3.3"
   },
