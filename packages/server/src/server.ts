@@ -1,11 +1,7 @@
-import express from 'express'
-const app = express()
-const port = 4000
+import app from './app'
+import config from '@app/config'
+import logger from '@app/helpers/logger'
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen({ port: config.port }, () =>
+  logger.info(`🚀 Server ready at http://localhost:${config.port}`)
+)
