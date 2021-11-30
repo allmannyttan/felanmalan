@@ -8,10 +8,9 @@ import { Icons } from '../components/Icon'
 import { roomAtom } from '../utils/atoms'
 
 const Room = () => {
-  const [rooms] = useAtom(roomAtom)
-
-  console.log('rooms', rooms)
-
+  let [rooms] = useAtom(roomAtom)
+  console.log('hej')
+  if (!rooms) return <p>Loading..</p>
   return (
     <>
       <div>

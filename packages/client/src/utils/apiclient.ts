@@ -9,6 +9,7 @@ const innerGet = async <T = any>(request: APIRequest) => {
     headers,
     baseURL: 'http://localhost:3001/', // FIXME: make configurable
     responseType: 'text',
+    timeout: 30000,
   })
 
   const { data } = await apiClient.get(request.url)
