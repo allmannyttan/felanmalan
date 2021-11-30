@@ -48,6 +48,8 @@ const Header = () => {
         return setTitle(value.room)
       case '/objekt':
         return setTitle(value.area)
+      case '/komplettera':
+        return setTitle(`${value.place} - ${value.room} - ${value.area}`)
       case '/bekraftelse':
         return setTitle('Felanmälan inskickad')
       default:
