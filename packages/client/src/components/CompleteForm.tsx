@@ -49,6 +49,7 @@ const FileLabel = styled.label`
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   margin-bottom: 20px;
+  width: inherit;
 
   input[type='file'] {
     display: none;
@@ -58,15 +59,19 @@ const FileLabel = styled.label`
     margin-left: 28px;
   }
 `
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 const Wrapper = styled.div`
   margin-bottom: 4rem;
+  width: 100%;
 `
 
 const CustomTextArea = ({ field, ...props }: { field: FieldInputProps<any> }) => (
-  <div>
-    <TextArea {...field} {...props} />
-  </div>
+  <TextArea {...field} {...props} />
 )
 
 const CompleteForm = () => {
@@ -90,7 +95,7 @@ const CompleteForm = () => {
   }
 
   return (
-    <Form>
+    <StyledForm>
       <Field name="text" as={CustomTextArea} placeholder="T.ex Lampan är trasig.." />
       <Wrapper>
         <FileLabel>
@@ -137,7 +142,7 @@ const CompleteForm = () => {
         disabled={values.text || values.image || values.video ? false : true}>
         Slutför felanmälan
       </StyledBtn>
-    </Form>
+    </StyledForm>
   )
 }
 
