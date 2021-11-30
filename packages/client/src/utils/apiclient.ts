@@ -7,7 +7,7 @@ const innerGet = async <T = any>(request: APIRequest) => {
   }
   const apiClient = axios.create({
     headers,
-    baseURL: 'http://localhost:4000/', // FIXME: make configurable
+    baseURL: 'http://localhost:3001/', // FIXME: make configurable
     responseType: 'text',
   })
 

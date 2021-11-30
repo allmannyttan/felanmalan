@@ -42,6 +42,13 @@ export const progressBarAtom = atom<ProgressType[]>([
   },
 ])
 
+type RoomType = {
+  id: string
+  name: string
+  description: string
+  shared: string
+}
+
 const updateProgress = (
   progress: ProgressType[],
   page: Pages,
@@ -59,12 +66,16 @@ export const updateProgressAtom = atom(
   },
 )
 
-// const roomAtom = atomWithQuery((get) => ({
-//   queryKey: ['users', get(roomAtom)],
-//   queryFn: async ({ queryKey: [, id] }) => {
-//     const res = await apiClient.get({
-//       url: `rooms/?rentalId=OBJ-0110203`,
-//     })
-//     return res
-//   },
-// }))
+const rentalId = atom('OBJ-0110102')
+const roomId = atom('SPACE-882')
+
+export const roomAtom = atomWithQuery((get) => ({
+  queryKey: ['users', get(rentalId)],
+  queryFn: async ({ queryKey: [, id] }): Promise<RoomType[]> => {
+    const res = await apiClient.get({
+      url: `rooms/?rentalId=${id}`,
+    })
+    console.log('res', res)
+    return res
+  },
+}))
