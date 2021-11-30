@@ -1,5 +1,7 @@
 import { atom } from 'jotai'
+import { atomWithQuery } from 'jotai/query'
 import { ProgressType, ProgressStatus, Pages, ErrorReportType } from './types'
+import { client as apiClient } from './apiclient'
 
 export const reportAtom = atom<ErrorReportType>({
   place: '',
@@ -56,3 +58,13 @@ export const updateProgressAtom = atom(
     set(progressBarAtom, updateProgress(get(progressBarAtom), page, status))
   },
 )
+
+// const roomAtom = atomWithQuery((get) => ({
+//   queryKey: ['users', get(roomAtom)],
+//   queryFn: async ({ queryKey: [, id] }) => {
+//     const res = await apiClient.get({
+//       url: `rooms/?rentalId=OBJ-0110203`,
+//     })
+//     return res
+//   },
+// }))
