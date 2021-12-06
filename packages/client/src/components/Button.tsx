@@ -36,13 +36,19 @@ interface Props {
   to: string
 }
 
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+`
+
 const Button = ({ text, disabled = false, onClick, to }: Props) => {
   return (
-    <Link to={to}>
+    <StyledLink to={to}>
       <StyledBtn onClick={onClick} disabled={disabled}>
         {text}
       </StyledBtn>
-    </Link>
+    </StyledLink>
   )
 }
 
