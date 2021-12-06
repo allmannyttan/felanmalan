@@ -4,8 +4,12 @@ import NextStepCard from '../components/NextStepCard'
 import { H1 } from '../components/Typography'
 import Elements from '../shared-elements'
 import { Icons } from '../components/Icon'
+import { useAtom } from 'jotai'
+import { areaAtom } from '../utils/atoms'
 
 const Area = () => {
+  const [area] = useAtom(areaAtom)
+
   return (
     <>
       <div>
@@ -13,14 +17,17 @@ const Area = () => {
       </div>
       <Section>
         <Elements.Layout.Ul>
-          <li>
-            <NextStepCard
-              title="Vitvaror"
-              subtitle="Kyl, frys, ugn"
-              icon={Icons.appliances}
-              sendTo="objekt"
-            />
-          </li>
+          {area?.data &&
+            area.data.map((area, i) => (
+              <li key={i}>
+                <NextStepCard
+                  title={area.name}
+                  subtitle={area.description}
+                  icon={Icons.kitchen}
+                  sendTo="omrade"
+                />
+              </li>
+            ))}
         </Elements.Layout.Ul>
       </Section>
     </>
