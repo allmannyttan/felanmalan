@@ -22,7 +22,6 @@ const PulseAnimation = keyframes`
 `
 
 const Animation = styled.div`
-  background-color: darkgray;
   animation-name: ${PulseAnimation};
   animation-duration: 2s;
   animation-iteration-count: infinite;
