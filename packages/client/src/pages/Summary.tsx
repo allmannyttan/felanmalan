@@ -13,6 +13,16 @@ const TextSection = styled.div`
 
 const Wrapper = styled.div`
   margin-bottom: 3rem;
+  padding: 0 18px;
+`
+const ButtonWrapper = styled.div`
+  max-width: 840px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  bottom: 2rem;
+  position: absolute;
 `
 
 const Summary = () => {
@@ -20,7 +30,7 @@ const Summary = () => {
   return (
     <>
       <H1>Sammanfattaning av felanmälan</H1>
-      <Section padding="30px 18px">
+      <Section>
         <Wrapper>
           {completeErrorReport.place && (
             <TextSection>
@@ -79,11 +89,13 @@ const Summary = () => {
             </TextSection>
           )}
         </Wrapper>
-        <Button
-          text="Skicka felanmälan"
-          onClick={() => console.log('clicked')}
-          to="/bekraftelse"
-        />
+        <ButtonWrapper>
+          <Button
+            text="Skicka felanmälan"
+            onClick={() => console.log('clicked')}
+            to="/bekraftelse"
+          />
+        </ButtonWrapper>
       </Section>
     </>
   )

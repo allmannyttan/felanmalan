@@ -24,7 +24,7 @@ const Complete = () => {
   return (
     <>
       <H1>Beskriv problemet</H1>
-      <Section padding="30px 18px">
+      <Section>
         <Formik initialValues={formValue.complete} onSubmit={handleOnSubmit}>
           <CompleteForm />
         </Formik>
