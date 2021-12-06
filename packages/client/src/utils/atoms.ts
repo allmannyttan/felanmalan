@@ -66,6 +66,7 @@ export const updateProgressAtom = atom(
 )
 
 const roomId = 'SPACE-382'
+// roomId=SPACE-944
 const rentalId = 'OBJ-0110203'
 
 const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
@@ -89,6 +90,30 @@ export const roomAtom = atom(
 )
 roomAtom.onMount = (runFetch) => {
   runFetch(`/rooms?rentalId=${rentalId}`)
+}
+
+const fetchAreaAtom = atom<RoomData>({ loading: true, error: null, data: null })
+
+export const areaAtom = atom(
+  (get) => get(fetchAreaAtom),
+  (_get, set, url) => {
+    const fetchData = async () => {
+      set(fetchAreaAtom, (prev) => ({ ...prev, loading: true }))
+      try {
+        const data = await apiClient.get({
+          url: url as string,
+        })
+        set(fetchAreaAtom, { loading: false, error: null, data })
+      } catch (error: any) {
+        console.log('error', error)
+        set(fetchAreaAtom, { loading: false, error, data: null })
+      }
+    }
+    fetchData()
+  },
+)
+areaAtom.onMount = (runFetch) => {
+  runFetch(`/area?roomId=${roomId}`)
 }
 
 const fetchInventoryAtom = atom<InventoryData>({ loading: true, error: null, data: null })
