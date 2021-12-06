@@ -14,10 +14,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/http-errors": "^1.8.0",
-    "@types/jsonwebtoken": "^8.5.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/http-errors": "^1.8.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "eslint": "^8.3.0",
     "prettier": "^2.4.1",
     "ts-node": "^10.4.0",
@@ -27,15 +27,15 @@
   },
   "dependencies": {
     "@iteam/config": "^12.1.2",
-    "axios": "^0.24.0",
     "@types/connect-timeout": "0.0.34",
+    "axios": "^0.24.0",
+    "connect-timeout": "^1.9.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-async-handler": "1.1.4",
     "http-errors": "1.7.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.17",
-    "pg": "^8.5.1",
-    "connect-timeout": "^1.9.0",
-    "express-async-handler": "1.1.4"
+    "pg": "^8.5.1"
   }
 }
