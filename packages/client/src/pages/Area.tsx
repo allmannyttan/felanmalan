@@ -24,7 +24,7 @@ const Area = () => {
                   title={area.name}
                   subtitle={area.description}
                   icon={Icons.kitchen}
-                  sendTo="omrade"
+                  sendTo="objekt"
                 />
               </li>
             ))}
