@@ -16,13 +16,20 @@ export const routes = (app: Application) => {
     errorHandler
   )
 
+  /**
+   * TODO:
+   * then go through this list http://www.fastapi.se/lists/classlist/Class_Equipment_Class_01.xml
+   * and map over so that we show set data for each category.
+   * names such as vattenberedare might be called something else?
+   */
+
   app.get(
     '/area',
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
       const inventory = await fetchApiInventory(req.query.roomId as string)
       const reduced = inventory.reduce((filtered: Area[], option) => {
-        if (filtered.findIndex((object) => object.code === option.class.code)) {
+        if (!filtered.find((obj) => obj.code === option.class.code)) {
           filtered.push({
             name: option.class.name,
             description: '',
@@ -31,6 +38,7 @@ export const routes = (app: Application) => {
         }
         return filtered
       }, [])
+
       res.send(reduced)
     }),
     errorHandler
