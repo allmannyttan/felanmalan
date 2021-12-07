@@ -22,7 +22,7 @@ export const routes = (app: Application) => {
     asyncHandler(async (req: Request, res: Response) => {
       const inventory = await fetchApiInventory(req.query.roomId as string)
       const reduced = inventory.reduce((filtered: Area[], option) => {
-        if (filtered.findIndex((object) => object.name === option.class.name)) {
+        if (filtered.findIndex((object) => object.code === option.class.code)) {
           filtered.push({
             name: option.class.name,
             description: '',
@@ -31,7 +31,6 @@ export const routes = (app: Application) => {
         }
         return filtered
       }, [])
-
       res.send(reduced)
     }),
     errorHandler
@@ -42,7 +41,7 @@ export const routes = (app: Application) => {
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
       const inventory = await fetchApiInventory(req.query.roomId as string)
-      const classCode = req.query.area
+      const classCode = req.query.inventoryCode
 
       const filteredData = inventory.filter((a) => a.class.code === classCode)
 
