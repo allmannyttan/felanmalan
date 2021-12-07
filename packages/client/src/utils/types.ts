@@ -60,7 +60,24 @@ export type RoomData = {
   data: RoomType[] | null
 }
 
-type InventoryType = {
+export type AreaType = {
+  name: string
+  description: string
+  code: string
+}
+
+export type AreaData = {
+  loading: boolean
+  error: string | null
+  data: AreaType[] | null
+}
+
+export type UserData = {
+  rentalId: string
+  rooms: { id: string }[]
+}
+
+export type InventoryType = {
   id: string
   description: string
   class: {
