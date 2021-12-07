@@ -81,5 +81,5 @@ export interface Inventory {
 export interface Area {
   name: string
   description: string
-  inventory: Inventory[]
+  code: string
 }
