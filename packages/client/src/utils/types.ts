@@ -1,5 +1,3 @@
-import { IFormData } from '../pages/Complete'
-
 export interface APIRequest {
   url: string
 }
@@ -17,14 +15,6 @@ export enum ObjectEnum {
 export enum ItemEnum {
   'LAMP' = 'Lampa',
   'DOOR' = 'Dörr',
-}
-
-export type ErrorReportType = {
-  place: string
-  room: string
-  area: string
-  object: string
-  complete: IFormData
 }
 
 export enum ProgressStatus {

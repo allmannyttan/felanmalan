@@ -1,21 +1,15 @@
 import { atom } from 'jotai'
-import {
-  ProgressType,
-  ProgressStatus,
-  Pages,
-  ErrorReportType,
-  RoomData,
-  InventoryData,
-} from './types'
+import { ProgressType, ProgressStatus, Pages, RoomData, InventoryData } from './types'
 import { client as apiClient } from './apiclient'
+import { ErrorReportType } from '../../../../types'
 
 export const reportAtom = atom<ErrorReportType>({
-  place: '',
-  room: '',
-  area: '',
-  object: '',
+  place: 'Plats',
+  room: 'Rum',
+  area: 'Område',
+  object: 'Objekt',
   complete: {
-    text: '',
+    text: 'Text',
     image: null,
     video: null,
   },

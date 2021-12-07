@@ -6,11 +6,7 @@ import { Formik } from 'formik'
 import CompleteForm from '../components/CompleteForm'
 import { useNavigate } from 'react-router-dom'
 import Section from '../components/Section'
-export interface IFormData {
-  text?: String
-  image: File | null
-  video: File | null
-}
+import { IFormData } from '../../../../types'
 
 const Complete = () => {
   const navigate = useNavigate()
