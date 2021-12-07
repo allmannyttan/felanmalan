@@ -21,14 +21,22 @@ export const routes = (app: Application) => {
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
       const inventory = await fetchApiInventory(req.query.roomId as string)
+
       const reduced = inventory.reduce((filtered: Area[], option) => {
-        if (filtered.findIndex((object) => object.name === option.class.name)) {
+        if (
+          filtered.findIndex(
+            (object) => object.inventory[0].class.code === option.class.code
+          )
+        ) {
           filtered.push({
             name: option.class.name,
             description: '',
-            code: option.class.code,
+            inventory: [{ ...option }],
           })
+        } else {
+          filtered[0].inventory.push(option)
         }
+
         return filtered
       }, [])
 
