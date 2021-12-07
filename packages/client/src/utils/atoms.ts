@@ -5,7 +5,9 @@ import {
   Pages,
   ErrorReportType,
   RoomData,
+  AreaData,
   InventoryData,
+  UserData,
 } from './types'
 import { client as apiClient } from './apiclient'
 
@@ -65,10 +67,11 @@ export const updateProgressAtom = atom(
   },
 )
 
-const roomId = 'SPACE-382'
+// const roomId = 'SPACE-944'
 // roomId=SPACE-944
+// roomId=SPACE-382
 const rentalId = 'OBJ-0110203'
-
+const userAtom = atom<UserData | {}>({})
 const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
 export const roomAtom = atom(
   (get) => get(fetchRoomAtom),
@@ -80,6 +83,7 @@ export const roomAtom = atom(
           url: url as string,
         })
         set(fetchRoomAtom, { loading: false, error: null, data })
+        console.log('inside atom', data)
       } catch (error: any) {
         console.log('error', error)
         set(fetchRoomAtom, { loading: false, error, data: null })
@@ -92,7 +96,7 @@ roomAtom.onMount = (runFetch) => {
   runFetch(`/rooms?rentalId=${rentalId}`)
 }
 
-const fetchAreaAtom = atom<RoomData>({ loading: true, error: null, data: null })
+const fetchAreaAtom = atom<AreaData>({ loading: true, error: null, data: null })
 
 export const areaAtom = atom(
   (get) => get(fetchAreaAtom),
@@ -112,9 +116,9 @@ export const areaAtom = atom(
     fetchData()
   },
 )
-areaAtom.onMount = (runFetch) => {
-  runFetch(`/area?roomId=${roomId}`)
-}
+// areaAtom.onMount = (runFetch) => {
+//   runFetch(`/area?roomId=${roomId}`)
+// }
 
 const fetchInventoryAtom = atom<InventoryData>({ loading: true, error: null, data: null })
 export const inventoryAtom = atom(
@@ -135,9 +139,6 @@ export const inventoryAtom = atom(
     fetchData()
   },
 )
-inventoryAtom.onMount = (runFetch) => {
-  runFetch(`/inventory?roomId=${roomId}`)
-}
 
 // Fetch with jotai and react-query. Requires a suspense solution.
 

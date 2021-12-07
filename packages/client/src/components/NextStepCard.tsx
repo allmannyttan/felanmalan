@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ExpandRight } from '../assets/Icons'
-import { reportAtom } from '../utils/atoms'
+import { areaAtom, inventoryAtom, reportAtom, roomAtom } from '../utils/atoms'
 import { H4, ParagraphSmall } from './Typography'
 import { useLocation } from 'react-router'
 import Icon, { Icons } from './Icon'
@@ -41,10 +41,14 @@ interface INextStepCard {
   icon: Icons
   subtitle: string
   sendTo: string
+  id?: string
 }
 
-const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }) => {
+const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo, id }) => {
   const [value, setReportValue] = useAtom(reportAtom)
+  const [, fetchInventory] = useAtom(inventoryAtom)
+  const [, fetchAreas] = useAtom(areaAtom)
+  const [room] = useAtom(roomAtom)
   const { pathname } = useLocation()
 
   const handleOnClickRoom = () => {
@@ -52,8 +56,10 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }
       case '/plats':
         return setReportValue({ ...value, place: title })
       case '/rum':
+        fetchAreas(`/area?roomId=${id}`)
         return setReportValue({ ...value, room: title })
       case '/omrade':
+        fetchInventory(`/inventory?roomId=${room?.data[0].id}&inventoryCode=${id}`)
         return setReportValue({ ...value, area: title })
       case '/objekt':
         return setReportValue({ ...value, object: title })
