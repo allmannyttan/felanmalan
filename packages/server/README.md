@@ -4,6 +4,38 @@ felanmalan-backend is an API that uses Slussen to provide data necessary for a t
 
 # Development
 
+## Overview
+
+    ┌────────────┐        Λ          ┌────────────┐         Λ         ┌────────────┐
+    │            │       ╱ ╲         │            │        ╱ ╲        │            │
+    │            │      ╱   ╲        │            │       ╱   ╲       │            │
+    │            │     ╱     ╲       │            │      ╱     ╲      │  Slussen   │
+    │  Frontend  │◀───▶  json ◀─────▶│  Backend   │◀────▶ json  ◀─────▶(auth: jwt, │
+    │            │     ╲     ╱       │            │      ╲     ╱      │ 3h expire) │
+    │            │      ╲   ╱        │            │       ╲   ╱       │            │
+    │            │       ╲ ╱         │            │        ╲ ╱        │            │
+    └────────────┘        V          └────────────┘         V         └──────▲─────┘
+                                            ▲                                │
+                                            │                                │
+                                            ├────────┐                       │
+                              ┌─────────┐   │        │                       ▼
+                              │Postgres │◀──┘        ▼                       Λ
+                              └─────────┘      ┌──────────┐                 ╱ ╲
+                                              │  assets  │                ╱   ╲
+                                              │  volume  │               ╱     ╲
+                                              └──────────┘              ▕  xml  ▏
+                                                                          ╲     ╱
+                                                                          ╲   ╱
+                                                                            ╲ ╱
+                                                                            ▲
+                                                                            │
+                                                                            │
+                                                                            │
+                                                                            │
+                                                                        ┌───▼───┐
+                                                                        │fastapi│
+                                                                        └───────┘
+
 ## Dependencies
 
 - Node.js installed preferably using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
