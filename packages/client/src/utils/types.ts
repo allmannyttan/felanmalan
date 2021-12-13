@@ -74,7 +74,8 @@ export type AreaData = {
 
 export type UserData = {
   rentalId: string
-  rooms: { id: string }[]
+  roomId: string
+  inventoryCode: string
 }
 
 export type InventoryType = {

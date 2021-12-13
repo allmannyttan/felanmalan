@@ -67,20 +67,16 @@ export const updateProgressAtom = atom(
   },
 )
 
-// const roomId = 'SPACE-944'
-// roomId=SPACE-944
-// roomId=SPACE-382
-const rentalId = 'OBJ-0110203'
-const userAtom = atom<UserData | {}>({})
+export const userAtom = atom<UserData>({ rentalId: '', roomId: '', inventoryCode: '' })
 const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
 export const roomAtom = atom(
   (get) => get(fetchRoomAtom),
-  (_get, set, url) => {
+  (_get, set, rentalId) => {
     const fetchData = async () => {
       set(fetchRoomAtom, (prev) => ({ ...prev, loading: true }))
       try {
         const data = await apiClient.get({
-          url: url as string,
+          url: `/rooms?rentalId=${rentalId}`,
         })
         set(fetchRoomAtom, { loading: false, error: null, data })
         console.log('inside atom', data)
@@ -92,20 +88,17 @@ export const roomAtom = atom(
     fetchData()
   },
 )
-roomAtom.onMount = (runFetch) => {
-  runFetch(`/rooms?rentalId=${rentalId}`)
-}
 
 const fetchAreaAtom = atom<AreaData>({ loading: true, error: null, data: null })
 
 export const areaAtom = atom(
   (get) => get(fetchAreaAtom),
-  (_get, set, url) => {
+  (_get, set, roomId) => {
     const fetchData = async () => {
       set(fetchAreaAtom, (prev) => ({ ...prev, loading: true }))
       try {
         const data = await apiClient.get({
-          url: url as string,
+          url: `/area?roomId=${roomId}`,
         })
         set(fetchAreaAtom, { loading: false, error: null, data })
       } catch (error: any) {
@@ -116,19 +109,16 @@ export const areaAtom = atom(
     fetchData()
   },
 )
-// areaAtom.onMount = (runFetch) => {
-//   runFetch(`/area?roomId=${roomId}`)
-// }
 
 const fetchInventoryAtom = atom<InventoryData>({ loading: true, error: null, data: null })
 export const inventoryAtom = atom(
   (get) => get(fetchInventoryAtom),
-  (_get, set, url) => {
+  (_get, set, { roomId, inventoryCode }) => {
     const fetchData = async () => {
       set(fetchInventoryAtom, (prev) => ({ ...prev, loading: true }))
       try {
         const data = await apiClient.get({
-          url: url as string,
+          url: `/inventory?roomId=${roomId}&inventoryCode=${inventoryCode}`,
         })
         set(fetchInventoryAtom, { loading: false, error: null, data })
       } catch (error: any) {
