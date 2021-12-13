@@ -38,12 +38,11 @@ const StyledLink = styled(Link)`
 
 interface INextStepCard {
   title: string
-  icon: Icons
   subtitle: string
   sendTo: string
 }
 
-const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }) => {
+const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo }) => {
   const [value, setReportValue] = useAtom(reportAtom)
   const { pathname } = useLocation()
 
@@ -65,7 +64,7 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, icon, subtitle, sendTo }
   return (
     <StyledLink to={`/${sendTo}`} onClick={handleOnClickRoom}>
       <Wrapper>
-        <Icon name={icon} alt={subtitle} />
+        <Icon name={title as unknown as Icons} alt={subtitle} />
         <FlexCol>
           <H4>{title}</H4>
           <ParagraphSmall>{subtitle}</ParagraphSmall>

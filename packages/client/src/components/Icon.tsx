@@ -5,19 +5,22 @@ import apartment from '../assets/icons/apartment.svg'
 import kitchen from '../assets/icons/kitchen.svg'
 import appliances from '../assets/icons/appliances.svg'
 import waterTap from '../assets/icons/watertap.svg'
-
-const ICONS = {
-  apartment,
-  kitchen,
-  appliances,
-  waterTap,
-}
+import hallway from '../assets/icons/hallway.svg'
 
 export enum Icons {
-  apartment = 'apartment',
-  kitchen = 'kitchen',
-  appliances = 'appliances',
-  waterTap = 'waterTap',
+  'Förråd',
+  'Kök',
+  'Vitvaror',
+  'Hall',
+  'Frys fullstor',
+}
+
+const IconVariant = {
+  [Icons['Hall']]: hallway,
+  [Icons['Kök']]: kitchen,
+  [Icons['Förråd']]: appliances,
+  [Icons['Vitvaror']]: appliances,
+  [Icons['Frys fullstor']]: appliances,
 }
 
 type Props = {
@@ -42,7 +45,11 @@ const Wrapper = styled.div`
 const Icon = ({ name, alt }: Props) => {
   return (
     <Wrapper>
-      <SquareImg src={ICONS[name]} aria-hidden="true" alt={alt} />
+      <SquareImg
+        src={IconVariant[Icons[name as unknown as keyof typeof Icons]]}
+        aria-hidden="true"
+        alt={alt}
+      />
     </Wrapper>
   )
 }
