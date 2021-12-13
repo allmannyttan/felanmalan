@@ -21,11 +21,11 @@ felanmalan-backend is an API that uses Slussen to provide data necessary for a t
                               ┌─────────┐   │        │                       ▼
                               │Postgres │◀──┘        ▼                       Λ
                               └─────────┘      ┌──────────┐                 ╱ ╲
-                                              │  assets  │                ╱   ╲
-                                              │  volume  │               ╱     ╲
-                                              └──────────┘              ▕  xml  ▏
+                                               │  assets  │                ╱   ╲
+                                               │  volume  │               ╱     ╲
+                                               └──────────┘              ▕  xml  ▏
                                                                           ╲     ╱
-                                                                          ╲   ╱
+                                                                           ╲   ╱
                                                                             ╲ ╱
                                                                             ▲
                                                                             │
