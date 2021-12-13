@@ -79,7 +79,6 @@ export const roomAtom = atom(
           url: `/rooms?rentalId=${rentalId}`,
         })
         set(fetchRoomAtom, { loading: false, error: null, data })
-        console.log('inside atom', data)
       } catch (error: any) {
         console.log('error', error)
         set(fetchRoomAtom, { loading: false, error, data: null })
@@ -113,12 +112,12 @@ export const areaAtom = atom(
 const fetchInventoryAtom = atom<InventoryData>({ loading: true, error: null, data: null })
 export const inventoryAtom = atom(
   (get) => get(fetchInventoryAtom),
-  (_get, set, { roomId, inventoryCode }) => {
+  (_get, set, params: { roomId: string; inventoryCode: string }) => {
     const fetchData = async () => {
       set(fetchInventoryAtom, (prev) => ({ ...prev, loading: true }))
       try {
         const data = await apiClient.get({
-          url: `/inventory?roomId=${roomId}&inventoryCode=${inventoryCode}`,
+          url: `/inventory?roomId=${params.roomId}&inventoryCode=${params.inventoryCode}`,
         })
         set(fetchInventoryAtom, { loading: false, error: null, data })
       } catch (error: any) {
