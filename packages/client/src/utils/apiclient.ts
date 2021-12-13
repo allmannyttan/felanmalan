@@ -18,9 +18,9 @@ const innerGet = async (request: APIRequest) => {
   return data
 }
 
-const innerPost = async (request: ErrorReportType) => {
+const innerPost = async (request: FormData) => {
   const headers = {
-    Accept: 'application/json',
+    'Content-Type': 'multipart/form-data',
   }
   const apiClient = axios.create({
     headers,
@@ -29,7 +29,6 @@ const innerPost = async (request: ErrorReportType) => {
   })
 
   const data: ErrorReportType | ApiExceptionType = await apiClient.post('/case', request)
-  console.log('data', data)
 
   // if ('message' in data) {
   //   return data

@@ -1,7 +1,7 @@
 export interface IFormData {
   text?: String
-  image: File | null
-  video: File | null
+  image?: any
+  video?: any
 }
 
 export interface ErrorReportType {

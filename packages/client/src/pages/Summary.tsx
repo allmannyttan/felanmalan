@@ -20,7 +20,20 @@ const Summary = () => {
   const [completeErrorReport] = useAtom(reportAtom)
 
   const submit = async () => {
-    const res = await apiClient.post(completeErrorReport)
+    const formdata = new FormData()
+    formdata.append('object', completeErrorReport.object)
+    formdata.append('place', completeErrorReport.place)
+    formdata.append('room', completeErrorReport.room)
+    formdata.append('area', completeErrorReport.area)
+    if (completeErrorReport.complete.image) {
+      formdata.append('image', completeErrorReport.complete.image)
+    }
+    if (completeErrorReport.complete.video) {
+      formdata.append('video', completeErrorReport.complete.video)
+    }
+    console.log(...formdata)
+
+    await apiClient.post(formdata)
   }
 
   return (

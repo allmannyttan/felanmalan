@@ -4,6 +4,8 @@ import { ErrorReportType, ApiExceptionType } from '../../../../types'
 import { setAttachmentInDb } from '../adapters/api/databaseHelper'
 import { Attachment } from '@app/adapters/api/types'
 import fs from 'fs'
+import { Fields, Files } from 'formidable'
+import { v4 as uuidv4 } from 'uuid'
 
 export const fetchApiRooms = async (rentalId: string): Promise<Array<Room>> => {
   const rooms: Array<Room> = await client.get({
@@ -26,67 +28,60 @@ export const postCase = async (
 ): Promise<ErrorReportType | ApiExceptionType> => {
   console.log('data', data)
   try {
-    // console.log(1)
-    // const errorReport: ErrorReportType = await client.post({
-    //   url: `cases`,
-    //   data,
-    // })
-    // console.log(2)
-    // const { id } = errorReport
+    // To do: post data into slussen and get id and use
     const id = '12345'
-    // TODO: store attachments and keep reference in DB
+
     if (id && (data.complete.image || data.complete.video)) {
       console.log('img', data.complete.image)
+    }
+
+    const getExt = (type: string) => {
+      //To do: add more types? Video osv.
+      switch (type) {
+        case 'image/jpeg':
+          return 'jpg'
+        case 'image/png':
+          return 'png'
+        default:
+          return 'Unvalid type'
+      }
+    }
+
+    let imagePath, videoPath
+    if (data.complete.image) {
+      const ext = getExt(data.complete.image.type) // check MIME TYPE
+      imagePath = `attachments/${uuidv4()}.${ext}`
+      fs.renameSync(data.complete.image.path, imagePath)
+    } else {
+      imagePath = ''
+    }
+
+    if (data.complete.video) {
+      const ext = getExt(data.complete.video.type) // check MIME TYPE
+      videoPath = `attachments/${uuidv4()}.${ext}`
+      fs.renameSync(data.complete.video.path, videoPath)
+    } else {
+      videoPath = ''
+    }
+
+    if (imagePath || videoPath) {
       const attachment: Attachment = {
         error_report_id: id,
-        photo: data.complete.image,
-        video: data.complete.video,
+        photo: imagePath,
+        video: videoPath,
       }
 
-      /*
-      app.post('/receive', function(request, respond) {
-          var body = '';
-          filePath = __dirname + '/public/data.txt';
-          request.on('data', function(data) {
-              body += data;
-          });
-
-          request.on('end', function (){
-              fs.appendFile(filePath, body, function() {
-                  respond.end();
-              });
-          });
-      });
-      */
-
-      /*
-
-// Get the file contents before the append operation
-console.log("\nFile Contents of file before append:",
-  fs.readFileSync("example_file.txt", "utf8"));
-  
-fs.appendFile("example_file.txt", "World", (err) => {
-  if (err) {
-    console.log(err);
-  }
-  else {
-    // Get the file contents after the append operation
-    console.log("\nFile Contents of file after append:",
-      fs.readFileSync("example_file.txt", "utf8"));
-  }
-});
-*/
-
-      // write content of data.complete.image to file system
-      // set attachment.photo to relative file path
-      const filePath = __dirname + '/hej.xyz'
-      //fs.writeFile(filePath, attachment.photo, 'base64', (err) => {})
-      const insertToDb = await setAttachmentInDb(attachment)
-      console.log('insert?', insertToDb)
+      await setAttachmentInDb(attachment)
     }
-    return <ApiExceptionType>{ message: 'hej' }
+    //To do: return real data from slussen
+    return <ErrorReportType>{
+      place: 'hej',
+      room: 'hej',
+      area: 'hej',
+      object: 'tja',
+    }
   } catch (e: any) {
-    console.log('error', e.response.statusText)
-    return <ApiExceptionType>{ message: e.response.statusText }
+    console.log('error', e.response)
+    return <ApiExceptionType>{ message: e.response }
   }
 }

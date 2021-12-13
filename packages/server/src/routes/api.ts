@@ -7,6 +7,7 @@ import {
   fetchApiRooms,
   postCase,
 } from '@app/services/fastapi'
+import { ErrorReportType } from '../../../../types'
 
 export const routes = (app: Application) => {
   app.get(
@@ -33,8 +34,28 @@ export const routes = (app: Application) => {
     '/case',
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
-      const errorReport = await postCase(req.body)
-      console.log('report:', errorReport)
+      // const getImage = (obj: File | File[] | undefined): File | undefined => {
+      //   if (!obj) {
+      //     return undefined
+      //   }
+      //   if (obj && 'path' in obj) {
+      //     return obj
+      //   }
+      //   return (<File[]>obj)[0]
+      // }
+
+      const data: ErrorReportType = {
+        place: req.fields?.place as string,
+        room: req.fields?.room as string,
+        area: req.fields?.area as string,
+        object: req.fields?.object as string,
+        complete: {
+          image: req.files?.image,
+          video: req.files?.video,
+        },
+      }
+
+      const errorReport = await postCase(data)
       if ('message' in errorReport) {
         res.status(400)
       }

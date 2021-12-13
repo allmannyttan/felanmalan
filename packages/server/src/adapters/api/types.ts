@@ -12,6 +12,6 @@ export interface APIToken {
 
 export type Attachment = {
   error_report_id: string
-  photo?: File | null
-  video?: File | null
+  photo?: string
+  video?: string
 }
