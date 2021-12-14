@@ -10,6 +10,7 @@ import Loading from '../components/Loading'
 
 const Area = () => {
   const [area] = useAtom(areaAtom)
+  area?.data && area?.data.sort((a, b) => (a.name > b.name && 1) || -1)
 
   return (
     <>
