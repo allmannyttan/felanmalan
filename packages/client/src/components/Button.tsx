@@ -16,7 +16,7 @@ export const StyledBtn = styled.button<StyleProps>`
   border: none;
   cursor: pointer;
   padding: 0.8rem 0;
-  width: 330px;
+  width: 300px;
   font-weight: 700;
   font-size: 16px;
 
