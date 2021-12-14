@@ -12,12 +12,12 @@ import { client as apiClient } from './apiclient'
 import { ErrorReportType } from '../../../../types'
 
 export const reportAtom = atom<ErrorReportType>({
-  place: 'Plats',
-  room: 'Rum',
-  area: 'Område',
-  object: 'Objekt',
+  place: '',
+  room: '',
+  area: '',
+  object: '',
   complete: {
-    text: 'Text',
+    text: '',
     image: null,
     video: null,
   },
