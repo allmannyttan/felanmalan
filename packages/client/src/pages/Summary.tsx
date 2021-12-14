@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Section from '../components/Section'
 import { H1, BoldParagraph, Paragraph } from '../components/Typography'
 import { reportAtom } from '../utils/atoms'
+import { devices } from '../utils/devices'
 
 const TextSection = styled.div`
   margin-bottom: 20px;
@@ -21,8 +22,11 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  bottom: 2rem;
-  position: absolute;
+
+  @media only screen and (${devices.tablet}) {
+    bottom: 2rem;
+    position: absolute;
+  }
 `
 
 const Summary = () => {
