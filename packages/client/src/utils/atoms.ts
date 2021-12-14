@@ -1,5 +1,13 @@
 import { atom } from 'jotai'
-import { ProgressType, ProgressStatus, Pages, RoomData, InventoryData } from './types'
+import {
+  ProgressType,
+  ProgressStatus,
+  Pages,
+  RoomData,
+  AreaData,
+  InventoryData,
+  UserData,
+} from './types'
 import { client as apiClient } from './apiclient'
 import { ErrorReportType } from '../../../../types'
 
@@ -59,18 +67,16 @@ export const updateProgressAtom = atom(
   },
 )
 
-const roomId = 'SPACE-382'
-const rentalId = 'OBJ-0110203'
-
+export const userAtom = atom<UserData>({ rentalId: '', roomId: '', inventoryCode: '' })
 const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
 export const roomAtom = atom(
   (get) => get(fetchRoomAtom),
-  (_get, set, url) => {
+  (_get, set, rentalId) => {
     const fetchData = async () => {
       set(fetchRoomAtom, (prev) => ({ ...prev, loading: true }))
       try {
         const data = await apiClient.get({
-          url: url as string,
+          url: `/rooms?rentalId=${rentalId}`,
         })
         set(fetchRoomAtom, { loading: false, error: null, data })
       } catch (error: any) {
@@ -81,19 +87,37 @@ export const roomAtom = atom(
     fetchData()
   },
 )
-roomAtom.onMount = (runFetch) => {
-  runFetch(`/rooms?rentalId=${rentalId}`)
-}
+
+const fetchAreaAtom = atom<AreaData>({ loading: true, error: null, data: null })
+
+export const areaAtom = atom(
+  (get) => get(fetchAreaAtom),
+  (_get, set, roomId) => {
+    const fetchData = async () => {
+      set(fetchAreaAtom, (prev) => ({ ...prev, loading: true }))
+      try {
+        const data = await apiClient.get({
+          url: `/area?roomId=${roomId}`,
+        })
+        set(fetchAreaAtom, { loading: false, error: null, data })
+      } catch (error: any) {
+        console.log('error', error)
+        set(fetchAreaAtom, { loading: false, error, data: null })
+      }
+    }
+    fetchData()
+  },
+)
 
 const fetchInventoryAtom = atom<InventoryData>({ loading: true, error: null, data: null })
 export const inventoryAtom = atom(
   (get) => get(fetchInventoryAtom),
-  (_get, set, url) => {
+  (_get, set, params: { roomId: string; inventoryCode: string }) => {
     const fetchData = async () => {
       set(fetchInventoryAtom, (prev) => ({ ...prev, loading: true }))
       try {
         const data = await apiClient.get({
-          url: url as string,
+          url: `/inventory?roomId=${params.roomId}&inventoryCode=${params.inventoryCode}`,
         })
         set(fetchInventoryAtom, { loading: false, error: null, data })
       } catch (error: any) {
@@ -104,9 +128,6 @@ export const inventoryAtom = atom(
     fetchData()
   },
 )
-inventoryAtom.onMount = (runFetch) => {
-  runFetch(`/inventory?roomId=${roomId}`)
-}
 
 // Fetch with jotai and react-query. Requires a suspense solution.
 

@@ -77,3 +77,9 @@ export interface Inventory {
   manufacturer: string | undefined
   type: string | undefined
 }
+
+export interface Area {
+  name: string
+  description: string
+  code: string
+}
