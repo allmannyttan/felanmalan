@@ -1,10 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
-import apartment from '../assets/icons/apartment.svg'
-import kitchen from '../assets/icons/kitchen.svg'
-import appliances from '../assets/icons/appliances.svg'
-import hallway from '../assets/icons/hallway.svg'
 import * as Svg from '../assets/icons/index'
 
 export enum IconName {
@@ -23,12 +19,12 @@ export enum IconName {
 }
 
 const Icons = {
-  [IconName['Hall']]: hallway,
-  [IconName['Kök']]: kitchen,
-  [IconName['Förråd']]: appliances,
-  [IconName['Vitvaror']]: appliances,
-  [IconName['Frys fullstor']]: appliances,
-  [IconName['Lägenhet']]: apartment,
+  [IconName['Hall']]: Svg.hallway,
+  [IconName['Kök']]: Svg.kitchen,
+  [IconName['Förråd']]: Svg.appliances,
+  [IconName['Vitvaror']]: Svg.appliances,
+  [IconName['Frys fullstor']]: Svg.appliances,
+  [IconName['Lägenhet']]: Svg.apartment,
   [IconName['Övrigt']]: Svg.other,
   [IconName['Varmvattenberedare']]: Svg.waterTap,
   [IconName['Tvättställ Standard']]: Svg.basin,
