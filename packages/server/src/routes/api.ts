@@ -34,16 +34,6 @@ export const routes = (app: Application) => {
     '/case',
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
-      // const getImage = (obj: File | File[] | undefined): File | undefined => {
-      //   if (!obj) {
-      //     return undefined
-      //   }
-      //   if (obj && 'path' in obj) {
-      //     return obj
-      //   }
-      //   return (<File[]>obj)[0]
-      // }
-
       const data: ErrorReportType = {
         place: req.fields?.place as string,
         room: req.fields?.room as string,
