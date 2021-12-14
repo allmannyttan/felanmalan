@@ -5,7 +5,21 @@ import shower from './shower.svg'
 import toilet from './toilet.svg'
 import apartment from './apartment.svg'
 import kitchen from './kitchen.svg'
-import appliances from './appliances.svg'
 import hallway from './hallway.svg'
+import stove from './stove.svg'
+import freezer from './freezer.svg'
+import fridge from './fridge.svg'
 
-export { other, waterTap, basin, shower, toilet, apartment, kitchen, appliances, hallway }
+export {
+  other,
+  waterTap,
+  basin,
+  shower,
+  toilet,
+  apartment,
+  kitchen,
+  hallway,
+  stove,
+  fridge,
+  freezer,
+}
