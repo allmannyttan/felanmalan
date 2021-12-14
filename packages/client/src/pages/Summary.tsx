@@ -25,6 +25,10 @@ const Summary = () => {
     formdata.append('place', completeErrorReport.place)
     formdata.append('room', completeErrorReport.room)
     formdata.append('area', completeErrorReport.area)
+
+    if (completeErrorReport.complete.text) {
+      formdata.append('text', completeErrorReport.complete.text)
+    }
     if (completeErrorReport.complete.image) {
       formdata.append('image', completeErrorReport.complete.image)
     }

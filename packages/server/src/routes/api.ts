@@ -73,6 +73,7 @@ export const routes = (app: Application) => {
         area: req.fields?.area as string,
         object: req.fields?.object as string,
         complete: {
+          text: req.fields?.text as string,
           image: req.files?.image,
           video: req.files?.video,
         },

@@ -1,5 +1,5 @@
 export interface IFormData {
-  text?: String
+  text?: string
   image?: any
   video?: any
 }

@@ -32,7 +32,7 @@ export const postCase = async (
     const id = '12345'
 
     if (id && (data.complete.image || data.complete.video)) {
-      console.log('img', data.complete.image)
+      // console.log('img', data.complete.image)
     }
 
     const getExt = (type: string) => {
