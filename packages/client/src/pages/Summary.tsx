@@ -31,7 +31,6 @@ const Summary = () => {
     if (completeErrorReport.complete.video) {
       formdata.append('video', completeErrorReport.complete.video)
     }
-    console.log(...formdata)
 
     await apiClient.post(formdata)
   }
