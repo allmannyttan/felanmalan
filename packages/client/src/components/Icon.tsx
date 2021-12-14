@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
 import * as Svg from '../assets/icons/index'
@@ -8,33 +7,35 @@ export enum IconName {
   'Kök',
   'Vitvaror',
   'Hall',
-  'Frys fullstor',
+  'Frys',
   'Lägenhet',
   'Övrigt',
   'Varmvattenberedare',
-  'Tvättställ Standard',
   'Tvättställ',
-  'Dushkabin med golv',
-  'Toalett Ifö Standard',
+  'Dush',
+  'Toalett',
+  'Spis',
+  'Kyl',
 }
 
 const Icons = {
   [IconName['Hall']]: Svg.hallway,
   [IconName['Kök']]: Svg.kitchen,
-  [IconName['Förråd']]: Svg.appliances,
-  [IconName['Vitvaror']]: Svg.appliances,
-  [IconName['Frys fullstor']]: Svg.appliances,
+  [IconName['Förråd']]: Svg.hallway,
+  [IconName['Vitvaror']]: Svg.fridge,
+  [IconName['Frys']]: Svg.freezer,
   [IconName['Lägenhet']]: Svg.apartment,
   [IconName['Övrigt']]: Svg.other,
   [IconName['Varmvattenberedare']]: Svg.waterTap,
-  [IconName['Tvättställ Standard']]: Svg.basin,
   [IconName['Tvättställ']]: Svg.basin,
-  [IconName['Dushkabin med golv']]: Svg.shower,
-  [IconName['Toalett Ifö Standard']]: Svg.toilet,
+  [IconName['Dush']]: Svg.shower,
+  [IconName['Toalett']]: Svg.toilet,
+  [IconName['Spis']]: Svg.stove,
+  [IconName['Kyl']]: Svg.fridge,
 }
 
 type Props = {
-  name: IconName
+  name: string
   alt: string
 }
 
@@ -53,14 +54,15 @@ const Wrapper = styled.div`
 `
 
 const Icon = ({ name, alt }: Props) => {
-  console.log('hej', Icons[IconName[name as unknown as keyof typeof IconName]])
+  const getIconName = () => {
+    const iconName = Object.keys(IconName).filter((a) => name.includes(a))[0] ?? 'Övrigt'
+
+    return Icons[IconName[iconName as keyof typeof IconName]]
+  }
+
   return (
     <Wrapper>
-      <SquareImg
-        src={Icons[IconName[name as unknown as keyof typeof IconName]]}
-        aria-hidden="true"
-        alt={alt}
-      />
+      <SquareImg src={getIconName()} aria-hidden="true" alt={alt} />
     </Wrapper>
   )
 }

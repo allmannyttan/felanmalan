@@ -6,7 +6,7 @@ import { ExpandRight } from '../assets/Icons'
 import { areaAtom, inventoryAtom, reportAtom, roomAtom, userAtom } from '../utils/atoms'
 import { H4, ParagraphSmall } from './Typography'
 import { useLocation } from 'react-router'
-import Icon, { Icons } from './Icon'
+import Icon from './Icon'
 
 const Wrapper = styled.div`
   display: grid;
@@ -77,7 +77,7 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo, id }) 
   return (
     <StyledLink to={`/${sendTo}`} onClick={handleOnClickRoom}>
       <Wrapper>
-        <Icon name={title as unknown as Icons} alt={subtitle} />
+        <Icon name={title} alt={subtitle} />
         <FlexCol>
           <H4>{title}</H4>
           <ParagraphSmall>{subtitle}</ParagraphSmall>
