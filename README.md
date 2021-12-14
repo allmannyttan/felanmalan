@@ -1,8 +1,6 @@
-## What is Felanmalan?
+# Felanmälan
 
 felanmalan-backend is an API that uses Slussen to provide data necessary for a tenant to report an error/fault in their apartment.
-
-# Development
 
 ## Overview
 
@@ -53,9 +51,23 @@ felanmalan-backend is an API that uses Slussen to provide data necessary for a t
 ## Getting started
 
 ```
+docker-compose up -d
+```
+
+### packages/client
+
+```
+npm ci
+npm run dev
+```
+
+Visit http://localhost:3000/plats
+
+### packages/server
+
+```
 nvm use
 npm i
-docker-compose up -d
 npm run migrate:up
 npm run dev
 ```
@@ -64,7 +76,7 @@ Go to http://localhost:3001/
 
 To create a user in Slussen, see [Slussen README](/allmannyttan/slussen).
 
-## Config
+### Config
 
 Default values are stored in `src/config.ts`, and are overriden
 by `config.json`.
@@ -80,7 +92,7 @@ For example, use different Slussen user:
 }
 ```
 
-## Migrations and seeds
+### Migrations and seeds
 
 - Create new migration: `npx knex migrate:make <migration_name>`
 - Create new seed for dev: `npx knex seed:make $(date +%s)_<name> --env dev`
