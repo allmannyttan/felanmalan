@@ -49,7 +49,9 @@ const Header = () => {
       case '/objekt':
         return setTitle(value.area)
       case '/komplettera':
-        return setTitle(value.object)
+        return setTitle(
+          value.object ? value.object : value.area ? value.area : value.room,
+        )
       case '/bekraftelse':
         return setTitle('Felanmälan inskickad')
       default:
