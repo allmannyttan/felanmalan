@@ -7,10 +7,17 @@ import { Icons } from '../components/Icon'
 import { useAtom } from 'jotai'
 import { areaAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
+import { useNavigate } from 'react-router-dom'
 
 const Area = () => {
   const [area] = useAtom(areaAtom)
+  const navigate = useNavigate()
 
+  React.useEffect(() => {
+    if (area.error) {
+      navigate('/komplettera', { replace: true })
+    }
+  }, [area])
   return (
     <>
       <div>
