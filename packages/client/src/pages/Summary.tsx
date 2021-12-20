@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Section from '../components/Section'
 import { H1, BoldParagraph, Paragraph } from '../components/Typography'
 import { reportAtom } from '../utils/atoms'
+import { devices } from '../utils/devices'
 import { client as apiClient } from '../utils/apiclient'
 
 const TextSection = styled.div`
@@ -14,6 +15,19 @@ const TextSection = styled.div`
 
 const Wrapper = styled.div`
   margin-bottom: 3rem;
+  padding: 0 18px;
+`
+const ButtonWrapper = styled.div`
+  max-width: 840px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  @media only screen and (${devices.tablet}) {
+    bottom: 2rem;
+    position: absolute;
+  }
 `
 
 const Summary = () => {
@@ -42,7 +56,7 @@ const Summary = () => {
   return (
     <>
       <H1>Sammanfattaning av felanmälan</H1>
-      <Section padding="30px 18px">
+      <Section>
         <Wrapper>
           {completeErrorReport.place && (
             <TextSection>
@@ -101,7 +115,9 @@ const Summary = () => {
             </TextSection>
           )}
         </Wrapper>
-        <Button text="Skicka felanmälan" onClick={submit} to="/bekraftelse" />
+        <ButtonWrapper>
+          <Button text="Skicka felanmälan" onClick={() => submit()} to="/bekraftelse" />
+        </ButtonWrapper>
       </Section>
     </>
   )

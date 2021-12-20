@@ -7,6 +7,7 @@ import VideoIcon from '../assets/video.svg'
 import { H4, Paragraph } from './Typography'
 import { IFormData } from '../../../../types'
 import { StyledBtn } from './Button'
+import { devices } from '../utils/devices'
 
 const TextArea = styled.textarea`
   width: 94%;
@@ -49,8 +50,7 @@ const FileLabel = styled.label`
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   margin-bottom: 20px;
-  width: inherit;
-
+  width: 90%;
   input[type='file'] {
     display: none;
   }
@@ -58,16 +58,23 @@ const FileLabel = styled.label`
   img {
     margin-left: 28px;
   }
+  @media only screen and (${devices.tablet}) {
+    width: 400px;
+  }
 `
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 18px;
 `
 
 const Wrapper = styled.div`
   margin-bottom: 4rem;
   width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `
 
 const CustomTextArea = ({ field, ...props }: { field: FieldInputProps<any> }) => (

@@ -7,15 +7,28 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundGrey};
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 9fr;
+  grid-template-rows: 1fr 9fr;
   width: 100%;
   overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `
+
+const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 840px;
+`
+
 const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
   return (
     <Wrapper>
       <Header />
-      {children}
+      <FlexCol>{children}</FlexCol>
     </Wrapper>
   )
 }

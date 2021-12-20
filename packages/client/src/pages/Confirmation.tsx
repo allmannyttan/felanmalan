@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   height: 87vh;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 `
 
 const Icon = styled.img`
@@ -28,20 +28,28 @@ const FlexH1 = styled(H1)`
 const Image = styled.img`
   margin: 0 auto;
 `
+const Container = styled.div`
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 const Confirmation = () => {
   return (
     <Wrapper>
-      <Image src={postbox} alt="Postbox" />
-      <FlexH1>
-        Felanmälan inskickad
-        <span>
-          <Icon src={success} aria-hidden={true} alt="Success" />
-        </span>
-      </FlexH1>
-      <Paragraph center={true}>
-        Du kommmer att få en notis och påminnelse när du kan göra en tidsbokning
-      </Paragraph>
+      <Container>
+        <Image src={postbox} alt="Postbox" />
+        <FlexH1>
+          Felanmälan inskickad
+          <span>
+            <Icon src={success} aria-hidden={true} alt="Success" />
+          </span>
+        </FlexH1>
+        <Paragraph center={true}>
+          Du kommmer att få en notis och påminnelse när du kan göra en tidsbokning
+        </Paragraph>
+      </Container>
       <Button
         text="Tillbaka till hemskärm"
         to="/"
