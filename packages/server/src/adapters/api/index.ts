@@ -5,8 +5,7 @@ import { APIRequest } from './types'
 
 const innerGet = async (request: APIRequest) => {
   const headers = {
-    Authorization:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidGVzdCIsImlhdCI6MTY0MDAwNDc3OSwiZXhwIjoxNjQwMDE1NTc5fQ.W7WH2ktxG_3DDwTAnyl_zGogvt2Io04btywWawxUrYI',
+    Authorization: request.token || '',
     Accept: 'application/json',
   }
   const apiClient = axios.create({
@@ -22,8 +21,7 @@ const innerGet = async (request: APIRequest) => {
 
 const innerPost = async ({ url, data, token }: APIRequest) => {
   const headers = {
-    Authorization:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidGVzdCIsImlhdCI6MTY0MDAwNDc3OSwiZXhwIjoxNjQwMDE1NTc5fQ.W7WH2ktxG_3DDwTAnyl_zGogvt2Io04btywWawxUrYI',
+    Authorization: token || '',
     Accept: 'application/json',
   }
   const apiClient = axios.create({
