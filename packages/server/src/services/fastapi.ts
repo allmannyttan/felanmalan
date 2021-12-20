@@ -33,16 +33,14 @@ export const fetchApiInventory = async (
 export const postCase = async (
   data: ErrorReportType
 ): Promise<ErrorReportType | ApiExceptionType> => {
-  // console.log('data', data)
   try {
     // To do: post data into slussen and get id and use
     const createdErrorReport = await client.post({
       url: 'cases',
       data,
     })
-    const { id } = createdErrorReport
 
-    if (id && (data.complete.image || data.complete.video)) {
+    if (createdErrorReport.id && (data.complete.image || data.complete.video)) {
       // console.log('img', data.complete.image)
     }
 
@@ -77,7 +75,7 @@ export const postCase = async (
 
     if (imagePath || videoPath) {
       const attachment: Attachment = {
-        error_report_id: id,
+        error_report_id: createdErrorReport.id,
         photo: imagePath,
         video: videoPath,
       }

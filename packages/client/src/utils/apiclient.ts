@@ -27,13 +27,14 @@ const innerPost = async (request: FormData) => {
     responseType: 'text',
   })
 
-  const data: ErrorReportType | ApiExceptionType = await apiClient.post('/case', request)
+  //how to handle if this fails?
+  const data = await apiClient.post('/case', request)
 
   // if ('message' in data) {
   //   return data
   // }
 
-  return data
+  return data.data.id
 }
 
 export const client = {
