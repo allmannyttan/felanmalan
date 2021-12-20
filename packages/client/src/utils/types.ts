@@ -1,5 +1,3 @@
-import { IFormData } from '../pages/Complete'
-
 export interface APIRequest {
   url: string
 }
@@ -19,14 +17,6 @@ export enum ItemEnum {
   'DOOR' = 'Dörr',
 }
 
-export type ErrorReportType = {
-  place: string
-  room: string
-  area: string
-  object: string
-  complete: IFormData
-}
-
 export enum ProgressStatus {
   COMPLETED = 'completed',
   DOING = 'doing',
@@ -42,7 +32,55 @@ export enum Pages {
   SUMMARY = 'summary',
 }
 
-export interface ProgressType {
+export type ProgressType = {
   page: Pages
   status: ProgressStatus
+}
+
+type RoomType = {
+  id: string
+  name: string
+  description: string
+  shared: string
+}
+
+export type RoomData = {
+  loading: boolean
+  error: string | null
+  data: RoomType[] | null
+}
+
+export type AreaType = {
+  name: string
+  description: string
+  code: string
+}
+
+export type AreaData = {
+  loading: boolean
+  error: string | null
+  data: AreaType[] | null
+}
+
+export type UserData = {
+  rentalId: string
+  roomId: string
+  inventoryCode: string
+}
+
+export type InventoryType = {
+  id: string
+  description: string
+  class: {
+    code: string
+    name: string
+  }
+  type: string
+  manufacturer: string
+}
+
+export type InventoryData = {
+  loading: boolean
+  error: string | null
+  data: InventoryType[] | null
 }

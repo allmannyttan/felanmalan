@@ -5,7 +5,7 @@ import CameraIcon from '../assets/camera.svg'
 import CloseIcon from '../assets/close.svg'
 import VideoIcon from '../assets/video.svg'
 import { H4, Paragraph } from './Typography'
-import { IFormData } from '../pages/Complete'
+import { IFormData } from '../../../../types'
 import { StyledBtn } from './Button'
 import { devices } from '../utils/devices'
 
