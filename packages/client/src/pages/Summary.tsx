@@ -116,11 +116,7 @@ const Summary = () => {
           )}
         </Wrapper>
         <ButtonWrapper>
-          <Button
-            text="Skicka felanmälan"
-            onClick={() => console.log('clicked')}
-            to="/bekraftelse"
-          />
+          <Button text="Skicka felanmälan" onClick={() => submit()} to="/bekraftelse" />
         </ButtonWrapper>
       </Section>
     </>
