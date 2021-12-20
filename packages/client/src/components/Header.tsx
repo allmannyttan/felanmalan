@@ -27,7 +27,7 @@ const Button = styled.button`
 const Header = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
-  const [value] = useAtom(reportAtom)
+  const [value, setReportValue] = useAtom(reportAtom)
   const [title, setTitle] = React.useState('Felanmälan')
   const showArrow = [
     '/plats',
@@ -59,10 +59,33 @@ const Header = () => {
     }
   }, [pathname])
 
+  const handleOnClick = () => {
+    switch (pathname) {
+      case '/plats':
+        setReportValue({ ...value, place: '' })
+        break
+      case '/rum':
+        setReportValue({ ...value, room: '' })
+        break
+      case '/omrade':
+        setReportValue({ ...value, area: '' })
+        break
+      case '/objekt':
+        setReportValue({ ...value, object: '' })
+        break
+      case '/komplettera':
+        setReportValue({ ...value, complete: { text: '', image: null, video: null } })
+        break
+      default:
+        break
+    }
+    return navigate(-1)
+  }
+
   return (
     <Wrapper>
       {showArrow.includes(pathname) && (
-        <Button onClick={() => navigate(-1)}>
+        <Button onClick={handleOnClick}>
           <img src={arrow} alt="Arrow back" />
         </Button>
       )}
