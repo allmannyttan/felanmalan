@@ -7,10 +7,18 @@ import Elements from '../shared-elements'
 import { H1 } from '../components/Typography'
 import { inventoryAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
+import { useNavigate } from 'react-router-dom'
 
 const Item = () => {
   const [inventory] = useAtom(inventoryAtom)
+  const navigate = useNavigate()
+  console.log('onve', inventory)
 
+  React.useEffect(() => {
+    if (inventory.error || !inventory.data?.length) {
+      navigate('/komplettera', { replace: true })
+    }
+  }, [inventory])
   return (
     <>
       <H1>Välj ett objekt</H1>

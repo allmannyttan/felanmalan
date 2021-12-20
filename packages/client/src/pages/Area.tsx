@@ -14,7 +14,7 @@ const Area = () => {
   const navigate = useNavigate()
 
   React.useEffect(() => {
-    if (area.error) {
+    if (area.error || !area.data?.length) {
       navigate('/komplettera', { replace: true })
     }
   }, [area])
