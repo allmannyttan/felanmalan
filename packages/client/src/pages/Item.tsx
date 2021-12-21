@@ -11,7 +11,7 @@ import Loading from '../components/Loading'
 const Item = () => {
   const [inventory] = useAtom(inventoryAtom)
   inventory?.data &&
-    inventory?.data.sort((a, b) => (a.description > b.description && 1) || -1)
+    inventory.data.sort((a, b) => (a.description > b.description && 1) || -1)
 
   return (
     <>
