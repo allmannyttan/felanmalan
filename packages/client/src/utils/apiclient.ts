@@ -27,14 +27,9 @@ const innerPost = async (request: FormData) => {
     responseType: 'text',
   })
 
-  //how to handle if this fails?
-  const data = await apiClient.post('/case', request)
+  const data: { status: string } = await apiClient.post('/case', request)
 
-  // if ('message' in data) {
-  //   return data
-  // }
-
-  return data.data.id
+  return data.status
 }
 
 export const client = {

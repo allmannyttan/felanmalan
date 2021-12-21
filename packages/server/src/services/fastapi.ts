@@ -34,7 +34,6 @@ export const postCase = async (
   data: ErrorReportType
 ): Promise<ErrorReportType | ApiExceptionType> => {
   try {
-    // To do: post data into slussen and get id and use
     const createdErrorReport = await client.post({
       url: 'cases',
       data,

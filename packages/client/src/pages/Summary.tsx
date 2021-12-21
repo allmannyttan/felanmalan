@@ -68,6 +68,7 @@ const Summary = () => {
         replace: true,
       })
     }
+    navigate('/bekraftelse')
   }
 
   return (
