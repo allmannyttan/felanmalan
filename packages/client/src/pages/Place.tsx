@@ -1,6 +1,5 @@
 import { useAtom } from 'jotai'
 import React from 'react'
-import { Icons } from '../components/Icon'
 import NextStepCard from '../components/NextStepCard'
 import Section from '../components/Section'
 import { H1 } from '../components/Typography'
@@ -19,12 +18,7 @@ const Place = () => {
       <Section>
         <Elements.Layout.Ul>
           <li>
-            <NextStepCard
-              title="Lägenhet"
-              subtitle="Kök, badrum, sovrum"
-              icon={Icons.apartment}
-              sendTo="rum"
-            />
+            <NextStepCard title="Lägenhet" subtitle="Kök, badrum, sovrum" sendTo="rum" />
           </li>
         </Elements.Layout.Ul>
       </Section>

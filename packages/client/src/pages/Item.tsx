@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAtom } from 'jotai'
-import { Icons } from '../components/Icon'
 import Section from '../components/Section'
 import NextStepCard from '../components/NextStepCard'
 import Elements from '../shared-elements'
@@ -27,7 +26,6 @@ const Item = () => {
                   <NextStepCard
                     title={inventory.description}
                     subtitle={inventory.class.name}
-                    icon={Icons.waterTap}
                     sendTo="komplettera"
                   />
                 </li>
