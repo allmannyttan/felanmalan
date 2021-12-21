@@ -14,7 +14,7 @@ const Area = () => {
   area?.data && area.data.sort((a, b) => (a.name > b.name && 1) || -1)
 
   React.useEffect(() => {
-    if (area.error) {
+    if (area.error || (area.data && area.data?.length < 1)) {
       navigate('/komplettera', { replace: true })
     }
   }, [area])

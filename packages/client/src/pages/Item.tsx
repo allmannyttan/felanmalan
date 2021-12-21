@@ -16,7 +16,7 @@ const Item = () => {
     inventory.data.sort((a, b) => (a.description > b.description && 1) || -1)
 
   React.useEffect(() => {
-    if (inventory.error || !inventory.data?.length) {
+    if (inventory.error || (inventory.data && inventory.data?.length < 1)) {
       navigate('/komplettera', { replace: true })
     }
   }, [inventory])
