@@ -3,7 +3,6 @@ import Section from '../components/Section'
 import NextStepCard from '../components/NextStepCard'
 import { H1 } from '../components/Typography'
 import Elements from '../shared-elements'
-import { Icons } from '../components/Icon'
 import { useAtom } from 'jotai'
 import { areaAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
@@ -12,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const Area = () => {
   const [area] = useAtom(areaAtom)
   const navigate = useNavigate()
+  area?.data && area.data.sort((a, b) => (a.name > b.name && 1) || -1)
 
   React.useEffect(() => {
     if (area.error) {
@@ -35,7 +35,6 @@ const Area = () => {
                     title={area.name}
                     id={area.code}
                     subtitle={area.description}
-                    icon={Icons.kitchen}
                     sendTo="objekt"
                   />
                 </li>

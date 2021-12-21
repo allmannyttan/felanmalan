@@ -1,27 +1,41 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
-import apartment from '../assets/icons/apartment.svg'
-import kitchen from '../assets/icons/kitchen.svg'
-import appliances from '../assets/icons/appliances.svg'
-import waterTap from '../assets/icons/watertap.svg'
+import * as Svg from '../assets/icons/index'
 
-const ICONS = {
-  apartment,
-  kitchen,
-  appliances,
-  waterTap,
+export enum IconName {
+  'Förråd',
+  'Kök',
+  'Vitvaror',
+  'Hall',
+  'Frys',
+  'Lägenhet',
+  'Övrigt',
+  'Varmvattenberedare',
+  'Tvättställ',
+  'Dush',
+  'Toalett',
+  'Spis',
+  'Kyl',
 }
 
-export enum Icons {
-  apartment = 'apartment',
-  kitchen = 'kitchen',
-  appliances = 'appliances',
-  waterTap = 'waterTap',
+const Icons = {
+  [IconName['Hall']]: Svg.hallway,
+  [IconName['Kök']]: Svg.kitchen,
+  [IconName['Förråd']]: Svg.hallway,
+  [IconName['Vitvaror']]: Svg.fridge,
+  [IconName['Frys']]: Svg.freezer,
+  [IconName['Lägenhet']]: Svg.apartment,
+  [IconName['Övrigt']]: Svg.other,
+  [IconName['Varmvattenberedare']]: Svg.waterTap,
+  [IconName['Tvättställ']]: Svg.basin,
+  [IconName['Dush']]: Svg.shower,
+  [IconName['Toalett']]: Svg.toilet,
+  [IconName['Spis']]: Svg.stove,
+  [IconName['Kyl']]: Svg.fridge,
 }
 
 type Props = {
-  name: Icons
+  name: string
   alt: string
 }
 
@@ -40,9 +54,15 @@ const Wrapper = styled.div`
 `
 
 const Icon = ({ name, alt }: Props) => {
+  const getIconName = () => {
+    const iconName = Object.keys(IconName).filter((a) => name.includes(a))[0] ?? 'Övrigt'
+
+    return Icons[IconName[iconName as keyof typeof IconName]]
+  }
+
   return (
     <Wrapper>
-      <SquareImg src={ICONS[name]} aria-hidden="true" alt={alt} />
+      <SquareImg src={getIconName()} aria-hidden="true" alt={alt} />
     </Wrapper>
   )
 }

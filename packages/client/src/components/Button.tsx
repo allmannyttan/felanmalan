@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { devices } from '../utils/devices'
 
 interface StyleProps {
   disabled?: boolean
@@ -15,14 +16,17 @@ export const StyledBtn = styled.button<StyleProps>`
   border: none;
   cursor: pointer;
   padding: 0.8rem 0;
-  width: 91%;
+  width: 300px;
   font-weight: 700;
   font-size: 16px;
+
   :disabled {
     cursor: not-allowed;
   }
-  bottom: 2rem;
-  position: fixed;
+
+  @media only screen and (${devices.tablet}) {
+    width: 400px;
+  }
 `
 
 interface Props {
@@ -32,13 +36,19 @@ interface Props {
   to: string
 }
 
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+`
+
 const Button = ({ text, disabled = false, onClick, to }: Props) => {
   return (
-    <Link to={to}>
+    <StyledLink to={to}>
       <StyledBtn onClick={onClick} disabled={disabled}>
         {text}
       </StyledBtn>
-    </Link>
+    </StyledLink>
   )
 }
 

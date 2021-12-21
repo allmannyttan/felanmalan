@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAtom } from 'jotai'
-import { Icons } from '../components/Icon'
 import Section from '../components/Section'
 import NextStepCard from '../components/NextStepCard'
 import Elements from '../shared-elements'
@@ -12,7 +11,9 @@ import { useNavigate } from 'react-router-dom'
 const Item = () => {
   const [inventory] = useAtom(inventoryAtom)
   const navigate = useNavigate()
-  console.log('onve', inventory)
+
+  inventory?.data &&
+    inventory.data.sort((a, b) => (a.description > b.description && 1) || -1)
 
   React.useEffect(() => {
     if (inventory.error || !inventory.data?.length) {
@@ -33,7 +34,6 @@ const Item = () => {
                   <NextStepCard
                     title={inventory.description}
                     subtitle={inventory.class.name}
-                    icon={Icons.waterTap}
                     sendTo="komplettera"
                   />
                 </li>
