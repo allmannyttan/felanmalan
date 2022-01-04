@@ -9,6 +9,7 @@ import hallway from './hallway.svg'
 import stove from './stove.svg'
 import freezer from './freezer.svg'
 import fridge from './fridge.svg'
+import storage from './storage.svg'
 
 export {
   other,
@@ -22,4 +23,5 @@ export {
   stove,
   fridge,
   freezer,
+  storage,
 }
