@@ -7,14 +7,21 @@ import { useAtom } from 'jotai'
 import { areaAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
+import { AreaData } from '../utils/types'
 
 const Area = () => {
   const [area] = useAtom(areaAtom)
   const navigate = useNavigate()
+  // TODO: should make a function of this aswell
   area?.data && area.data.sort((a, b) => (a.name > b.name && 1) || -1)
 
+  const shouldRedicrectUser = (data: AreaData) => {
+    // https://github.com/ryanmcdermott/clean-code-javascript#encapsulate-conditionals
+    // TODO: Move function to use more globally
+    return data.error || (data.data && data.data?.length < 1)
+  }
   React.useEffect(() => {
-    if (area.error || (area.data && area.data?.length < 1)) {
+    if (shouldRedicrectUser(area)) {
       navigate('/komplettera', { replace: true })
     }
   }, [area])
