@@ -50,22 +50,28 @@ felanmalan-backend is an API that uses Slussen to provide data necessary for a t
 
 ## Getting started
 
+We run `Slussen` and the needed databases in Docker.
+
 ```
 docker-compose up -d
 ```
 
-### packages/client
+The rest of the project is running locally for now.
+
+### Start up the Client locally
 
 ```
+cd packages/client
 npm ci
 npm run dev
 ```
 
 Visit http://localhost:3000/plats
 
-### packages/server
+### Start up the server locally
 
 ```
+cd packages/server
 nvm use
 npm i
 npm run migrate:up
@@ -74,7 +80,7 @@ npm run dev
 
 Go to http://localhost:3001/
 
-To create a user in Slussen, see [Slussen README](/allmannyttan/slussen).
+You need to create a user in `Slussen` to be able to connect to the api, see [Slussen README](https://github.com/allmannyttan/slussen/blob/master/README.md#usage).
 
 ### Config
 
