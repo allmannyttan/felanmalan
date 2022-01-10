@@ -1,13 +1,5 @@
 import configPackage from '@iteam/config'
 
-interface Postgres {
-  host: string
-  user: string
-  password: string
-  database: string
-  port: number
-}
-
 interface API {
   baseUrl: string
   username: string
@@ -16,7 +8,6 @@ interface API {
 
 export interface Config {
   port: number
-  postgres: Postgres
   auth: {
     secret: string
     expiresIn: string
@@ -44,7 +35,7 @@ const config = configPackage({
       maxFailedLoginAttempts: 3,
     },
     api: {
-      baseUrl: 'http://localhost:4000/',
+      baseUrl: 'http://slussen:4000',
       username: 'test',
       password: 'kalas',
     },
@@ -54,7 +45,6 @@ const config = configPackage({
 export default {
   auth: config.get('auth'),
   port: config.get('port'),
-  postgres: config.get('postgres'),
   api: config.get('api'),
   onlyInvalid: config.get('onlyInvalid'),
 } as Config
