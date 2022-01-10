@@ -21,7 +21,7 @@ export enum IconName {
 const Icons = {
   [IconName['Hall']]: Svg.hallway,
   [IconName['Kök']]: Svg.kitchen,
-  [IconName['Förråd']]: Svg.hallway,
+  [IconName['Förråd']]: Svg.storage,
   [IconName['Vitvaror']]: Svg.fridge,
   [IconName['Frys']]: Svg.freezer,
   [IconName['Lägenhet']]: Svg.apartment,

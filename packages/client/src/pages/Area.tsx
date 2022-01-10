@@ -6,11 +6,20 @@ import Elements from '../shared-elements'
 import { useAtom } from 'jotai'
 import { areaAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
+import { useNavigate } from 'react-router-dom'
+import { shouldRedirectUser } from '../utils/helpers'
 
 const Area = () => {
   const [area] = useAtom(areaAtom)
+  const navigate = useNavigate()
+
   area?.data && area.data.sort((a, b) => (a.name > b.name && 1) || -1)
 
+  React.useEffect(() => {
+    if (shouldRedirectUser(area)) {
+      navigate('/komplettera', { replace: true })
+    }
+  }, [area])
   return (
     <>
       <div>

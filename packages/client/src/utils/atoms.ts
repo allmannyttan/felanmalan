@@ -94,7 +94,7 @@ export const areaAtom = atom(
   (get) => get(fetchAreaAtom),
   (_get, set, roomId) => {
     const fetchData = async () => {
-      set(fetchAreaAtom, (prev) => ({ ...prev, loading: true }))
+      set(fetchAreaAtom, (prev) => ({ ...prev, loading: true, error: null }))
       try {
         const data = await apiClient.get({
           url: `/area?roomId=${roomId}`,
