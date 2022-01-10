@@ -7,9 +7,9 @@ import {
   AreaData,
   InventoryData,
   UserData,
+  ErrorReportType,
 } from './types'
 import { client as apiClient } from './apiclient'
-import { ErrorReportType } from '../../../../types'
 
 export const reportAtom = atom<ErrorReportType>({
   place: '',

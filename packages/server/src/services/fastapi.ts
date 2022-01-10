@@ -1,6 +1,5 @@
 import { client } from '@app/adapters/api'
-import { Room, Inventory } from './types'
-import { ErrorReportType, ApiExceptionType } from '../../../../types'
+import { Room, Inventory, ErrorReportType, ApiExceptionType } from './types'
 import { setAttachmentInDb } from '../adapters/api/databaseHelper'
 import { Attachment } from '@app/adapters/api/types'
 import fs from 'fs'

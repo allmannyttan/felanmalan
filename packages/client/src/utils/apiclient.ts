@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { APIRequest } from './types'
-import { ErrorReportType, ApiExceptionType } from '../../../../types'
+import { ApiExceptionType, APIRequest, ErrorReportType } from './types'
 
 const innerGet = async (request: APIRequest) => {
   const headers = {
