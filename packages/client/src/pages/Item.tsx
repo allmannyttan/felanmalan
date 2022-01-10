@@ -7,6 +7,7 @@ import { H1 } from '../components/Typography'
 import { inventoryAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
+import { shouldRedirectUser } from '../utils/helpers'
 
 const Item = () => {
   const [inventory] = useAtom(inventoryAtom)
@@ -16,7 +17,7 @@ const Item = () => {
     inventory.data.sort((a, b) => (a.description > b.description && 1) || -1)
 
   React.useEffect(() => {
-    if (inventory.error || (inventory.data && inventory.data?.length < 1)) {
+    if (shouldRedirectUser(inventory)) {
       navigate('/komplettera', { replace: true })
     }
   }, [inventory])
