@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from 'axios'
 import config from '@app/config'
 import { tokenRefresher } from './tokenHelper'
 import { APIRequest } from './types'
-import { ErrorReportType } from '../../../../../types'
 
 const innerGet = async (request: APIRequest) => {
   const headers = {

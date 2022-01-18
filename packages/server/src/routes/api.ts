@@ -7,8 +7,7 @@ import {
   fetchApiRooms,
   postCase,
 } from '@app/services/fastapi'
-import { ErrorReportType } from '../../../../types'
-import { Area } from '@app/services/types'
+import { Area, ErrorReportType } from '@app/services/types'
 
 export const routes = (app: Application) => {
   app.get(

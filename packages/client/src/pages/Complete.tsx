@@ -6,7 +6,7 @@ import { Formik } from 'formik'
 import CompleteForm from '../components/CompleteForm'
 import { useNavigate } from 'react-router-dom'
 import Section from '../components/Section'
-import { IFormData } from '../../../../types'
+import { IFormData } from '../utils/types'
 
 const Complete = () => {
   const navigate = useNavigate()
