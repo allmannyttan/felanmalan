@@ -53,6 +53,7 @@ felanmalan-backend is an API that uses Slussen to provide data necessary for a t
 We run `Slussen` and the needed databases in Docker.
 
 ```
+# omit the -d to see log output from the containers
 docker-compose up -d
 ```
 
@@ -80,7 +81,36 @@ npm run dev
 
 Go to http://localhost:3001/
 
-You need to create a user in `Slussen` to be able to connect to the api, see [Slussen README](https://github.com/allmannyttan/slussen/blob/master/README.md#usage).
+You need to create a user in `Slussen` to be able to connect to the api. This is described in [Slussen's README](https://github.com/allmannyttan/slussen/blob/master/README.md#usage) but since we're running things from within this project here are instructions (roughly.):
+
+First we get the password hash and salt:
+
+```
+curl "http://localhost:4000/auth/generate-password-hash?password=mypassword"
+# {"password": "...", "salt": "..."}
+```
+
+Then we insert it into Slussen's database.
+
+```
+# Assuming you have not changed anything
+PGHOST=0.0.0.0 PGPASSWORD=postgrespassword PGUSER=postgres PGDATABASE=api-db psql
+
+# Choose a username and use the values from the first step
+INSERT INTO users (username, password_hash, salt)
+VALUES
+  (
+    'myusername',
+    'password_hash',
+    'password_salt'
+  );
+```
+
+At that point the last thing we need is an OAuth token from the API.
+
+```
+curl -XPOST -H "Content-type: application/json" -d '{"password": "mypassword", "username": "myusername"}' 'http://localhost:4000/auth/generate-token'
+```
 
 ### Config
 
@@ -92,13 +122,15 @@ For example, use different Slussen user:
 ```
 {
   "api": {
-    "username": "otest",
-    "password": "party"
+    "username": "myusername",
+    "password": "mypassword"
   }
 }
 ```
 
 ### Migrations and seeds
+
+Note that to run these commands you must set a DATABASE_URL environment variable that points to the Postgres database called `felanmalan-postgres` in docker-compose.yml.
 
 - Create new migration: `npx knex migrate:make <migration_name>`
 - Create new seed for dev: `npx knex seed:make $(date +%s)_<name> --env dev`
