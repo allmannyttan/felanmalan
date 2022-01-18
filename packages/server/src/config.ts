@@ -21,13 +21,6 @@ const config = configPackage({
   file: `${__dirname}/../config.json`,
   defaults: {
     port: 3001,
-    postgres: {
-      host: '127.0.0.1',
-      user: 'iteamadmin',
-      password: 'adminadmin1337',
-      database: 'felanmalan',
-      port: 5442,
-    },
     auth: {
       secret:
         'Kungen, Drottningen, Kronprinsessan och Prins Daniel höll i dag ett videomöte med Kungl. Vetenskapsakademien.',
