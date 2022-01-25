@@ -10,6 +10,7 @@ import ProgressBar from './components/ProgressBar'
 import { Provider as JotaiProvider } from 'jotai'
 import Layout from './components/Layout'
 import Confirmation from './pages/Confirmation'
+import Start from './pages/Start'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -29,6 +30,7 @@ const App = () => {
           <>
             {showProgressBar.includes(pathname) && <ProgressBar />}
             <Routes>
+              <Route path="/" element={<Start />} />
               <Route path="/plats" element={<Place />} />
               <Route path="/rum" element={<Room />} />
               <Route path="/omrade" element={<Area />} />
