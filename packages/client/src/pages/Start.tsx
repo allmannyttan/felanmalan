@@ -20,13 +20,6 @@ const Image = styled.img`
   margin: 1rem auto;
 `
 
-const FlexH1 = styled(H1)`
-  display: flex;
-  justify-content: center;
-  padding: 0 0 0 1.3rem;
-  margin-bottom: 13px;
-`
-
 const ButtonWrapper = styled.div`
   max-width: 840px;
   width: 100%;
@@ -45,7 +38,7 @@ const Start = () => {
     <Section>
       <Container>
         <Image src={active} alt="Active" />
-        <FlexH1>Du har inga aktiva felanmälningar</FlexH1>
+        <H1>Du har inga aktiva felanmälningar</H1>
         <Paragraph center={true}>
           När du har gjort en felanmälan kommer den att hamna i en lista här.
         </Paragraph>
