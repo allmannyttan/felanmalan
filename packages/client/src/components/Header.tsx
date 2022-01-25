@@ -5,6 +5,7 @@ import { H2 } from './Typography'
 import arrow from '../images/svg/arrow.svg'
 import { useAtom } from 'jotai'
 import { reportAtom } from '../utils/atoms'
+import NotFoundPage from '../pages/404'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundGrey};
@@ -36,6 +37,7 @@ const Header = () => {
     '/objekt',
     '/komplettera',
     '/sammanfattning',
+    '*'
   ]
 
   React.useEffect(() => {
@@ -54,10 +56,13 @@ const Header = () => {
         )
       case '/bekraftelse':
         return setTitle('Felanmälan inskickad')
-      default:
+      case '/':
         return setTitle('Felanmälan')
+      default:
+        return setTitle('')
     }
   }, [pathname])
+
 
   const handleOnClick = () => {
     switch (pathname) {
