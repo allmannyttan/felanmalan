@@ -36,8 +36,7 @@ const Header = () => {
     '/omrade',
     '/objekt',
     '/komplettera',
-    '/sammanfattning',
-    '*'
+    '/sammanfattning'
   ]
 
   React.useEffect(() => {
