@@ -11,6 +11,7 @@ import { Provider as JotaiProvider } from 'jotai'
 import Layout from './components/Layout'
 import Confirmation from './pages/Confirmation'
 import Start from './pages/Start'
+import NotFound from './pages/404'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -38,6 +39,7 @@ const App = () => {
               <Route path="/komplettera" element={<Complete />} />
               <Route path="/sammanfattning" element={<Summary />} />
               <Route path="/bekraftelse" element={<Confirmation />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </>
         </Layout>
