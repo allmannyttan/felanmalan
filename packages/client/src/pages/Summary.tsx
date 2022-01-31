@@ -4,7 +4,6 @@ import { useAtom } from 'jotai'
 import Section from '../components/Section'
 import { H1, BoldParagraph, Paragraph } from '../components/Typography'
 import { reportAtom } from '../utils/atoms'
-import { devices } from '../utils/devices'
 import { client as apiClient } from '../utils/apiclient'
 import { FlexToStart } from '../shared-elements/layout'
 import { useNavigate } from 'react-router-dom'
@@ -19,18 +18,6 @@ const TextSection = styled.div`
 const Wrapper = styled.div`
   margin-bottom: 3rem;
   padding: 0 18px;
-`
-const ButtonWrapper = styled.div`
-  max-width: 840px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-  @media only screen and (${devices.tablet}) {
-    bottom: 2rem;
-    position: absolute;
-  }
 `
 
 const Summary = () => {
@@ -68,7 +55,6 @@ const Summary = () => {
         replace: true,
       })
     }
-    navigate('/bekraftelse')
   }
 
   return (
@@ -139,15 +125,13 @@ const Summary = () => {
                 </TextSection>
               )}
             </Wrapper>
-            <ButtonWrapper>
-              <Button
-                onClick={() => {
-                  setLoading(true)
-                  submit()
-                }}
-                text="Skicka felanmälan"
-              />
-            </ButtonWrapper>
+            <Button
+              onClick={() => {
+                setLoading(true)
+                submit()
+              }}
+              text="Skicka felanmälan"
+            />
           </Section>
         </>
       )}
