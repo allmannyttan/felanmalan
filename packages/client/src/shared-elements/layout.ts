@@ -6,4 +6,8 @@ const Ul = styled.ul`
   margin: 0;
 `
 
-export { Ul }
+const FlexToStart = styled.div`
+  align-self: flex-start;
+`
+
+export { Ul, FlexToStart }

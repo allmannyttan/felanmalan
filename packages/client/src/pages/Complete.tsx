@@ -7,6 +7,7 @@ import CompleteForm from '../components/CompleteForm'
 import { useNavigate } from 'react-router-dom'
 import Section from '../components/Section'
 import { IFormData } from '../utils/types'
+import { FlexToStart } from '../shared-elements/layout'
 
 const Complete = () => {
   const navigate = useNavigate()
@@ -19,7 +20,9 @@ const Complete = () => {
 
   return (
     <>
-      <H1>Beskriv problemet</H1>
+      <FlexToStart>
+        <H1>Beskriv problemet</H1>
+      </FlexToStart>
       <Section>
         <Formik initialValues={formValue.complete} onSubmit={handleOnSubmit}>
           <CompleteForm />

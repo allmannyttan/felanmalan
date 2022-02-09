@@ -6,6 +6,7 @@ import Section from '../components/Section'
 import Elements from '../shared-elements'
 import { roomAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
+import { FlexToStart } from '../shared-elements/layout'
 
 const Room = () => {
   let [room] = useAtom(roomAtom)
@@ -14,9 +15,9 @@ const Room = () => {
 
   return (
     <>
-      <div>
+      <FlexToStart>
         <H1>Välj ett rum</H1>
-      </div>
+      </FlexToStart>
       <Section>
         {room.loading ? (
           <Loading />
