@@ -7,7 +7,8 @@ import {
   fetchApiRooms,
   postCase,
 } from '@app/services/fastapi'
-import { Area, ErrorReportType } from '@app/services/types'
+import { Area, ErrorReportType, IErrorReportFiles } from '@app/services/types'
+import { addFilesToDb } from '@app/helpers/utils'
 
 export const routes = (app: Application) => {
   app.get(
@@ -99,14 +100,19 @@ export const routes = (app: Application) => {
         room: req.fields?.room as string,
         area: req.fields?.area as string,
         object: req.fields?.object as string,
-        complete: {
-          text: req.fields?.text as string,
-          image: req.files?.image,
-          video: req.files?.video,
-        },
+        description: req.fields?.text as string,
       }
 
+      const files: IErrorReportFiles = {
+        image: req.files?.image,
+        video: req.files?.video,
+      }
       const errorReport = await postCase(data)
+
+      if (errorReport.id) {
+        addFilesToDb(files, errorReport.id)
+      }
+
       if ('message' in errorReport) {
         res.status(400)
       }

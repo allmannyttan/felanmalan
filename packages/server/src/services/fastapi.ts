@@ -1,10 +1,6 @@
 import { client } from '@app/adapters/api'
 import { Room, Inventory, ErrorReportType, ApiExceptionType } from './types'
-import { setAttachmentInDb } from '../adapters/api/databaseHelper'
-import { Attachment } from '@app/adapters/api/types'
-import fs from 'fs'
-import { Fields, Files } from 'formidable'
-import { v4 as uuidv4 } from 'uuid'
+import { getErrorReportString } from '@app/helpers/utils'
 
 export const fetchApiRooms = async (rentalId: string): Promise<Array<Room>> => {
   const rooms: Array<Room> = await client.get({
@@ -25,56 +21,14 @@ export const fetchApiInventory = async (
 export const postCase = async (
   data: ErrorReportType
 ): Promise<ErrorReportType | ApiExceptionType> => {
-  // console.log('data', data)
   try {
     // To do: post data into slussen and get id and use
+    const description = getErrorReportString(data)
     const createdErrorReport = await client.post({
       url: 'cases',
-      data,
+      data: description,
     })
-    const { id } = createdErrorReport
 
-    if (id && (data.complete.image || data.complete.video)) {
-      // console.log('img', data.complete.image)
-    }
-
-    const getExt = (type: string) => {
-      //To do: add more types? Video osv.
-      switch (type) {
-        case 'image/jpeg':
-          return 'jpg'
-        case 'image/png':
-          return 'png'
-        default:
-          return 'Unvalid type'
-      }
-    }
-
-    let imagePath, videoPath
-    if (data.complete.image) {
-      const ext = getExt(data.complete.image.type) // check MIME TYPE
-      imagePath = `attachments/${uuidv4()}.${ext}`
-      fs.renameSync(data.complete.image.path, imagePath)
-    } else {
-      imagePath = ''
-    }
-
-    if (data.complete.video) {
-      const ext = getExt(data.complete.video.type) // check MIME TYPE
-      videoPath = `attachments/${uuidv4()}.${ext}`
-      fs.renameSync(data.complete.video.path, videoPath)
-    } else {
-      videoPath = ''
-    }
-
-    if (imagePath || videoPath) {
-      const attachment: Attachment = {
-        error_report_id: id,
-        photo: imagePath,
-        video: videoPath,
-      }
-      await setAttachmentInDb(attachment)
-    }
     return <ErrorReportType>createdErrorReport
   } catch (e: any) {
     console.log('error', e.response)
