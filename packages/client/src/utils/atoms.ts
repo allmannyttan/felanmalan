@@ -8,6 +8,7 @@ import {
   InventoryData,
   UserData,
   ErrorReportType,
+  CommonErrorReportData,
 } from './types'
 import { client as apiClient } from './apiclient'
 
@@ -82,6 +83,31 @@ export const roomAtom = atom(
       } catch (error: any) {
         console.log('error', error)
         set(fetchRoomAtom, { loading: false, error, data: null })
+      }
+    }
+    fetchData()
+  },
+)
+
+const fetchCommonErrorReportAtom = atom<CommonErrorReportData>({
+  loading: true,
+  error: null,
+  data: null,
+})
+
+export const commonErrorReportAtom = atom(
+  (get) => get(fetchCommonErrorReportAtom),
+  (_get, set) => {
+    const fetchData = async () => {
+      set(fetchCommonErrorReportAtom, (prev) => ({ ...prev, loading: true }))
+      try {
+        const data = await apiClient.get({
+          url: `/common-error-reports`,
+        })
+        set(fetchCommonErrorReportAtom, { loading: false, error: null, data })
+      } catch (error: any) {
+        console.log('error', error)
+        set(fetchCommonErrorReportAtom, { loading: false, error, data: null })
       }
     }
     fetchData()

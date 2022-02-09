@@ -80,6 +80,17 @@ export type AreaData = {
   data: AreaType[] | null
 }
 
+export type CommonErrorReportType = {
+  name: string
+  description: string
+}
+
+export type CommonErrorReportData = {
+  loading: boolean
+  error: string | null
+  data: CommonErrorReportType[] | null
+}
+
 export type UserData = {
   rentalId: string
   roomId: string
