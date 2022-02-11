@@ -114,6 +114,10 @@ export const commonErrorReportAtom = atom(
   },
 )
 
+commonErrorReportAtom.onMount = (runFetch) => {
+  runFetch()
+}
+
 const fetchAreaAtom = atom<AreaData>({ loading: true, error: null, data: null })
 
 export const areaAtom = atom(

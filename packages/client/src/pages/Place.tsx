@@ -10,7 +10,7 @@ import { commonErrorReportAtom, userAtom } from '../utils/atoms'
 
 const Place = () => {
   const [userData, setUserdata] = useAtom(userAtom)
-  const [commonErrorReports] = useAtom(commonErrorReportAtom)
+  const [commonErrorReport] = useAtom(commonErrorReportAtom)
 
   React.useEffect(() => {
     setUserdata({ ...userData, rentalId: 'OBJ-0110203' })
@@ -36,12 +36,12 @@ const Place = () => {
         <FlexToStart>
           <H1>Vanliga felanmälnninngar</H1>
         </FlexToStart>
-        {commonErrorReports.loading ? (
+        {commonErrorReport.loading ? (
           <Loading />
         ) : (
           <Elements.Layout.Ul>
-            {commonErrorReports?.data &&
-              commonErrorReports.data.map((data, i) => (
+            {commonErrorReport?.data &&
+              commonErrorReport.data.map((data, i) => (
                 <li key={i}>
                   <NextStepCard
                     title={data.name}
