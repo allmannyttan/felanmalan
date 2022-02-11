@@ -10,6 +10,10 @@ import stove from './stove.svg'
 import freezer from './freezer.svg'
 import fridge from './fridge.svg'
 import storage from './storage.svg'
+import radiator from './radiator.svg'
+import kitchenFan from './kitchen_fan.svg'
+import drain from './drain.svg'
+import lamp from './lamp.svg'
 
 export {
   other,
@@ -24,4 +28,8 @@ export {
   fridge,
   freezer,
   storage,
+  radiator,
+  kitchenFan,
+  drain,
+  lamp,
 }
