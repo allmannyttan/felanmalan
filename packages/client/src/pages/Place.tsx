@@ -44,6 +44,7 @@ const Place = () => {
               commonErrorReport.data.map((data, i) => (
                 <li key={i}>
                   <NextStepCard
+                    type="common"
                     title={data.name}
                     subtitle={data.description}
                     sendTo="komplettera"

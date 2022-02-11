@@ -42,9 +42,17 @@ interface INextStepCard {
   sendTo: string
   id?: string
   bg?: string
+  type?: string
 }
 
-const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo, id, bg }) => {
+const NextStepCard: React.FC<INextStepCard> = ({
+  title,
+  subtitle,
+  sendTo,
+  id,
+  bg,
+  type,
+}) => {
   const [value, setReportValue] = useAtom(reportAtom)
   const [, fetchInventory] = useAtom(inventoryAtom)
   const [, fetchAreas] = useAtom(areaAtom)
@@ -56,6 +64,8 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo, id, bg
     switch (pathname) {
       case '/plats':
         fetchRoom(userData.rentalId)
+        if (type === 'common')
+          return setReportValue({ ...value, place: subtitle, object: title })
         return setReportValue({ ...value, place: title })
       case '/rum':
         fetchAreas(id)
