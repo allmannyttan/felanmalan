@@ -1,6 +1,9 @@
+import { useAtom } from 'jotai'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import NextPageLink from './NextPageLink'
+import { initialErrorReportValues, reportAtom } from '../utils/atoms'
+import Button from './Button'
 
 const Wrapper = styled.div`
   padding: 0 19px;
@@ -17,11 +20,19 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `
+
 const BaseLayout: React.FC = ({ children }) => {
+  const navigate = useNavigate()
+  const [, setErrorReport] = useAtom(reportAtom)
+
+  const handleOnClick = () => {
+    setErrorReport(initialErrorReportValues)
+    navigate('/', { replace: true })
+  }
   return (
     <Wrapper>
       <Container>{children}</Container>
-      <NextPageLink text="Tillbaka till hemskärm" to="/" />
+      <Button text="Tillbaka till hemskärm" onClick={handleOnClick} />
     </Wrapper>
   )
 }
