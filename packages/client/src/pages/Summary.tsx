@@ -7,6 +7,7 @@ import { H1, BoldParagraph, Paragraph } from '../components/Typography'
 import { reportAtom } from '../utils/atoms'
 import { devices } from '../utils/devices'
 import { client as apiClient } from '../utils/apiclient'
+import { FlexToStart } from '../shared-elements/layout'
 
 const TextSection = styled.div`
   margin-bottom: 20px;
@@ -55,7 +56,9 @@ const Summary = () => {
 
   return (
     <>
-      <H1>Sammanfattaning av felanmälan</H1>
+      <FlexToStart>
+        <H1>Sammanfattaning av felanmälan</H1>
+      </FlexToStart>
       <Section>
         <Wrapper>
           {completeErrorReport.place && (

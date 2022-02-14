@@ -62,6 +62,34 @@ export const routes = (app: Application) => {
     errorHandler
   )
 
+  app.get(
+    '/common-error-reports',
+    authMiddleware,
+    asyncHandler(async (_, res: Response) => {
+      const commonErrorReports = [
+        {
+          name: 'Värme',
+          description: 'Rum 1',
+        },
+        {
+          name: 'Fläkt',
+          description: 'Kök',
+        },
+        {
+          name: 'Avlopp',
+          description: 'Badrum',
+        },
+        {
+          name: 'Belysning',
+          description: 'Gemesamma utrymmen',
+        },
+      ]
+
+      res.send(commonErrorReports)
+    }),
+    errorHandler
+  )
+
   app.post(
     '/case',
     authMiddleware,

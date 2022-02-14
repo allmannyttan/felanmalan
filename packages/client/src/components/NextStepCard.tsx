@@ -8,7 +8,7 @@ import { H4, ParagraphSmall } from './Typography'
 import { useLocation } from 'react-router'
 import Icon from './Icon'
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ bg?: string }>`
   display: grid;
   grid-template-columns: 20% auto 6%;
   background-color: white;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   padding: 11px 18px;
   margin-bottom: 1.3rem;
   grid-gap: 1.4rem;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme, bg }) => (bg ? bg : theme.colors.white)};
   transition: background 0.1s ease-in;
 
   &:hover,
@@ -41,9 +41,18 @@ interface INextStepCard {
   subtitle: string
   sendTo: string
   id?: string
+  bg?: string
+  type?: string
 }
 
-const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo, id }) => {
+const NextStepCard: React.FC<INextStepCard> = ({
+  title,
+  subtitle,
+  sendTo,
+  id,
+  bg,
+  type,
+}) => {
   const [value, setReportValue] = useAtom(reportAtom)
   const [, fetchInventory] = useAtom(inventoryAtom)
   const [, fetchAreas] = useAtom(areaAtom)
@@ -55,6 +64,8 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo, id }) 
     switch (pathname) {
       case '/plats':
         fetchRoom(userData.rentalId)
+        if (type === 'common')
+          return setReportValue({ ...value, place: subtitle, object: title })
         return setReportValue({ ...value, place: title })
       case '/rum':
         fetchAreas(id)
@@ -76,7 +87,7 @@ const NextStepCard: React.FC<INextStepCard> = ({ title, subtitle, sendTo, id }) 
 
   return (
     <StyledLink to={`/${sendTo}`} onClick={handleOnClickRoom}>
-      <Wrapper>
+      <Wrapper bg={bg}>
         <Icon name={title} alt={subtitle} />
         <FlexCol>
           <H4>{title}</H4>

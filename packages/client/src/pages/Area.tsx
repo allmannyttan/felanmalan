@@ -8,6 +8,7 @@ import { areaAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
 import { shouldRedirectUser } from '../utils/helpers'
+import { FlexToStart } from '../shared-elements/layout'
 
 const Area = () => {
   const [area] = useAtom(areaAtom)
@@ -22,9 +23,9 @@ const Area = () => {
   }, [area])
   return (
     <>
-      <div>
+      <FlexToStart>
         <H1>Välj ett område</H1>
-      </div>
+      </FlexToStart>
       <Section>
         {area.loading ? (
           <Loading />
