@@ -9,10 +9,23 @@ import { FlexToStart } from '../shared-elements/layout'
 import { useNavigate } from 'react-router-dom'
 import LoadingConfirmation from '../components/LoadingConfirmation'
 import Button from '../components/Button'
+import { devices } from '../utils/devices'
 
 const TextSection = styled.div`
   margin-bottom: 20px;
   width: 100%;
+`
+
+const ButtonWrapper = styled.div`
+  max-width: 840px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  @media only screen and (${devices.tablet}) {
+    bottom: 2rem;
+    position: absolute;
+  }
 `
 
 const Wrapper = styled.div`
@@ -125,13 +138,15 @@ const Summary = () => {
                 </TextSection>
               )}
             </Wrapper>
-            <Button
-              onClick={() => {
-                setLoading(true)
-                submit()
-              }}
-              text="Skicka felanmälan"
-            />
+            <ButtonWrapper>
+              <Button
+                onClick={() => {
+                  setLoading(true)
+                  submit()
+                }}
+                text="Skicka felanmälan"
+              />
+            </ButtonWrapper>
           </Section>
         </>
       )}
