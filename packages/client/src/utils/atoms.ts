@@ -12,7 +12,7 @@ import {
 } from './types'
 import { client as apiClient } from './apiclient'
 
-export const reportAtom = atom<ErrorReportType>({
+export const initialErrorReportValues = {
   place: '',
   room: '',
   area: '',
@@ -22,7 +22,8 @@ export const reportAtom = atom<ErrorReportType>({
     image: null,
     video: null,
   },
-})
+}
+export const reportAtom = atom<ErrorReportType>(initialErrorReportValues)
 
 export const progressBarAtom = atom<ProgressType[]>([
   {

@@ -1,5 +1,8 @@
+import { useAtom } from 'jotai'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { initialErrorReportValues, reportAtom } from '../utils/atoms'
 import Button from './Button'
 
 const Wrapper = styled.div`
@@ -17,15 +20,19 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `
+
 const BaseLayout: React.FC = ({ children }) => {
+  const navigate = useNavigate()
+  const [, setErrorReport] = useAtom(reportAtom)
+
+  const handleOnClick = () => {
+    setErrorReport(initialErrorReportValues)
+    navigate('/', { replace: true })
+  }
   return (
     <Wrapper>
       <Container>{children}</Container>
-      <Button
-        text="Tillbaka till hemskärm"
-        to="/"
-        onClick={() => console.log('Go back to start page')}
-      />
+      <Button text="Tillbaka till hemskärm" onClick={handleOnClick} />
     </Wrapper>
   )
 }

@@ -8,6 +8,7 @@ import { reportAtom } from '../utils/atoms'
 import { devices } from '../utils/devices'
 import { client as apiClient } from '../utils/apiclient'
 import { FlexToStart } from '../shared-elements/layout'
+import { useNavigate } from 'react-router-dom'
 
 const TextSection = styled.div`
   margin-bottom: 20px;
@@ -32,6 +33,7 @@ const ButtonWrapper = styled.div`
 `
 
 const Summary = () => {
+  const navigate = useNavigate()
   const [completeErrorReport] = useAtom(reportAtom)
 
   const submit = async () => {
@@ -51,7 +53,14 @@ const Summary = () => {
       formdata.append('video', completeErrorReport.complete.video)
     }
 
-    await apiClient.post(formdata)
+    try {
+      await apiClient.post(formdata)
+    } catch (error: any) {
+      navigate(window.location.pathname, {
+        state: { errorStatusCode: error.response.data.status },
+        replace: true,
+      })
+    }
   }
 
   return (
@@ -119,7 +128,7 @@ const Summary = () => {
           )}
         </Wrapper>
         <ButtonWrapper>
-          <Button text="Skicka felanmälan" onClick={() => submit()} to="/bekraftelse" />
+          <Button onClick={submit} text="Skicka felanmälan" />
         </ButtonWrapper>
       </Section>
     </>

@@ -12,6 +12,7 @@ import Layout from './components/Layout'
 import Confirmation from './pages/Confirmation'
 import Start from './pages/Start'
 import NotFound from './pages/404'
+import ErrorHandler from './components/ErrorHandler'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -28,7 +29,7 @@ const App = () => {
     <Theme>
       <JotaiProvider>
         <Layout>
-          <>
+          <ErrorHandler>
             {showProgressBar.includes(pathname) && <ProgressBar />}
             <Routes>
               <Route path="/" element={<Start />} />
@@ -41,7 +42,7 @@ const App = () => {
               <Route path="/bekraftelse" element={<Confirmation />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </>
+          </ErrorHandler>
         </Layout>
       </JotaiProvider>
     </Theme>

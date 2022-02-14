@@ -1,7 +1,7 @@
 import Section from '../components/Section'
 import { H1, Paragraph } from '../components/Typography'
 import styled from 'styled-components'
-import Button from '../components/Button'
+import NextPageLink from '../components/NextPageLink'
 import active from '../images/svg/active.svg'
 import { devices } from '../utils/devices'
 
@@ -44,11 +44,7 @@ const Start = () => {
         </Paragraph>
       </Container>
       <ButtonWrapper>
-        <Button
-          text="Skapa felanmälan"
-          to="/plats"
-          onClick={() => console.log('create new felanmälan')}
-        />
+        <NextPageLink text="Skapa felanmälan" to="/plats" />
       </ButtonWrapper>
     </Section>
   )
