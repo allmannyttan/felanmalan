@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './Button'
+import NextPageLink from './NextPageLink'
 
 const Wrapper = styled.div`
   padding: 0 19px;
@@ -21,11 +21,7 @@ const BaseLayout: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <Container>{children}</Container>
-      <Button
-        text="Tillbaka till hemskärm"
-        to="/"
-        onClick={() => console.log('Go back to start page')}
-      />
+      <NextPageLink text="Tillbaka till hemskärm" to="/" />
     </Wrapper>
   )
 }

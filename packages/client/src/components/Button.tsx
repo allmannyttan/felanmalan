@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { devices } from '../utils/devices'
 
@@ -27,28 +26,23 @@ export const StyledBtn = styled.button<StyleProps>`
   @media only screen and (${devices.tablet}) {
     width: 400px;
   }
+
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 `
 
 interface Props {
   text: string
   disabled?: boolean
   onClick: () => void
-  to: string
 }
 
-const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-`
-
-const Button = ({ text, disabled = false, onClick, to }: Props) => {
+const Button = ({ text, disabled = false, onClick }: Props) => {
   return (
-    <StyledLink to={to}>
-      <StyledBtn onClick={onClick} disabled={disabled}>
-        {text}
-      </StyledBtn>
-    </StyledLink>
+    <StyledBtn onClick={onClick} disabled={disabled}>
+      {text}
+    </StyledBtn>
   )
 }
 
