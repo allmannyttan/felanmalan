@@ -26,7 +26,9 @@ export const StyledBtn = styled.button<StyleProps>`
   @media only screen and (${devices.tablet}) {
     width: 400px;
   }
+`
 
+const BtnWrapper = styled.div`
   display: flex;
   justify-content: center;
   text-decoration: none;
@@ -40,9 +42,11 @@ interface Props {
 
 const Button = ({ text, disabled = false, onClick }: Props) => {
   return (
-    <StyledBtn onClick={onClick} disabled={disabled}>
-      {text}
-    </StyledBtn>
+    <BtnWrapper>
+      <StyledBtn onClick={onClick} disabled={disabled}>
+        {text}
+      </StyledBtn>
+    </BtnWrapper>
   )
 }
 

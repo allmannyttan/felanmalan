@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Room from './pages/Room'
 import Place from './pages/Place'
 import Area from './pages/Area'
@@ -40,7 +40,8 @@ const App = () => {
               <Route path="/komplettera" element={<Complete />} />
               <Route path="/sammanfattning" element={<Summary />} />
               <Route path="/bekraftelse" element={<Confirmation />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<Navigate replace to="/404" />} />
             </Routes>
           </ErrorHandler>
         </Layout>

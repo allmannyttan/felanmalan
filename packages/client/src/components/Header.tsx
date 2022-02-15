@@ -25,7 +25,7 @@ const Button = styled.button`
 `
 
 const Header = () => {
-  const { pathname } = useLocation()
+  const { pathname, state } = useLocation()
   const navigate = useNavigate()
   const [value, setReportValue] = useAtom(reportAtom)
   const [title, setTitle] = React.useState('Felanmälan')
@@ -36,9 +36,10 @@ const Header = () => {
     '/objekt',
     '/komplettera',
     '/sammanfattning',
+    '/404',
   ]
 
-  React.useEffect(() => {
+  const setTitleInHeader = (pathname: string) => {
     switch (pathname) {
       case '/plats':
         return setTitle('Steg för steg')
@@ -58,14 +59,29 @@ const Header = () => {
             ? value.room
             : value.place,
         )
+      case '/sammanfattning':
+        return setTitle('Slutför felanmälan')
       case '/bekraftelse':
         return setTitle('Felanmälan inskickad')
+      case '/404':
+        return setTitle('404')
       case '/':
         return setTitle('Felanmälan')
       default:
         return setTitle('')
     }
+  }
+
+  const setErrorCodeInHeader = (errorCode: number) => {
+    return setTitle(errorCode.toString())
+  }
+  React.useEffect(() => {
+    setTitleInHeader(pathname)
   }, [pathname])
+
+  React.useEffect(() => {
+    if (state) setErrorCodeInHeader(state?.errorStatusCode)
+  }, [state])
 
   const handleOnClick = () => {
     switch (pathname) {
@@ -92,7 +108,7 @@ const Header = () => {
 
   return (
     <Wrapper>
-      {showArrow.includes(pathname) && (
+      {showArrow.includes(pathname) && !state?.errorStatusCode && (
         <Button onClick={handleOnClick}>
           <img src={arrow} alt="Arrow back" />
         </Button>
