@@ -29,6 +29,13 @@ const Place = () => {
               subtitle="Kök, badrum, sovrum"
               sendTo="rum"
             />
+            <NextStepCard
+              bg="inherit"
+              title="Gemensamma utrymmen"
+              subtitle="Gård, tvättstuga, trapphus"
+              sendTo="rum"
+              type="shared"
+            />
           </li>
         </Elements.Layout.Ul>
       </Section>
