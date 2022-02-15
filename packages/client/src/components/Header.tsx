@@ -108,7 +108,7 @@ const Header = () => {
 
   return (
     <Wrapper>
-      {showArrow.includes(pathname) && !state?.errorStatusCode && (
+      {showArrow.includes(pathname) && (
         <Button onClick={handleOnClick}>
           <img src={arrow} alt="Arrow back" />
         </Button>

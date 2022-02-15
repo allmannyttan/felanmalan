@@ -75,7 +75,7 @@ export const roomAtom = atom(
   (get) => get(fetchRoomAtom),
   (_get, set, params: { rentalId: string; type?: string }) => {
     const fetchData = async () => {
-      set(fetchRoomAtom, (prev) => ({ ...prev, loading: true }))
+      set(fetchRoomAtom, (prev) => ({ ...prev, error: null, loading: true }))
       const url = params.type
         ? `/shared/rooms?rentalId=${params.rentalId}`
         : `/rooms?rentalId=${params.rentalId}`
@@ -152,7 +152,7 @@ export const inventoryAtom = atom(
   (get) => get(fetchInventoryAtom),
   (_get, set, params: { roomId: string; inventoryCode: string }) => {
     const fetchData = async () => {
-      set(fetchInventoryAtom, (prev) => ({ ...prev, loading: true }))
+      set(fetchInventoryAtom, (prev) => ({ ...prev, error: null, loading: true }))
       try {
         const data = await apiClient.get({
           url: `/inventory?roomId=${params.roomId}&inventoryCode=${params.inventoryCode}`,
@@ -166,26 +166,3 @@ export const inventoryAtom = atom(
     fetchData()
   },
 )
-
-// Fetch with jotai and react-query. Requires a suspense solution.
-
-// export const roomAtom = atomWithQuery((get) => ({
-//   queryKey: ['rental', get(rentalId)],
-//   queryFn: async ({ queryKey: [, id] }): Promise<RoomData> => {
-//     const res = await apiClient.get({
-//       url: `rooms/?rentalId=${id}`,
-//     })
-//     return res
-//   },
-// }))
-
-// export const inventoryAtom = atomWithQuery((get) => ({
-//   queryKey: ['room', get(roomId)],
-//   initialData: () => [],
-//   queryFn: async ({ queryKey: [, id] }): Promise<InventoryType[]> => {
-//     const res = await apiClient.get({
-//       url: `inventory/?roomId=${id}`,
-//     })
-//     return res
-//   },
-// }))
