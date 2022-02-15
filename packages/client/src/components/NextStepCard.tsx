@@ -63,7 +63,8 @@ const NextStepCard: React.FC<INextStepCard> = ({
   const handleOnClickRoom = () => {
     switch (pathname) {
       case '/plats':
-        fetchRoom(userData.rentalId)
+        if (type === 'shared') fetchRoom({ rentalId: userData.rentalId, type })
+        else fetchRoom({ rentalId: userData.rentalId })
         if (type === 'common')
           return setReportValue({ ...value, place: subtitle, object: title })
         return setReportValue({ ...value, place: title })

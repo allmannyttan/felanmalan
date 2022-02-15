@@ -73,17 +73,24 @@ export const userAtom = atom<UserData>({ rentalId: '', roomId: '', inventoryCode
 const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
 export const roomAtom = atom(
   (get) => get(fetchRoomAtom),
-  (_get, set, rentalId) => {
+  (_get, set, params: { rentalId: string; type?: string }) => {
     const fetchData = async () => {
       set(fetchRoomAtom, (prev) => ({ ...prev, loading: true }))
+      const url = params.type
+        ? `/shared/rooms?rentalId=${params.rentalId}`
+        : `/rooms?rentalId=${params.rentalId}`
       try {
         const data = await apiClient.get({
-          url: `/rooms?rentalId=${rentalId}`,
+          url,
         })
         set(fetchRoomAtom, { loading: false, error: null, data })
       } catch (error: any) {
         console.log('error', error)
-        set(fetchRoomAtom, { loading: false, error, data: null })
+        set(fetchRoomAtom, {
+          loading: false,
+          error: error.response.status,
+          data: null,
+        })
       }
     }
     fetchData()
