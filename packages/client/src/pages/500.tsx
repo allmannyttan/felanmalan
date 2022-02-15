@@ -11,8 +11,11 @@ const ServerError = () => {
   return (
     <BaseLayout>
       <Image src={serverError} alt="Not Found" />
-      <H1>500</H1>
-      <Paragraph center={true}>Sidan du försökte nå hittades inte.</Paragraph>
+      <H1>Oops något har gått fel!</H1>
+      <Paragraph center={true}>
+        Försök att ladda om sidan eller går tillbaka till hemskärmen, ifall problemet
+        kvarstå får du gärna kontakta oss.
+      </Paragraph>
     </BaseLayout>
   )
 }
