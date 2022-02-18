@@ -17,6 +17,7 @@ import lamp from './lamp.svg'
 import sharedSpaces from './shared_spaces.svg'
 import livingRoom from './living_room.svg'
 import bathroomCabinet from './bathroom_cabinet.svg'
+import landryRoom from './landry_room.svg'
 
 export {
   other,
@@ -38,4 +39,5 @@ export {
   sharedSpaces,
   livingRoom,
   bathroomCabinet,
+  landryRoom,
 }
