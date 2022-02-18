@@ -14,7 +14,10 @@ export const routes = (app: Application) => {
     '/rooms',
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
-      const rooms = await fetchApiRooms(req.query.rentalId as string)
+      const rooms = await fetchApiRooms(
+        req.query.rentalId as string,
+        req.query.isShared as string
+      )
       res.send(rooms)
     }),
     errorHandler

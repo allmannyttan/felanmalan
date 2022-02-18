@@ -6,9 +6,17 @@ import fs from 'fs'
 import { Fields, Files } from 'formidable'
 import { v4 as uuidv4 } from 'uuid'
 
-export const fetchApiRooms = async (rentalId: string): Promise<Array<Room>> => {
+export const fetchApiRooms = async (
+  rentalId: string,
+  isShared: string
+): Promise<Array<Room>> => {
+  const params = []
+  if (rentalId) params.push(`rentalId=${rentalId}`)
+  if (isShared) params.push(`isShared=${isShared}`)
+
+  const paramString = params.length === 0 ? '' : `?${params.join('&')}`
   const rooms: Array<Room> = await client.get({
-    url: `rooms/?rentalId=${rentalId}`,
+    url: `rooms/${paramString}`,
   })
   return rooms
 }

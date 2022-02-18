@@ -8,7 +8,7 @@ const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  const status = error.status || 500
+  const status = error.status || error.response.status || 500
   const message = error.message || 'Something went wrong'
 
   logger.error(message, status, req.url.toString())

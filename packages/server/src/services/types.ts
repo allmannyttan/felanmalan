@@ -2,7 +2,7 @@ export interface Room {
   id: string
   name: string
   description: string
-  shared: boolean
+  shared: string
 }
 
 export type ApiExceptionType = {
