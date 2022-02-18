@@ -13,7 +13,13 @@ const Place = () => {
   const [commonErrorReport] = useAtom(commonErrorReportAtom)
 
   React.useEffect(() => {
-    setUserdata({ ...userData, rentalId: 'OBJ-0110203' })
+    // OBJ-07020304
+    // OBJ-0110203
+    // OBJ-07010204
+    // OBJ-07030101
+    //OBJ-06020204
+    //OBJ-06020102
+    setUserdata({ ...userData, rentalId: 'OBJ-07010204' })
   }, [])
   return (
     <>
@@ -28,13 +34,14 @@ const Place = () => {
               title="Lägenhet"
               subtitle="Kök, badrum, sovrum"
               sendTo="rum"
+              isShared="false"
             />
             <NextStepCard
               bg="inherit"
               title="Gemensamma utrymmen"
               subtitle="Gård, tvättstuga, trapphus"
               sendTo="rum"
-              type="shared"
+              isShared="true"
             />
           </li>
         </Elements.Layout.Ul>

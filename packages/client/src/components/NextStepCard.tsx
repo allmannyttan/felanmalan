@@ -43,6 +43,7 @@ interface INextStepCard {
   id?: string
   bg?: string
   type?: string
+  isShared?: string
 }
 
 const NextStepCard: React.FC<INextStepCard> = ({
@@ -52,6 +53,7 @@ const NextStepCard: React.FC<INextStepCard> = ({
   id,
   bg,
   type,
+  isShared,
 }) => {
   const [value, setReportValue] = useAtom(reportAtom)
   const [, fetchInventory] = useAtom(inventoryAtom)
@@ -63,10 +65,10 @@ const NextStepCard: React.FC<INextStepCard> = ({
   const handleOnClickRoom = () => {
     switch (pathname) {
       case '/plats':
-        if (type === 'shared') fetchRoom({ rentalId: userData.rentalId, type })
-        else fetchRoom({ rentalId: userData.rentalId })
         if (type === 'common')
           return setReportValue({ ...value, place: subtitle, object: title })
+        fetchRoom({ rentalId: userData.rentalId, isShared })
+
         return setReportValue({ ...value, place: title })
       case '/rum':
         fetchAreas(id)
