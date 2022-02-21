@@ -44,7 +44,7 @@ const Summary = () => {
     formdata.append('place', completeErrorReport.place)
     formdata.append('room', completeErrorReport.room)
     formdata.append('area', completeErrorReport.area)
-    formdata.append('rentalId', '12456')
+    formdata.append('rentalId', '12345')
 
     if (completeErrorReport.complete.text) {
       formdata.append('text', completeErrorReport.complete.text)
