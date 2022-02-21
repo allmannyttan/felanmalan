@@ -36,7 +36,6 @@ const Header = () => {
     '/objekt',
     '/komplettera',
     '/sammanfattning',
-    '/404',
   ]
 
   const setTitleInHeader = (pathname: string) => {
@@ -63,8 +62,6 @@ const Header = () => {
         return setTitle('Slutför felanmälan')
       case '/bekraftelse':
         return setTitle('Felanmälan inskickad')
-      case '/404':
-        return setTitle('404')
       case '/':
         return setTitle('Felanmälan')
       default:
