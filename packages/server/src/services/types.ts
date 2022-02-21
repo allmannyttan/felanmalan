@@ -21,6 +21,7 @@ export interface ErrorReportType {
   area: string
   object: string
   complete: IFormData
+  rentalId: string
 }
 
 export const InventoryClassification: { [index: string]: string } = {

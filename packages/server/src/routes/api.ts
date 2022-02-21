@@ -102,6 +102,7 @@ export const routes = (app: Application) => {
         room: req.fields?.room as string,
         area: req.fields?.area as string,
         object: req.fields?.object as string,
+        rentalId: req.fields?.rentalId as string,
         complete: {
           text: req.fields?.text as string,
           image: req.files?.image,
