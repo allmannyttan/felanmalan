@@ -4,9 +4,8 @@ import { H1, Paragraph } from '../components/Typography'
 import styled from 'styled-components'
 import active from '../images/svg/active.svg'
 import { devices } from '../utils/devices'
-import { useNavigate } from 'react-router-dom'
 import { useAtom } from 'jotai'
-import { roomAtom, userAtom } from '../utils/atoms'
+import { userAtom } from '../utils/atoms'
 import NextPageLink from '../components/NextPageLink'
 
 const Container = styled.div`
@@ -45,8 +44,8 @@ const Start = () => {
     // OBJ-0110203
     // OBJ-07010204
     // OBJ-07030101
-    //OBJ-06020204
-    //OBJ-06020102 // 1 gemensamma
+    // OBJ-06020204
+    // OBJ-06020102
     setUserdata({ ...userData, rentalId: 'OBJ-0110203' })
   }, [])
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ExpandRight } from '../assets/Icons'
-import { areaAtom, inventoryAtom, reportAtom, roomAtom, userAtom } from '../utils/atoms'
+import { reportAtom, roomAtom, userAtom } from '../utils/atoms'
 import { H4, ParagraphSmall } from './Typography'
 import { useLocation } from 'react-router'
 import Icon from './Icon'
@@ -43,7 +43,6 @@ interface INextStepCard {
   id?: string
   bg?: string
   type?: string
-  isShared?: string
 }
 
 const NextStepCard: React.FC<INextStepCard> = ({
@@ -53,12 +52,9 @@ const NextStepCard: React.FC<INextStepCard> = ({
   id,
   bg,
   type,
-  isShared,
 }) => {
   const [value, setReportValue] = useAtom(reportAtom)
-  const [, fetchInventory] = useAtom(inventoryAtom)
-  const [, fetchAreas] = useAtom(areaAtom)
-  const [room, fetchRoom] = useAtom(roomAtom)
+  const [room] = useAtom(roomAtom)
   const [userData, setUserData] = useAtom(userAtom)
   const { pathname } = useLocation()
 
@@ -67,11 +63,8 @@ const NextStepCard: React.FC<INextStepCard> = ({
       case '/plats':
         if (type === 'common')
           return setReportValue({ ...value, place: subtitle, object: title })
-        fetchRoom({ rentalId: userData.rentalId, isShared })
-
         return setReportValue({ ...value, place: title })
       case '/rum':
-        fetchAreas(id)
         if (room.data) {
           setUserData({ ...userData, roomId: id as string })
         }
@@ -79,7 +72,6 @@ const NextStepCard: React.FC<INextStepCard> = ({
         return setReportValue({ ...value, room: title })
       case '/omrade':
         setUserData({ ...userData, inventoryCode: id as string })
-        fetchInventory({ roomId: userData.roomId, inventoryCode: userData.inventoryCode })
         return setReportValue({ ...value, area: title })
       case '/objekt':
         return setReportValue({ ...value, object: title })
