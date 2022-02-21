@@ -112,8 +112,8 @@ export const routes = (app: Application) => {
 
       const errorReport = await postCase(data)
       if ('message' in errorReport) {
-        //This does not work
         res.status(400).send(errorReport)
+        return
       }
       res.send(errorReport)
     }),

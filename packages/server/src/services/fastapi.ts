@@ -82,7 +82,6 @@ export const postCase = async (
     }
     return <ErrorReportType>createdErrorReport
   } catch (e: any) {
-    console.log('error', e.response)
-    return <ApiExceptionType>{ message: e.response }
+    return <ApiExceptionType>{ message: e.response.data }
   }
 }
