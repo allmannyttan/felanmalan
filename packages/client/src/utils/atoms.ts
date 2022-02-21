@@ -73,18 +73,49 @@ export const userAtom = atom<UserData>({ rentalId: '', roomId: '', inventoryCode
 const fetchRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
 export const roomAtom = atom(
   (get) => get(fetchRoomAtom),
-  (_get, set, params: { rentalId: string; isShared?: string }) => {
+  (_get, set, rentalId: string) => {
     const fetchData = async () => {
       set(fetchRoomAtom, (prev) => ({ ...prev, error: null, loading: true }))
-      const url = `/rooms?rentalId=${params.rentalId}&isShared=${params.isShared}`
+      const url = `/rooms?rentalId=${rentalId}&isShared=false`
       try {
         const data = await apiClient.get({
           url,
         })
-        set(fetchRoomAtom, { loading: false, error: null, data })
+        if (data.length !== 0) {
+          return set(fetchRoomAtom, { loading: false, error: null, data })
+        }
+        return set(fetchRoomAtom, { loading: false, error: null, data: null })
       } catch (error: any) {
         console.log('error', error)
-        set(fetchRoomAtom, {
+        return set(fetchRoomAtom, {
+          loading: false,
+          error: error.response.status,
+          data: null,
+        })
+      }
+    }
+    fetchData()
+  },
+)
+
+const fetchSharedRoomAtom = atom<RoomData>({ loading: true, error: null, data: null })
+export const sharedRoomAtom = atom(
+  (get) => get(fetchSharedRoomAtom),
+  (_get, set, rentalId: string) => {
+    const fetchData = async () => {
+      set(fetchSharedRoomAtom, (prev) => ({ ...prev, error: null, loading: true }))
+      const url = `/rooms?rentalId=${rentalId}&isShared=true`
+      try {
+        const data = await apiClient.get({
+          url,
+        })
+        if (data.length !== 0) {
+          return set(fetchRoomAtom, { loading: false, error: null, data })
+        }
+        return set(fetchRoomAtom, { loading: false, error: null, data: null })
+      } catch (error: any) {
+        console.log('error', error)
+        return set(fetchSharedRoomAtom, {
           loading: false,
           error: error.response.status,
           data: null,
