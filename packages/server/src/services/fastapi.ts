@@ -1,5 +1,5 @@
 import { client } from '@app/adapters/api'
-import { Room, Inventory, ErrorReportType, ApiExceptionType } from './types'
+import { Room, Inventory, ErrorReportType, ApiExceptionType, IFormData } from './types'
 import { setAttachmentInDb } from '../adapters/api/databaseHelper'
 import { Attachment } from '@app/adapters/api/types'
 import fs from 'fs'
@@ -32,7 +32,8 @@ export const fetchApiInventory = async (
 }
 
 export const postCase = async (
-  data: ErrorReportType
+  data: ErrorReportType,
+  complete: IFormData
 ): Promise<ErrorReportType | ApiExceptionType> => {
   const description = getErrorReportString(data)
   try {
@@ -41,7 +42,7 @@ export const postCase = async (
       data: description,
     })
 
-    if (createdErrorReport.id && (data.complete.image || data.complete.video)) {
+    if (createdErrorReport.id && (complete.image || complete.video)) {
       // console.log('img', data.complete.image)
     }
 
@@ -58,18 +59,18 @@ export const postCase = async (
     }
 
     let imagePath, videoPath
-    if (data.complete.image) {
-      const ext = getExt(data.complete.image.type) // check MIME TYPE
+    if (complete.image) {
+      const ext = getExt(complete.image.type) // check MIME TYPE
       imagePath = `attachments/${uuidv4()}.${ext}`
-      fs.renameSync(data.complete.image.path, imagePath)
+      fs.renameSync(complete.image.path, imagePath)
     } else {
       imagePath = ''
     }
 
-    if (data.complete.video) {
-      const ext = getExt(data.complete.video.type) // check MIME TYPE
+    if (complete.video) {
+      const ext = getExt(complete.video.type) // check MIME TYPE
       videoPath = `attachments/${uuidv4()}.${ext}`
-      fs.renameSync(data.complete.video.path, videoPath)
+      fs.renameSync(complete.video.path, videoPath)
     } else {
       videoPath = ''
     }

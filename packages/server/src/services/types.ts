@@ -10,7 +10,6 @@ export type ApiExceptionType = {
 }
 
 export interface IFormData {
-  text?: string
   image?: any
   video?: any
 }
@@ -20,8 +19,8 @@ export interface ErrorReportType {
   room: string
   area: string
   object: string
-  complete: IFormData
   rentalId: string
+  description: string
 }
 
 export const InventoryClassification: { [index: string]: string } = {
