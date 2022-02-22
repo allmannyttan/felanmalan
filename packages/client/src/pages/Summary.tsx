@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useAtom } from 'jotai'
 import Section from '../components/Section'
 import { H1, BoldParagraph, Paragraph } from '../components/Typography'
-import { reportAtom } from '../utils/atoms'
+import { reportAtom, userAtom } from '../utils/atoms'
 import { client as apiClient } from '../utils/apiclient'
 import { FlexToStart } from '../shared-elements/layout'
 import { useNavigate } from 'react-router-dom'
@@ -37,6 +37,7 @@ const Summary = () => {
   const navigate = useNavigate()
   const [completeErrorReport] = useAtom(reportAtom)
   const [loading, setLoading] = React.useState(false)
+  const [userData] = useAtom(userAtom)
 
   const submit = async () => {
     const formdata = new FormData()
@@ -44,7 +45,7 @@ const Summary = () => {
     formdata.append('place', completeErrorReport.place)
     formdata.append('room', completeErrorReport.room)
     formdata.append('area', completeErrorReport.area)
-    formdata.append('rentalId', '12345')
+    formdata.append('rentalId', userData.rentalId)
 
     if (completeErrorReport.complete.text) {
       formdata.append('text', completeErrorReport.complete.text)
