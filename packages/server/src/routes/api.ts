@@ -102,6 +102,7 @@ export const routes = (app: Application) => {
         room: req.fields?.room as string,
         area: req.fields?.area as string,
         object: req.fields?.object as string,
+        rentalId: req.fields?.rentalId as string,
         complete: {
           text: req.fields?.text as string,
           image: req.files?.image,
@@ -111,7 +112,8 @@ export const routes = (app: Application) => {
 
       const errorReport = await postCase(data)
       if ('message' in errorReport) {
-        res.status(400)
+        res.status(400).send(errorReport)
+        return
       }
       res.send(errorReport)
     }),

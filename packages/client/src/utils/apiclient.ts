@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ApiExceptionType, APIRequest, ErrorReportType } from './types'
+import { APIRequest } from './types'
 
 const innerGet = async (request: APIRequest) => {
   const headers = {
@@ -27,13 +27,12 @@ const innerPost = async (request: FormData) => {
     responseType: 'text',
   })
 
-  const data: ErrorReportType | ApiExceptionType = await apiClient.post('/case', request)
+  const rawResponse = await apiClient.post('/case', request)
+  if (rawResponse.status >= 200 && rawResponse.status <= 299) {
+    return rawResponse.data
+  }
 
-  // if ('message' in data) {
-  //   return data
-  // }
-
-  return data
+  throw rawResponse
 }
 
 export const client = {
