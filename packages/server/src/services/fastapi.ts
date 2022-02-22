@@ -5,6 +5,7 @@ import { Attachment } from '@app/adapters/api/types'
 import fs from 'fs'
 import { Fields, Files } from 'formidable'
 import { v4 as uuidv4 } from 'uuid'
+import { getErrorReportString } from '@app/helpers/utils'
 
 export const fetchApiRooms = async (
   rentalId: string,
@@ -33,10 +34,11 @@ export const fetchApiInventory = async (
 export const postCase = async (
   data: ErrorReportType
 ): Promise<ErrorReportType | ApiExceptionType> => {
+  const description = getErrorReportString(data)
   try {
     const createdErrorReport = await client.post({
       url: 'cases',
-      data,
+      data: description,
     })
 
     if (createdErrorReport.id && (data.complete.image || data.complete.video)) {
