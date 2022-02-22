@@ -27,9 +27,12 @@ const innerPost = async (request: FormData) => {
     responseType: 'text',
   })
 
-  const data: { status: string } = await apiClient.post('/case', request)
+  const rawResponse = await apiClient.post('/case', request)
+  if (rawResponse.status >= 200 && rawResponse.status <= 299) {
+    return rawResponse.data
+  }
 
-  return data.status
+  throw rawResponse
 }
 
 export const client = {

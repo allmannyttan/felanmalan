@@ -57,12 +57,9 @@ const Summary = () => {
     }
 
     try {
-      const id = await apiClient.post(formdata)
-
-      if (id) {
-        console.log(id)
-        navigate('/bekraftelse')
-      }
+      const { id } = await apiClient.post(formdata)
+      console.log(id)
+      navigate('/bekraftelse')
     } catch (error: any) {
       navigate(window.location.pathname, {
         state: { errorStatusCode: error.response.data.status },
