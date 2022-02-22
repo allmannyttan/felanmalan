@@ -20,7 +20,12 @@ export enum IconName {
   'Avlopp',
   'Belysning',
   'Element',
+  'Radiator',
   'Värme',
+  'Gemensamma utrymmen',
+  'Vardagsrum',
+  'Badrumsskåp',
+  'Tvättutrymme',
 }
 
 const Icons = {
@@ -41,7 +46,12 @@ const Icons = {
   [IconName['Avlopp']]: Svg.drain,
   [IconName['Belysning']]: Svg.lamp,
   [IconName['Element']]: Svg.radiator,
+  [IconName['Radiator']]: Svg.radiator,
   [IconName['Värme']]: Svg.radiator,
+  [IconName['Gemensamma utrymmen']]: Svg.sharedSpaces,
+  [IconName['Vardagsrum']]: Svg.livingRoom,
+  [IconName['Badrumsskåp']]: Svg.bathroomCabinet,
+  [IconName['Tvättutrymme']]: Svg.landryRoom,
 }
 
 type Props = {

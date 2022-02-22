@@ -14,6 +14,10 @@ import radiator from './radiator.svg'
 import kitchenFan from './kitchen_fan.svg'
 import drain from './drain.svg'
 import lamp from './lamp.svg'
+import sharedSpaces from './shared_spaces.svg'
+import livingRoom from './living_room.svg'
+import bathroomCabinet from './bathroom_cabinet.svg'
+import landryRoom from './landry_room.svg'
 
 export {
   other,
@@ -32,4 +36,8 @@ export {
   kitchenFan,
   drain,
   lamp,
+  sharedSpaces,
+  livingRoom,
+  bathroomCabinet,
+  landryRoom,
 }

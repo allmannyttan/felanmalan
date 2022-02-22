@@ -1,8 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { get } from 'lodash'
-import Page404 from '../pages/404'
 import Page500 from '../pages/500'
+import Page404 from '../pages/404'
 
 const ErrorHandler: React.FC = ({ children }) => {
   const location = useLocation()

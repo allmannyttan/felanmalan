@@ -1,9 +1,12 @@
+import * as React from 'react'
 import Section from '../components/Section'
 import { H1, Paragraph } from '../components/Typography'
 import styled from 'styled-components'
-import NextPageLink from '../components/NextPageLink'
 import active from '../images/svg/active.svg'
 import { devices } from '../utils/devices'
+import { useAtom } from 'jotai'
+import { userAtom } from '../utils/atoms'
+import NextPageLink from '../components/NextPageLink'
 
 const Container = styled.div`
   display: flex;
@@ -34,6 +37,18 @@ const ButtonWrapper = styled.div`
 `
 
 const Start = () => {
+  const [userData, setUserdata] = useAtom(userAtom)
+
+  React.useEffect(() => {
+    // OBJ-07020304
+    // OBJ-0110203
+    // OBJ-07010204
+    // OBJ-07030101
+    // OBJ-06020204
+    // OBJ-06020102
+    setUserdata({ ...userData, rentalId: 'OBJ-0110203' })
+  }, [])
+
   return (
     <Section>
       <Container>
