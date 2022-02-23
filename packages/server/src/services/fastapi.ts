@@ -1,5 +1,5 @@
 import { client } from '@app/adapters/api'
-import { Room, Inventory, ErrorReportType, ApiExceptionType, IFormData } from './types'
+import { Room, Inventory, ErrorReportType, ApiExceptionType } from './types'
 import { setAttachmentInDb } from '../adapters/api/databaseHelper'
 import { Attachment } from '@app/adapters/api/types'
 import fs from 'fs'
@@ -33,13 +33,14 @@ export const fetchApiInventory = async (
 
 export const postCase = async (
   data: ErrorReportType,
-  complete: IFormData
 ): Promise<ErrorReportType | ApiExceptionType> => {
-  const description = getErrorReportString(data)
+  const {rentalId, input, complete} = data
+  const description = getErrorReportString(input)
+
   try {
     const createdErrorReport = await client.post({
       url: 'cases',
-      data: description,
+      data: {description, rentalId},
     })
 
     if (createdErrorReport.id && (complete.image || complete.video)) {

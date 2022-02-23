@@ -7,7 +7,7 @@ import {
   fetchApiRooms,
   postCase,
 } from '@app/services/fastapi'
-import { Area, ErrorReportType, IFormData } from '@app/services/types'
+import { Area, ErrorReportType } from '@app/services/types'
 
 export const routes = (app: Application) => {
   app.get(
@@ -98,19 +98,21 @@ export const routes = (app: Application) => {
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
       const data: ErrorReportType = {
-        place: req.fields?.place as string,
-        room: req.fields?.room as string,
-        area: req.fields?.area as string,
-        object: req.fields?.object as string,
         rentalId: req.fields?.rentalId as string,
-        description: req.fields?.text as string,
-      }
-      const complete: IFormData = {
-        image: req.files?.image,
-        video: req.files?.video,
+        input: {
+          place: req.fields?.place as string,
+          room: req.fields?.room as string,
+          area: req.fields?.area as string,
+          object: req.fields?.object as string,
+          description: req.fields?.text as string,
+        },
+        complete: {
+          image: req.files?.image,
+          video: req.files?.video,
+        },
       }
 
-      const errorReport = await postCase(data, complete)
+      const errorReport = await postCase(data)
       if ('message' in errorReport) {
         res.status(400).send(errorReport)
         return
