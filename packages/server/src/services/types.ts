@@ -9,19 +9,23 @@ export type ApiExceptionType = {
   message: string
 }
 
-export interface IFormData {
-  text?: string
+export interface ErrorReportMedia {
   image?: any
   video?: any
 }
-export interface ErrorReportType {
+
+export interface ErrorReportInput {
   id?: string
   place: string
   room: string
   area: string
   object: string
-  complete: IFormData
+  description?: string
+}
+export interface ErrorReportType {
   rentalId: string
+  input: ErrorReportInput
+  complete: ErrorReportMedia
 }
 
 export const InventoryClassification: { [index: string]: string } = {

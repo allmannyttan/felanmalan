@@ -5,6 +5,7 @@ import { Attachment } from '@app/adapters/api/types'
 import fs from 'fs'
 import { Fields, Files } from 'formidable'
 import { v4 as uuidv4 } from 'uuid'
+import { getErrorReportString } from '@app/helpers/utils'
 
 export const fetchApiRooms = async (
   rentalId: string,
@@ -31,15 +32,18 @@ export const fetchApiInventory = async (
 }
 
 export const postCase = async (
-  data: ErrorReportType
+  data: ErrorReportType,
 ): Promise<ErrorReportType | ApiExceptionType> => {
+  const {rentalId, input, complete} = data
+  const description = getErrorReportString(input)
+
   try {
     const createdErrorReport = await client.post({
       url: 'cases',
-      data,
+      data: {description, rentalId},
     })
 
-    if (createdErrorReport.id && (data.complete.image || data.complete.video)) {
+    if (createdErrorReport.id && (complete.image || complete.video)) {
       // console.log('img', data.complete.image)
     }
 
@@ -56,18 +60,18 @@ export const postCase = async (
     }
 
     let imagePath, videoPath
-    if (data.complete.image) {
-      const ext = getExt(data.complete.image.type) // check MIME TYPE
+    if (complete.image) {
+      const ext = getExt(complete.image.type) // check MIME TYPE
       imagePath = `attachments/${uuidv4()}.${ext}`
-      fs.renameSync(data.complete.image.path, imagePath)
+      fs.renameSync(complete.image.path, imagePath)
     } else {
       imagePath = ''
     }
 
-    if (data.complete.video) {
-      const ext = getExt(data.complete.video.type) // check MIME TYPE
+    if (complete.video) {
+      const ext = getExt(complete.video.type) // check MIME TYPE
       videoPath = `attachments/${uuidv4()}.${ext}`
-      fs.renameSync(data.complete.video.path, videoPath)
+      fs.renameSync(complete.video.path, videoPath)
     } else {
       videoPath = ''
     }

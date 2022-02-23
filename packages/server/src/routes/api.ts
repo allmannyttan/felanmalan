@@ -98,13 +98,15 @@ export const routes = (app: Application) => {
     authMiddleware,
     asyncHandler(async (req: Request, res: Response) => {
       const data: ErrorReportType = {
-        place: req.fields?.place as string,
-        room: req.fields?.room as string,
-        area: req.fields?.area as string,
-        object: req.fields?.object as string,
         rentalId: req.fields?.rentalId as string,
+        input: {
+          place: req.fields?.place as string,
+          room: req.fields?.room as string,
+          area: req.fields?.area as string,
+          object: req.fields?.object as string,
+          description: req.fields?.text as string,
+        },
         complete: {
-          text: req.fields?.text as string,
           image: req.files?.image,
           video: req.files?.video,
         },
