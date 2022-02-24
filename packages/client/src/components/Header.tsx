@@ -77,7 +77,7 @@ const Header = () => {
   }, [pathname])
 
   React.useEffect(() => {
-    if (state) setErrorCodeInHeader(state?.errorStatusCode)
+    if (state && state.errorStatusCode) setErrorCodeInHeader(state.errorStatusCode)
   }, [state])
 
   const handleOnClick = () => {
