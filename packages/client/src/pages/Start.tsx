@@ -40,7 +40,7 @@ const Start = () => {
   const [userData, setUserdata] = useAtom(userAtom)
 
   React.useEffect(() => {
-    setUserdata({ ...userData, rentalId: 'PROP-1' })
+    setUserdata({ ...userData, rentalId: 'OBJ-07010204' })
   }, [])
 
   return (
