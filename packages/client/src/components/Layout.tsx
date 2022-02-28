@@ -1,5 +1,8 @@
+import { useAtom } from 'jotai'
 import React, { ReactChild } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { userAtom } from '../utils/atoms'
 import Header from './Header'
 const Wrapper = styled.div`
   padding: 0;
@@ -25,6 +28,12 @@ const FlexCol = styled.div`
 `
 
 const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
+  const [userData] = useAtom(userAtom)
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+    if (!userData.rentalId) navigate('/')
+  }, [])
   return (
     <Wrapper>
       <Header />
