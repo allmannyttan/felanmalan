@@ -58,8 +58,10 @@ export const routes = (app: Application) => {
       const inventory = await fetchApiInventory(req.query.roomId as string)
       const classCode = req.query.inventoryCode
 
-      const filteredData = inventory.filter((a) => a.class.code === classCode)
-
+      const filteredData = inventory.filter((a) => {
+        if (typeof a.description === 'object') a.description = a.id
+        return a.class.code === classCode
+      })
       res.send(filteredData)
     }),
     errorHandler
