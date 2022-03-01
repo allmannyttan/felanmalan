@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import Room from './pages/Room'
 import Place from './pages/Place'
 import Area from './pages/Area'
@@ -7,43 +7,54 @@ import Complete from './pages/Complete'
 import Summary from './pages/Summary'
 import Theme from './Theme'
 import ProgressBar from './components/ProgressBar'
-import { Provider as JotaiProvider } from 'jotai'
+import { Provider as JotaiProvider, useAtom } from 'jotai'
 import Layout from './components/Layout'
 import Confirmation from './pages/Confirmation'
 import Start from './pages/Start'
-import NotFound from './pages/404'
-import ErrorHandler from './components/ErrorHandler'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorFallback from './pages/ErrorFallback'
+import { initialErrorReportValues, reportAtom } from './utils/atoms'
+import NotFoundPage from './pages/404'
 
+export const validRoutes = [
+  '/plats',
+  '/rum',
+  '/omrade',
+  '/objekt',
+  '/komplettera',
+  '/sammanfattning',
+]
 const App = () => {
   const { pathname } = useLocation()
+  const [, setErrorReport] = useAtom(reportAtom)
+  const navigate = useNavigate()
 
-  const showProgressBar = [
-    '/plats',
-    '/rum',
-    '/omrade',
-    '/objekt',
-    '/komplettera',
-    '/sammanfattning',
-  ]
   return (
     <Theme>
       <JotaiProvider>
-        <Layout>
-          <ErrorHandler>
-            {showProgressBar.includes(pathname) && <ProgressBar />}
-            <Routes>
-              <Route path="/" element={<Start />} />
-              <Route path="/plats" element={<Place />} />
-              <Route path="/rum" element={<Room />} />
-              <Route path="/omrade" element={<Area />} />
-              <Route path="/objekt" element={<Item />} />
-              <Route path="/komplettera" element={<Complete />} />
-              <Route path="/sammanfattning" element={<Summary />} />
-              <Route path="/bekraftelse" element={<Confirmation />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </ErrorHandler>
-        </Layout>
+        <ErrorBoundary
+          FallbackComponent={ErrorFallback}
+          onReset={() => {
+            setErrorReport(initialErrorReportValues)
+            navigate('/', { replace: true })
+          }}>
+          <Layout>
+            <>
+              {validRoutes.includes(pathname) && <ProgressBar />}
+              <Routes>
+                <Route path="/" element={<Start />} />
+                <Route path="/plats" element={<Place />} />
+                <Route path="/rum" element={<Room />} />
+                <Route path="/omrade" element={<Area />} />
+                <Route path="/objekt" element={<Item />} />
+                <Route path="/komplettera" element={<Complete />} />
+                <Route path="/sammanfattning" element={<Summary />} />
+                <Route path="/bekraftelse" element={<Confirmation />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </>
+          </Layout>
+        </ErrorBoundary>
       </JotaiProvider>
     </Theme>
   )

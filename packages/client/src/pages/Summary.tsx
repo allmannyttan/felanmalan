@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import LoadingConfirmation from '../components/LoadingConfirmation'
 import Button from '../components/Button'
 import { devices } from '../utils/devices'
+import { useErrorHandler } from 'react-error-boundary'
 
 const TextSection = styled.div`
   margin-bottom: 20px;
@@ -38,6 +39,7 @@ const Summary = () => {
   const [completeErrorReport] = useAtom(reportAtom)
   const [loading, setLoading] = React.useState(false)
   const [userData] = useAtom(userAtom)
+  const handleError = useErrorHandler()
 
   const submit = async () => {
     const formdata = new FormData()
@@ -62,10 +64,7 @@ const Summary = () => {
       console.log(id)
       navigate('/bekraftelse')
     } catch (error: any) {
-      navigate(window.location.pathname, {
-        state: { errorStatusCode: error.response.data.status },
-        replace: true,
-      })
+      handleError(error)
     }
   }
 

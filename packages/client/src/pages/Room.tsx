@@ -7,14 +7,13 @@ import Elements from '../shared-elements'
 import { reportAtom, roomAtom, userAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
 import { FlexToStart } from '../shared-elements/layout'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useErrorHandler } from 'react-error-boundary'
 
 const Room = () => {
   const [room, fetchRoom] = useAtom(roomAtom)
   const [userData] = useAtom(userAtom)
   const [report] = useAtom(reportAtom)
-  const navigate = useNavigate()
-  const location = useLocation()
+  const handleError = useErrorHandler()
 
   React.useEffect(() => {
     if (report.place === 'Lägenhet')
@@ -25,10 +24,7 @@ const Room = () => {
 
   React.useEffect(() => {
     if (room.error) {
-      navigate(location.pathname, {
-        replace: true,
-        state: { errorStatusCode: room.error },
-      })
+      handleError(room.error)
     }
   }, [room])
 

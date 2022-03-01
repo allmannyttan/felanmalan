@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseLayout from '../components/BaseLayout'
+import BaseWrapper from '../components/BaseWrapper'
 import { H1, Paragraph } from '../components/Typography'
 import postbox from '../images/svg/postbox.svg'
 import success from '../images/svg/success.svg'
@@ -22,7 +22,7 @@ const Image = styled.img`
 
 const Confirmation = () => {
   return (
-    <BaseLayout>
+    <BaseWrapper>
       <Image src={postbox} alt="Postbox" />
       <FlexH1>
         Felanmälan inskickad
@@ -33,7 +33,7 @@ const Confirmation = () => {
       <Paragraph center={true}>
         Du kommmer att få en notis och påminnelse när du kan göra en tidsbokning
       </Paragraph>
-    </BaseLayout>
+    </BaseWrapper>
   )
 }
 export default Confirmation

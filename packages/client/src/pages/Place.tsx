@@ -7,14 +7,22 @@ import { H1 } from '../components/Typography'
 import Elements from '../shared-elements'
 import { FlexToStart } from '../shared-elements/layout'
 import { commonErrorReportAtom, roomAtom, userAtom } from '../utils/atoms'
+import { useErrorHandler } from 'react-error-boundary'
 
 const Place = () => {
   const [commonErrorReport] = useAtom(commonErrorReportAtom)
   const [room, fetchRoom] = useAtom(roomAtom)
   const [userData] = useAtom(userAtom)
+  const handleError = useErrorHandler()
   React.useEffect(() => {
     fetchRoom({ rentalId: userData.rentalId, isShared: 'true' })
   }, [])
+
+  React.useEffect(() => {
+    if (room.error) {
+      handleError(room.error)
+    }
+  }, [room])
 
   return (
     <>

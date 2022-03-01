@@ -1,7 +1,8 @@
 import { useAtom } from 'jotai'
 import React, { ReactChild } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { validRoutes } from '../App'
 import { userAtom } from '../utils/atoms'
 import Header from './Header'
 const Wrapper = styled.div`
@@ -27,16 +28,17 @@ const FlexCol = styled.div`
   max-width: 840px;
 `
 
-const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
+const Layout: React.FC<{ error?: any; children: ReactChild }> = ({ error, children }) => {
   const [userData] = useAtom(userAtom)
+  const { pathname } = useLocation()
   const navigate = useNavigate()
 
   React.useEffect(() => {
-    if (!userData.rentalId) navigate('/')
+    if (!userData.rentalId && validRoutes.includes(pathname)) navigate('/')
   }, [])
   return (
     <Wrapper>
-      <Header />
+      <Header error={error?.response?.status ?? error?.message} />
       <FlexCol>{children}</FlexCol>
     </Wrapper>
   )

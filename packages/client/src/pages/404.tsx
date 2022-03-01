@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import BaseLayout from '../components/BaseLayout'
+import BaseWrapper from '../components/BaseWrapper'
 import { H1, Paragraph } from '../components/Typography'
 import notFound from '../images/svg/notFound.svg'
 
@@ -9,11 +9,11 @@ const Image = styled.img`
 
 const NotFoundPage = () => {
   return (
-    <BaseLayout>
+    <BaseWrapper>
       <Image src={notFound} alt="Not Found" />
       <H1>404</H1>
       <Paragraph center={true}>Sidan du försökte nå hittades inte.</Paragraph>
-    </BaseLayout>
+    </BaseWrapper>
   )
 }
 export default NotFoundPage
