@@ -32,7 +32,7 @@ const Layout: React.FC<{ error?: any; children: ReactChild }> = ({ error, childr
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
-  const validRoues = [
+  const validRoutes = [
     '/plats',
     '/rum',
     '/omrade',
@@ -42,7 +42,7 @@ const Layout: React.FC<{ error?: any; children: ReactChild }> = ({ error, childr
   ]
 
   React.useEffect(() => {
-    if (!userData.rentalId && validRoues.includes(pathname)) navigate('/')
+    if (!userData.rentalId && validRoutes.includes(pathname)) navigate('/')
   }, [])
   return (
     <Wrapper>
