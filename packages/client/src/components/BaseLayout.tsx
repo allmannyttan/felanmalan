@@ -21,7 +21,12 @@ const Container = styled.div`
   align-items: center;
 `
 
-const BaseLayout: React.FC = ({ children }) => {
+interface Props {
+  children: React.ReactNode
+  onReset?: () => void
+}
+
+const BaseLayout: React.FC<Props> = ({ onReset, children }) => {
   const navigate = useNavigate()
   const [, setErrorReport] = useAtom(reportAtom)
 
@@ -32,7 +37,7 @@ const BaseLayout: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <Container>{children}</Container>
-      <Button text="Tillbaka till hemskärm" onClick={handleOnClick} />
+      <Button text="Tillbaka till hemskärm" onClick={onReset ?? handleOnClick} />
     </Wrapper>
   )
 }

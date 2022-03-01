@@ -1,6 +1,5 @@
 import { useAtom } from 'jotai'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading'
 import NextStepCard from '../components/NextStepCard'
 import Section from '../components/Section'
@@ -8,22 +7,20 @@ import { H1 } from '../components/Typography'
 import Elements from '../shared-elements'
 import { FlexToStart } from '../shared-elements/layout'
 import { commonErrorReportAtom, roomAtom, userAtom } from '../utils/atoms'
+import { useErrorHandler } from 'react-error-boundary'
 
 const Place = () => {
   const [commonErrorReport] = useAtom(commonErrorReportAtom)
   const [room, fetchRoom] = useAtom(roomAtom)
   const [userData] = useAtom(userAtom)
-  const navigate = useNavigate()
+  const handleError = useErrorHandler()
   React.useEffect(() => {
     fetchRoom({ rentalId: userData.rentalId, isShared: 'true' })
   }, [])
 
   React.useEffect(() => {
     if (room.error) {
-      navigate(location.pathname, {
-        replace: true,
-        state: { errorStatusCode: room.error },
-      })
+      handleError(room.error)
     }
   }, [room])
 

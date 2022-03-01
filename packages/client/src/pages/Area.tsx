@@ -8,10 +8,12 @@ import { areaAtom, userAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
 import { FlexToStart } from '../shared-elements/layout'
+import { useErrorHandler } from 'react-error-boundary'
 
 const Area = () => {
   const [area, fetchArea] = useAtom(areaAtom)
   const [userData] = useAtom(userAtom)
+  const handleError = useErrorHandler()
   const navigate = useNavigate()
 
   React.useEffect(() => {
@@ -20,10 +22,7 @@ const Area = () => {
 
   React.useEffect(() => {
     if (area.error) {
-      navigate(location.pathname, {
-        replace: true,
-        state: { errorStatusCode: area.error },
-      })
+      handleError(area.error)
     }
     if (area.data && area.data?.length < 1) {
       navigate('/komplettera', { replace: true })

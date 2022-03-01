@@ -87,10 +87,9 @@ export const roomAtom = atom(
         }
         return set(fetchRoomAtom, { loading: false, error: null, data: null })
       } catch (error: any) {
-        console.log('error', error)
         return set(fetchRoomAtom, {
           loading: false,
-          error: error.response.status,
+          error,
           data: null,
         })
       }
@@ -116,7 +115,6 @@ export const commonErrorReportAtom = atom(
         })
         set(fetchCommonErrorReportAtom, { loading: false, error: null, data })
       } catch (error: any) {
-        console.log('error', error)
         set(fetchCommonErrorReportAtom, { loading: false, error, data: null })
       }
     }
@@ -141,7 +139,6 @@ export const areaAtom = atom(
         })
         set(fetchAreaAtom, { loading: false, error: null, data })
       } catch (error: any) {
-        console.log('error', error)
         set(fetchAreaAtom, { loading: false, error, data: null })
       }
     }
@@ -161,7 +158,6 @@ export const inventoryAtom = atom(
         })
         set(fetchInventoryAtom, { loading: false, error: null, data })
       } catch (error: any) {
-        console.log('error', error)
         set(fetchInventoryAtom, { loading: false, error, data: null })
       }
     }
