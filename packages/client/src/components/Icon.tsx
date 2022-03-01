@@ -75,9 +75,13 @@ const Wrapper = styled.div`
 
 const Icon = ({ name, alt }: Props) => {
   const getIconName = () => {
-    const iconName = Object.keys(IconName).filter((a) => name.includes(a))[0] ?? 'Övrigt'
+    const sanitizedName = Object.keys(IconName).filter((a) => Boolean(name.includes(a)))
+    const iconName =
+      sanitizedName.length === 1
+        ? IconName[sanitizedName[0] as keyof typeof IconName]
+        : IconName['Övrigt' as keyof typeof IconName]
 
-    return Icons[IconName[iconName as keyof typeof IconName]]
+    return Icons[iconName]
   }
 
   return (
