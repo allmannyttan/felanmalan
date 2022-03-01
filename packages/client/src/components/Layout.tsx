@@ -2,6 +2,7 @@ import { useAtom } from 'jotai'
 import React, { ReactChild } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { validRoutes } from '../App'
 import { userAtom } from '../utils/atoms'
 import Header from './Header'
 const Wrapper = styled.div`
@@ -31,15 +32,6 @@ const Layout: React.FC<{ error?: any; children: ReactChild }> = ({ error, childr
   const [userData] = useAtom(userAtom)
   const { pathname } = useLocation()
   const navigate = useNavigate()
-
-  const validRoutes = [
-    '/plats',
-    '/rum',
-    '/omrade',
-    '/objekt',
-    '/komplettera',
-    '/sammanfattning',
-  ]
 
   React.useEffect(() => {
     if (!userData.rentalId && validRoutes.includes(pathname)) navigate('/')

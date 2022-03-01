@@ -16,19 +16,19 @@ import ErrorFallback from './pages/ErrorFallback'
 import { initialErrorReportValues, reportAtom } from './utils/atoms'
 import NotFoundPage from './pages/404'
 
+export const validRoutes = [
+  '/plats',
+  '/rum',
+  '/omrade',
+  '/objekt',
+  '/komplettera',
+  '/sammanfattning',
+]
 const App = () => {
   const { pathname } = useLocation()
   const [, setErrorReport] = useAtom(reportAtom)
   const navigate = useNavigate()
 
-  const showProgressBar = [
-    '/plats',
-    '/rum',
-    '/omrade',
-    '/objekt',
-    '/komplettera',
-    '/sammanfattning',
-  ]
   return (
     <Theme>
       <JotaiProvider>
@@ -40,7 +40,7 @@ const App = () => {
           }}>
           <Layout>
             <>
-              {showProgressBar.includes(pathname) && <ProgressBar />}
+              {validRoutes.includes(pathname) && <ProgressBar />}
               <Routes>
                 <Route path="/" element={<Start />} />
                 <Route path="/plats" element={<Place />} />

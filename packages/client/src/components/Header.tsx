@@ -5,6 +5,7 @@ import { H2 } from './Typography'
 import arrow from '../images/svg/arrow.svg'
 import { useAtom } from 'jotai'
 import { reportAtom } from '../utils/atoms'
+import { validRoutes } from '../App'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundGrey};
@@ -29,14 +30,6 @@ const Header = ({ error }: { error?: string }) => {
   const navigate = useNavigate()
   const [value, setReportValue] = useAtom(reportAtom)
   const [title, setTitle] = React.useState('Felanmälan')
-  const showArrow = [
-    '/plats',
-    '/rum',
-    '/omrade',
-    '/objekt',
-    '/komplettera',
-    '/sammanfattning',
-  ]
 
   const setTitleInHeader = (pathname: string) => {
     switch (pathname) {
@@ -100,7 +93,7 @@ const Header = ({ error }: { error?: string }) => {
 
   return (
     <Wrapper>
-      {showArrow.includes(pathname) && !error && (
+      {validRoutes.includes(pathname) && !error && (
         <Button onClick={handleOnClick}>
           <img src={arrow} alt="Arrow back" />
         </Button>
