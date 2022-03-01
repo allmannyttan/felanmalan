@@ -26,7 +26,7 @@ interface Props {
   onReset?: () => void
 }
 
-const BaseLayout: React.FC<Props> = ({ onReset, children }) => {
+const BaseWrapper: React.FC<Props> = ({ onReset, children }) => {
   const navigate = useNavigate()
   const [, setErrorReport] = useAtom(reportAtom)
 
@@ -41,4 +41,4 @@ const BaseLayout: React.FC<Props> = ({ onReset, children }) => {
     </Wrapper>
   )
 }
-export default BaseLayout
+export default BaseWrapper
