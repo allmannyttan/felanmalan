@@ -27,7 +27,7 @@ const FlexCol = styled.div`
   max-width: 840px;
 `
 
-const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
+const Layout: React.FC<{ error?: any; children: ReactChild }> = ({ error, children }) => {
   const [userData] = useAtom(userAtom)
   const { pathname } = useLocation()
   const navigate = useNavigate()
@@ -46,7 +46,7 @@ const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
   }, [])
   return (
     <Wrapper>
-      <Header />
+      <Header error={error?.response?.status ?? error?.message} />
       <FlexCol>{children}</FlexCol>
     </Wrapper>
   )

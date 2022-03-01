@@ -24,8 +24,8 @@ const Button = styled.button`
   border: none;
 `
 
-const Header = () => {
-  const { pathname, state } = useLocation()
+const Header = ({ error }: { error?: string }) => {
+  const { pathname } = useLocation()
   const navigate = useNavigate()
   const [value, setReportValue] = useAtom(reportAtom)
   const [title, setTitle] = React.useState('Felanmälan')
@@ -69,16 +69,11 @@ const Header = () => {
     }
   }
 
-  const setErrorCodeInHeader = (errorCode: number) => {
-    return setTitle(errorCode.toString())
-  }
   React.useEffect(() => {
-    setTitleInHeader(pathname)
+    if (error) {
+      setTitle(error)
+    } else setTitleInHeader(pathname)
   }, [pathname])
-
-  React.useEffect(() => {
-    if (state && state.errorStatusCode) setErrorCodeInHeader(state.errorStatusCode)
-  }, [state])
 
   const handleOnClick = () => {
     switch (pathname) {
@@ -105,7 +100,7 @@ const Header = () => {
 
   return (
     <Wrapper>
-      {showArrow.includes(pathname) && (
+      {showArrow.includes(pathname) && !error && (
         <Button onClick={handleOnClick}>
           <img src={arrow} alt="Arrow back" />
         </Button>
