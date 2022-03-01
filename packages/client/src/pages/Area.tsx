@@ -7,7 +7,6 @@ import { useAtom } from 'jotai'
 import { areaAtom, userAtom } from '../utils/atoms'
 import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
-import { shouldRedirectUser } from '../utils/helpers'
 import { FlexToStart } from '../shared-elements/layout'
 
 const Area = () => {
@@ -20,7 +19,13 @@ const Area = () => {
   }, [])
 
   React.useEffect(() => {
-    if (shouldRedirectUser(area)) {
+    if (area.error) {
+      navigate(location.pathname, {
+        replace: true,
+        state: { errorStatusCode: area.error },
+      })
+    }
+    if (area.data && area.data?.length < 1) {
       navigate('/komplettera', { replace: true })
     }
   }, [area])
