@@ -32,27 +32,29 @@ const App = () => {
   return (
     <Theme>
       <JotaiProvider>
-        <Layout>
-          <ErrorBoundary
-            FallbackComponent={ErrorFallback}
-            onReset={() => {
-              setErrorReport(initialErrorReportValues)
-              navigate('/', { replace: true })
-            }}>
-            {showProgressBar.includes(pathname) && <ProgressBar />}
-            <Routes>
-              <Route path="/" element={<Start />} />
-              <Route path="/plats" element={<Place />} />
-              <Route path="/rum" element={<Room />} />
-              <Route path="/omrade" element={<Area />} />
-              <Route path="/objekt" element={<Item />} />
-              <Route path="/komplettera" element={<Complete />} />
-              <Route path="/sammanfattning" element={<Summary />} />
-              <Route path="/bekraftelse" element={<Confirmation />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </ErrorBoundary>
-        </Layout>
+        <ErrorBoundary
+          FallbackComponent={ErrorFallback}
+          onReset={() => {
+            setErrorReport(initialErrorReportValues)
+            navigate('/', { replace: true })
+          }}>
+          <Layout>
+            <>
+              {showProgressBar.includes(pathname) && <ProgressBar />}
+              <Routes>
+                <Route path="/" element={<Start />} />
+                <Route path="/plats" element={<Place />} />
+                <Route path="/rum" element={<Room />} />
+                <Route path="/omrade" element={<Area />} />
+                <Route path="/objekt" element={<Item />} />
+                <Route path="/komplettera" element={<Complete />} />
+                <Route path="/sammanfattning" element={<Summary />} />
+                <Route path="/bekraftelse" element={<Confirmation />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </>
+          </Layout>
+        </ErrorBoundary>
       </JotaiProvider>
     </Theme>
   )
