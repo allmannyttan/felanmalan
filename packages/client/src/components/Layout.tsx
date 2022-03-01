@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
 import React, { ReactChild } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { userAtom } from '../utils/atoms'
 import Header from './Header'
@@ -29,10 +29,20 @@ const FlexCol = styled.div`
 
 const Layout: React.FC<{ children: ReactChild }> = ({ children }) => {
   const [userData] = useAtom(userAtom)
+  const { pathname } = useLocation()
   const navigate = useNavigate()
 
+  const validRoues = [
+    '/plats',
+    '/rum',
+    '/omrade',
+    '/objekt',
+    '/komplettera',
+    '/sammanfattning',
+  ]
+
   React.useEffect(() => {
-    if (!userData.rentalId) navigate('/')
+    if (!userData.rentalId && validRoues.includes(pathname)) navigate('/')
   }, [])
   return (
     <Wrapper>
